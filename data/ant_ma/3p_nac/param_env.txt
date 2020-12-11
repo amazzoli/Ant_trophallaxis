@@ -1,0 +1,4 @@
+max_k	8
+n_recipients	2
+p_succ	0.8
+init_k	8,8,

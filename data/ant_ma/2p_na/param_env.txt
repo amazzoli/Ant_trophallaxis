@@ -1,0 +1,3 @@
+max_k	5
+n_recipients	1
+p_succ	0.8

@@ -1,0 +1,5 @@
+1 -> Prova con p_cons 0.5. Si vede il fenomeno del rifiuto per gamma abbastanza grande
+2 -> Diminuisce p_cons=0.25. Ancora rifiuto per condizione iniziale massima. k=4 fisso.
+3 -> Come 2 ma con condizione iniziale random. In questo caso invece accetto sempre...
+4 -> Come 3 ma values iniziali grandi.. Accetto sempre
+5 -> Come 4 ma gamma 0.999. Qui invece, aumentando l'orizzonte, impara a rifiutare ancora 

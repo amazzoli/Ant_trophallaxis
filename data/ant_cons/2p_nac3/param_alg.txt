@@ -1,0 +1,14 @@
+alg_type	nac
+gamma	0.995
+stop_by_discount	true
+n_steps	10000000
+traj_points	100
+a0	0.005
+ac	33333.333333333336
+a_expn	0.8
+a_burn	5000000.0
+b0	2e-06
+bc	33333.333333333336
+b_expn	0.8
+b_burn	10000000
+init_values_rand	40
