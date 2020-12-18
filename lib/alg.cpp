@@ -1,8 +1,8 @@
 #include "alg.h"
 
 
-MARLAlgorithm::MARLAlgorithm(Environment* env, const param& params, std::mt19937& generator) :
-env{env}, generator{generator} {
+MARLAlgorithm::MARLAlgorithm(Environment* env, const param& params, std::mt19937& generator, bool verbose) :
+env{env}, generator{generator}, verbose{verbose} {
 
     try {
         m_gamma = params.d.at("gamma");
@@ -22,7 +22,7 @@ env{env}, generator{generator} {
 
 void MARLAlgorithm::run(const param& params) {
 
-    int n_steps, traj_points, traj_step;
+    int n_steps, traj_points;
     // Reading parameters
     try {
         n_steps = params.d.at("n_steps");
@@ -46,7 +46,7 @@ void MARLAlgorithm::run(const param& params) {
     return_traj = vec2d(0);
     ep_len_traj = veci(0);
     int ep_for_av_ret = 1;  
-    Perc perc(5, n_steps-1);
+    Perc perc(10, n_steps-1);
 
     // Env initialization   
     (*env).reset_state(curr_aggr_state);
@@ -127,7 +127,7 @@ void MARLAlgorithm::run(const param& params) {
         }
 
         // Std output
-        if (perc.step(curr_step)) {
+        if (verbose && perc.step(curr_step)) {
             if (ep_for_av_ret != 0){
                 std::cout << " average return over " << ep_for_av_ret << " ep: ";
                 for(int p=0; p<(*env).n_players(); p++)
@@ -147,7 +147,7 @@ void MARLAlgorithm::print_output(str dir) const {
 
     // Printing the returns and the episode lengths
     std::ofstream file_r;
-    file_r.open(dir + "/return_traj.txt");
+    file_r.open(dir + "return_traj.txt");
 
     file_r << "Episode_length\t";
     for(int p=0; p<(*env).n_players(); p++)
@@ -163,8 +163,10 @@ void MARLAlgorithm::print_output(str dir) const {
     file_r.close();
 
     // Printing the environment info trajectory
-    if (env_info_traj.size() > 0 && env_info_traj[0].size() > 0)
-        write_vec2d(env_info_traj, dir + "/env_info_traj.txt", (*env).env_data_headers());
+    if (traj_step > 0){
+        if (env_info_traj.size() > 0 && env_info_traj[0].size() > 0)
+            write_vec2d(env_info_traj, dir + "env_info_traj.txt", (*env).env_data_headers());
+    }
 
     // Printing the algorithm-specific trajectories
     print_traj(dir);

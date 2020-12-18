@@ -66,7 +66,7 @@ class MA_AC : public MARLAlgorithm {
     public:
 
         /* Construct the algorithm given the parameters dictionary */
-        MA_AC(Environment* env, const param& params, std::mt19937& generator);
+        MA_AC(Environment* env, const param& params, std::mt19937& generator, bool verbose=true);
 
         /* Algorithm description */
         const str descr() const { return "Multi-agent actor critic algorithm."; }
@@ -88,8 +88,8 @@ class MA_NAC_AP : public MA_AC {
 
     public:
 
-        MA_NAC_AP(Environment* env, const param& params, std::mt19937& generator) : 
-        MA_AC{env, params, generator} {};
+        MA_NAC_AP(Environment* env, const param& params, std::mt19937& generator, bool verbose=true) : 
+        MA_AC{env, params, generator, verbose} {};
 
         const str descr() const { return "Multi-agent natural actor critic with advantage parameters algorithm."; }
 };

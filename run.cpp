@@ -28,7 +28,7 @@ int main(int argc, char** argv) {
     param params_env = parse_param_file(data_dir+env_name+"/"+alg_name+"/param_env.txt"); // Def in utils
 
     // Constructing the environment.
-    Environment* env = get_env(env_name, params_env, generator); // Def in kite.h
+    Environment* env = get_env(env_name, params_env, generator);
     std::cout << "Environment successfully built:\n" << (*env).descr() << "\n\n";
 
     // // Constructing the algorithm

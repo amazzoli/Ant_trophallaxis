@@ -1,8 +1,8 @@
 #include "nac.h"
 
 
-MA_AC::MA_AC(Environment* env, const param& params, std::mt19937& generator) : 
-MARLAlgorithm(env, params, generator) {
+MA_AC::MA_AC(Environment* env, const param& params, std::mt19937& generator, bool verbose) : 
+MARLAlgorithm(env, params, generator, verbose) {
 
     try {
         // Learning rate scheduling
@@ -33,17 +33,20 @@ void MA_AC::init(const param& params){
     // Value parameter init
     if (params.s.find("init_val_path") != params.s.end()){
         curr_v_pars = read_vec2d( params.s.at("init_val_path") );
-        std::cout << ". Value init cond from data: " << params.s.at("init_val_path") << "\n";
+        if (verbose)
+            std::cout << ". Value init cond from data: " << params.s.at("init_val_path") << "\n";
     }
 
     else{
         if (params.d.find("init_values") != params.d.end()) {
             curr_v_pars = const_values( params.d.at("init_values") );
-            std::cout << ". Constant init val: " << params.d.at("init_values") << "\n";
+            if (verbose)
+                std::cout << ". Constant init val: " << params.d.at("init_values") << "\n";
         }
         else {
             if (params.d.find("init_values_rand") != params.d.end()){
-                std::cout << ". Random init val: " << params.d.at("init_values_rand") << "\n";
+                if (verbose)
+                    std::cout << ". Random init val: " << params.d.at("init_values_rand") << "\n";
                 curr_v_pars = rand_values( params.d.at("init_values_rand") );
             }
             else
@@ -161,13 +164,14 @@ void MA_AC::build_traj() {
 void MA_AC::print_traj(str out_dir) const {
 
     // Value trajectory
-    write_vec3d(value_traj, out_dir + "value_traj.txt", (*env).aggr_state_descr());
+    if (traj_step > 0)
+        write_vec3d(value_traj, out_dir + "value_traj.txt", (*env).aggr_state_descr());
 
     // Policy trajectory
-    vec3d policy;
+    vec4d policy;
     for (int p=0; p<(*env).n_players(); p++){
         str path = out_dir + "policy" + std::to_string(p) + "_traj.txt";
-        policy = vec3d(policy_par_traj.size());
+        vec3d policy_of_p = vec3d(policy_par_traj.size());
         for (int t=0; t<policy_par_traj.size(); t++){
             vec2d pol_at_time = vec2d(policy_par_traj[t][p].size());
             for (int k=0; k<policy_par_traj[t][p].size(); k++){
@@ -179,13 +183,16 @@ void MA_AC::print_traj(str out_dir) const {
                 }
                 pol_at_time[k] = pol_at_state;
             }
-            policy[t] = pol_at_time;
+            policy_of_p[t] = pol_at_time;
         }
-        write_vec3d(policy, path, (*env).action_descr()[p]);
+        if (traj_step > 0)
+            write_vec3d(policy_of_p, path, (*env).action_descr()[p]);
+        policy.push_back(policy_of_p);
     }
 
     // Best value and best policy
-    write_vec3d(policy, out_dir + "best_policy.txt");
+    for (int p=0; p<(*env).n_players(); p++)
+        write_vec2d(policy[p][policy[p].size()-1], out_dir + "best_policy_"+std::to_string(p)+".txt");
     write_vec2d(value_traj[value_traj.size()-1], out_dir + "best_value.txt");
 }
 
