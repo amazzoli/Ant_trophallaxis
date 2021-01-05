@@ -1,0 +1,7 @@
+**/*.png
+
+**/*.exe
+
+**/*.pync
+
+write_parameters.ipynb
