@@ -25,7 +25,9 @@ class MA_AC : public MARLAlgorithm {
         vec4d policy_par_traj;
         /* Trajectory of the values */ 
         vec3d value_traj;
-
+        /* Whether to save the policy trajectory */
+        bool save_alg_traj;
+        
         // AUX FUNCTIONS
         /* Build constant value parameters */
         vec2d const_values(double val);

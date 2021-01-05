@@ -1,0 +1,17 @@
+alg_type	nac
+gamma	0.999
+stop_by_discount	true
+n_steps	150000
+traj_points	20
+save_returns	false
+save_alg_traj	false
+a0	0.008
+ac	500.0
+a_expn	0.8
+a_burn	75000.0
+b0	4e-06
+bc	500.0
+b_expn	0.8
+b_burn	150000
+init_values	20
+multi	gamma,

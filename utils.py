@@ -58,21 +58,25 @@ def read_params(path):
             if ',' not in l.split()[1]:
                 params[l.split()[0]] = l.split()[1]
             else:
-                params[l.split()[0]] = np.array(l.split()[1].split(',')[:-1], dtype=float)
+                try:
+                    params[l.split()[0]] = np.array(l.split()[1].split(',')[:-1], dtype=float)
+                except ValueError:
+                    params[l.split()[0]] = np.array(l.split()[1].split(',')[:-1])
     return params
 
     
-def read_traj(path):
+def read_traj(path, header=True):
     """Read a trajectory with headers"""
     f = open(path, "r")
     v_traj = []
-    state_labels = f.readline().split()
+    if header:
+        state_labels = f.readline().split()
     for line in f.readlines():
         v_traj.append(line.split())
-    try:
-        return np.array(v_traj, dtype='float'), state_labels
-    except ValueError:
-        return np.array(v_traj), state_labels
+    if header:
+        return v_traj, state_labels
+    else:
+        return v_traj
     
 
 def read_2d_traj(path):

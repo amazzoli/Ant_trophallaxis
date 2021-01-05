@@ -27,8 +27,8 @@ int main(int argc, char** argv) {
     MARLAlgorithm* alg;
     param params_env, alg_params;
     for (int i=0; i<param_count.d.at("counts"); i++) {
-        params_env = parse_param_file(data_dir+env_name+"_multi/"+alg_name+"/param_env_"+std::to_string(i)+".txt");
-        alg_params = parse_param_file(data_dir + env_name + "_multi/" + alg_name + "/param_alg_"+std::to_string(i)+".txt");
+        params_env = parse_param_file(data_dir+env_name+"_multi/"+alg_name+"/"+std::to_string(i)+"_param_env.txt");
+        alg_params = parse_param_file(data_dir + env_name + "_multi/" + alg_name + "/"+std::to_string(i)+"_param_alg.txt");
         
         // Constructing the environment.
         Environment* env = get_env(env_name, params_env, generator);

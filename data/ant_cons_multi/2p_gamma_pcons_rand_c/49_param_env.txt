@@ -1,0 +1,6 @@
+max_k	10
+n_recipients	1
+p_succ	0.9
+p_consume	0.4444444444444444
+multi	p_consume,
+init_k	11,11,

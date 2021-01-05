@@ -76,6 +76,8 @@ class Ants_consume : public Ants_ma {
         veci ind_rec_map;
 
         // INFO TRAJECTORY
+        /* Average return */
+        veci av_return;
         /* Episodes ended by forager's death */
         int forag_deaths;
         /* Episodes ended by all recipients death */
@@ -85,7 +87,7 @@ class Ants_consume : public Ants_ma {
         /* Aux var to control the forced stop */
         bool env_stop;
         /* N. steps from the last writing of the trajectory quantities */
-        double enlapsed_steps;
+        double elapsed_steps;
 
     public:
 

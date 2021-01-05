@@ -5,13 +5,16 @@ MARLAlgorithm::MARLAlgorithm(Environment* env, const param& params, std::mt19937
 env{env}, generator{generator}, verbose{verbose} {
 
     try {
+
         m_gamma = params.d.at("gamma");
+
         if (params.s.find("stop_by_discount") != params.s.end()) {
             if (params.s.at("stop_by_discount") == "true" || params.s.at("stop_by_discount") == "True")
                     stop_by_discount = true;
         }
         else
             stop_by_discount = false;
+
     } catch (std::exception) {
         throw std::invalid_argument( "Invalid algorithm parameters" );
     }
@@ -23,11 +26,15 @@ env{env}, generator{generator}, verbose{verbose} {
 void MARLAlgorithm::run(const param& params) {
 
     int n_steps, traj_points;
+    save_return = true;
     // Reading parameters
     try {
         n_steps = params.d.at("n_steps");
         traj_points = params.d.at("traj_points");
         traj_step = round(n_steps/float(traj_points));
+        if (params.s.find("save_returns") != params.s.end()) 
+            if (params.s.at("save_returns") == "false" || params.s.at("save_returns") == "False")
+                save_return = false;
     } catch (std::exception) {
         throw std::invalid_argument( "Invalid algorithm parameters" );
     }
@@ -107,9 +114,11 @@ void MARLAlgorithm::run(const param& params) {
                 ret[p] += t_reward[p] * curr_gamma_fact;
                 av_ret[p] += ret[p];
             }
-            return_traj.push_back(ret);
-            ep_for_av_ret++;
-            ep_len_traj.push_back(curr_ep_step);
+            if (save_return){
+                return_traj.push_back(ret);
+                ep_for_av_ret++;
+                ep_len_traj.push_back(curr_ep_step);
+            }
 
             // Re-initialize the environment
             for(int p=0; p<(*env).n_players(); p++) ret[p] = 0;
@@ -146,21 +155,23 @@ void MARLAlgorithm::run(const param& params) {
 void MARLAlgorithm::print_output(str dir) const {
 
     // Printing the returns and the episode lengths
-    std::ofstream file_r;
-    file_r.open(dir + "return_traj.txt");
+    if (save_return) {
+        std::ofstream file_r;
+        file_r.open(dir + "return_traj.txt");
 
-    file_r << "Episode_length\t";
-    for(int p=0; p<(*env).n_players(); p++)
-        file_r << "Return_p" << p+1 << "\t";
-    file_r << "\n";
-
-    for (int t=0; t<return_traj.size(); t++){
-        file_r << ep_len_traj[t] << "\t";
+        file_r << "Episode_length\t";
         for(int p=0; p<(*env).n_players(); p++)
-            file_r << return_traj[t][p] << "\t";
+            file_r << "Return_p" << p+1 << "\t";
         file_r << "\n";
+
+        for (int t=0; t<return_traj.size(); t++){
+            file_r << ep_len_traj[t] << "\t";
+            for(int p=0; p<(*env).n_players(); p++)
+                file_r << return_traj[t][p] << "\t";
+            file_r << "\n";
+        }
+        file_r.close();
     }
-    file_r.close();
 
     // Printing the environment info trajectory
     if (traj_step > 0){

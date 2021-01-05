@@ -155,9 +155,10 @@ Ants_ma(par, generator) {
 	    throw std::invalid_argument( "Invalid ant-environment parameters (Ants_consume model)" );
 	}
 
+	av_return = veci(n_recipients+1);
     forag_deaths = 0;
     rec_deaths = 0;
-    enlapsed_steps = 0;
+    elapsed_steps = 0;
     forced_stops = 0;
     env_stop = true;
 }
@@ -198,7 +199,7 @@ void Ants_consume::step(const veci& action, env_info& info) {
 	for (double& r : info.reward) r = 0;
 	info.done = false;
 	env_stop = false;
-	enlapsed_steps++;
+	elapsed_steps++;
 
 	// Forager's decision
 	if (decider == 0) {
@@ -234,6 +235,8 @@ void Ants_consume::step(const veci& action, env_info& info) {
 			food[0] -= 1;
 			info.reward[decider] = 1;
 			info.reward[0] = 1;
+			av_return[0] += 1;
+			av_return[decider] += 1;
 			// Terminal state if forager finishes food
 			if (food[0] == 0) {
 				forag_deaths++;
@@ -267,11 +270,19 @@ void Ants_consume::step(const veci& action, env_info& info) {
 
 
 vecd Ants_consume::env_data() {
-	vecd v = vecd { (double)forag_deaths/enlapsed_steps, (double)rec_deaths/enlapsed_steps, (double)forced_stops/enlapsed_steps };
-	if (enlapsed_steps == 0){
+	vecd v = vecd { (double)forag_deaths/elapsed_steps, (double)rec_deaths/elapsed_steps, (double)forced_stops/elapsed_steps };
+	int ep_count = forag_deaths+rec_deaths+forced_stops;
+	for (int& r : av_return) {
+		if (ep_count > 0)
+			v.push_back(r/(float)ep_count);
+		else
+			v.push_back(0);
+		r = 0;
+	}
+	if (elapsed_steps == 0){
 		v[0] = 0; v[1] = 0;
 	}
-	enlapsed_steps = 0;
+	elapsed_steps = 0;
 	forag_deaths = 0;
 	rec_deaths = 0;
 	forced_stops = 0;
@@ -280,5 +291,9 @@ vecd Ants_consume::env_data() {
 
 
 vecs Ants_consume::env_data_headers() {
-	return vecs { "Prob_forager_deaths\tProb_recipients_deaths" };
+	vecs h = vecs { "Prob_forager_death\tProb_recipients_death\tProb_gamma_stop" };
+	for (int p=0; p<n_recipients+1; p++) {
+		h.push_back("\tAv_return_" + std::to_string(p));
+	}
+	return h;
 }

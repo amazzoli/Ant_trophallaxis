@@ -26,6 +26,10 @@ MARLAlgorithm(env, params, generator, verbose) {
 void MA_AC::init(const param& params){
 
     // Trejectory init
+    save_alg_traj = true;
+    if (params.s.find("save_alg_traj") != params.s.end()) 
+        if (params.s.at("save_alg_traj") == "false" || params.s.at("save_alg_traj") == "False")
+            save_alg_traj = false;
     policy_par_traj = vec4d(0);
     value_traj = vec3d(0);
     return_traj = vec2d(0);
@@ -36,7 +40,6 @@ void MA_AC::init(const param& params){
         if (verbose)
             std::cout << ". Value init cond from data: " << params.s.at("init_val_path") << "\n";
     }
-
     else{
         if (params.d.find("init_values") != params.d.end()) {
             curr_v_pars = const_values( params.d.at("init_values") );
@@ -164,7 +167,7 @@ void MA_AC::build_traj() {
 void MA_AC::print_traj(str out_dir) const {
 
     // Value trajectory
-    if (traj_step > 0)
+    if (save_alg_traj && traj_step > 0)
         write_vec3d(value_traj, out_dir + "value_traj.txt", (*env).aggr_state_descr());
 
     // Policy trajectory
@@ -185,7 +188,7 @@ void MA_AC::print_traj(str out_dir) const {
             }
             policy_of_p[t] = pol_at_time;
         }
-        if (traj_step > 0)
+        if (save_alg_traj && traj_step > 0)
             write_vec3d(policy_of_p, path, (*env).action_descr()[p]);
         policy.push_back(policy_of_p);
     }

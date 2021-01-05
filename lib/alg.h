@@ -31,7 +31,10 @@ class MARLAlgorithm {
         vec2d env_info_traj;
         /* Length of the episodes */
         veci ep_len_traj;
+        /* N. of steps between trajectory points. If 0 traj is not built */
         int traj_step;
+        /* Whether to save the return trajectory */
+        bool save_return;
 
         // "CURRENT VARIABLES" CHANGED AT EACH LEARNING STEP
         /* Aggregate state at the current time step of the learning for each player */
