@@ -38,18 +38,18 @@ void MA_AC::init(const param& params){
     if (params.s.find("init_val_path") != params.s.end()){
         curr_v_pars = read_vec2d( params.s.at("init_val_path") );
         if (verbose)
-            std::cout << ". Value init cond from data: " << params.s.at("init_val_path") << "\n";
+            std::cout << "Value init cond from data: " << params.s.at("init_val_path") << "\n";
     }
     else{
         if (params.d.find("init_values") != params.d.end()) {
             curr_v_pars = const_values( params.d.at("init_values") );
             if (verbose)
-                std::cout << ". Constant init val: " << params.d.at("init_values") << "\n";
+                std::cout << "Constant init val: " << params.d.at("init_values") << "\n";
         }
         else {
             if (params.d.find("init_values_rand") != params.d.end()){
                 if (verbose)
-                    std::cout << ". Random init val: " << params.d.at("init_values_rand") << "\n";
+                    std::cout << "Random init val: " << params.d.at("init_values_rand") << "\n";
                 curr_v_pars = rand_values( params.d.at("init_values_rand") );
             }
             else
@@ -58,9 +58,13 @@ void MA_AC::init(const param& params){
     }
     
     // Policy parameters init
-    curr_policy = vec3d(0);
-    if (params.s.find("init_pol_path") != params.s.end())
-        curr_policy = read_vec3d( params.s.at("init_pol_path") );
+    curr_policy = vec3d((*env).n_players());
+    if (params.s.find("init_pol_dir") != params.s.end()){
+        std::cout << "Init policy from data: " << params.s.at("init_pol_dir") << "\n";
+        for (int p=0; p<(*env).n_players(); p++) {
+            curr_policy[p] = read_vec2d( params.s.at("init_pol_dir") + "init_pol" + std::to_string(p) + ".txt" ); 
+        }
+    }
     else
         curr_policy = flat_policy();
 

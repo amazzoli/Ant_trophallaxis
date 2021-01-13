@@ -9,7 +9,7 @@ def p_law_burn(x, x_burn, expn, c0, cc):
         return c0
     else:
         return c0*cc / (cc + (x-x_burn)**expn)
-   
+
 
 def plot_lr(alg_params):
     fig, (ax1, ax2) = plt.subplots(1,2,figsize=(7,3))

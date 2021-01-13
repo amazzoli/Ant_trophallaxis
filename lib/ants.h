@@ -66,7 +66,7 @@ class Ants_ma : public Environment {
 
 class Ants_consume : public Ants_ma {
 
-    private:
+    protected:
 
         // PARAMETERS
         // Probability that an ant consumes one unit of food each step
@@ -99,6 +99,11 @@ class Ants_consume : public Ants_ma {
         vecd env_data();
         vecs env_data_headers();
 };
+
+
+class Ants_consume_pshare : Ants_consume {
+    
+}
 
 
 #endif
