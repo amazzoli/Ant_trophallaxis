@@ -5,6 +5,10 @@
 #include "env.h"
 
 
+// Forager - Recipients model. The forager gathers with p_succ probaility and it fills 
+// its load to max_k. The failure leads to a loss of 1 res. The sharing action leads to
+// the choice of a randomly chosen recipient which accept 1 res until
+// it rejects and gives back the choice to the forager.
 class Ants_ma : public Environment {
 
     protected:
@@ -64,9 +68,11 @@ class Ants_ma : public Environment {
 };
 
 
-class Ants_consume : public Ants_ma {
+// Forager - recipients model having resource consuption. The recipients can consume
+// 1 res at each step.
+class Ants_consume : public Ants_consume {
 
-    private:
+    protected:
 
         // PARAMETERS
         // Probability that an ant consumes one unit of food each step
@@ -94,10 +100,22 @@ class Ants_consume : public Ants_ma {
         Ants_consume(const param& par, std::mt19937& generator);
         const str descr() const; 
         void reset_state(veci& aggr_state);
-        void step(const veci& action, env_info& info);
+        virtual void step(const veci& action, env_info& info);
 
         vecd env_data();
         vecs env_data_headers();
+};
+
+
+// Forager - recipients model having resource consuption. The recipients can consume
+// 1 res at each step only when the decision is on the forager side. The forager
+// does not loos res by failed gahterings.
+class Ants_consume2 : public Ants_ma {
+
+
+    public:
+
+        void step(const veci& action, env_info& info);
 };
 
 
