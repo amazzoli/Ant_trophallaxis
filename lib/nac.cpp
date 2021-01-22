@@ -135,11 +135,13 @@ void MA_AC::get_action(veci& action) {
 }
 
 
-void MA_AC::learning_update() {
+void MA_AC::learning_update(int lrn_steps_elapsed) {
 
+    double eff_gamma = std::pow(m_gamma, lrn_steps_elapsed);
+    
     if (!stop_by_discount) {
         for (int p=0; p<(*env).n_players(); p++)
-            curr_td_error[p] = curr_info.reward[p] + m_gamma * curr_v_pars[p][curr_new_aggr_state[p]] - curr_v_pars[p][curr_aggr_state[p]];
+            curr_td_error[p] = curr_info.reward[p] + eff_gamma * curr_v_pars[p][curr_new_aggr_state[p]] - curr_v_pars[p][curr_aggr_state[p]];
     }
     else {
         for (int p=0; p<(*env).n_players(); p++)
@@ -147,17 +149,20 @@ void MA_AC::learning_update() {
     }
 
     // Critic update
-    curr_crit_lr = lr_crit(curr_step) * curr_gamma_fact;
+    curr_crit_lr = lr_crit(curr_step);
+    if (!stop_by_discount) curr_crit_lr *= curr_gamma_fact;
     for (int p=0; p<(*env).n_players(); p++)
         curr_v_pars[p][curr_aggr_state[p]] += curr_crit_lr * curr_td_error[p];
     if (curr_info.done){
-        (*env).terminal_reward(m_gamma, curr_t_rew);
+        (*env).terminal_reward(eff_gamma, curr_t_rew);
         for (int p=0; p<(*env).n_players(); p++)
             curr_v_pars[p][curr_new_aggr_state[p]] += curr_crit_lr * ( curr_t_rew[p] - curr_v_pars[p][curr_new_aggr_state[p]]);
     }
 
     // Actor update
-    curr_act_lr = lr_act(curr_step) * curr_gamma_fact;
+    curr_act_lr = lr_act(curr_step) ;
+    if (!stop_by_discount) 
+        curr_act_lr *= curr_gamma_fact;
     child_update();
 }
 

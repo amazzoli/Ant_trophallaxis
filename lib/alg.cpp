@@ -78,10 +78,13 @@ void MARLAlgorithm::run(const param& params) {
         //     std::cout << (*env).action_descr()[p][curr_aggr_state[p]][curr_action[p]] << " ";
 
         // Envitonmental step
-        (*env).step(curr_action, curr_info);
+        int lrn_steps_elapsed = 1;
+        (*env).step(curr_action, curr_info, lrn_steps_elapsed);
         for(int p=0; p<(*env).n_players(); p++)
             ret[p] += curr_info.reward[p] * curr_gamma_fact;
         (*env).aggr_state(curr_new_aggr_state);
+
+        if (!stop_by_discount) curr_gamma_fact *= std::pow(m_gamma, lrn_steps_elapsed);
 
         // std::cout << ". r: ";
         // for(int p=0; p<(*env).n_players(); p++){
@@ -91,12 +94,13 @@ void MARLAlgorithm::run(const param& params) {
 
         // Stop with discount factor if enabled
         if (stop_by_discount) {
-            if (unif_dist(generator) > m_gamma)
-                curr_info.done = true;
+            for (int = 0; i<lrn_steps_elapsed; i++)
+                if (unif_dist(generator) > m_gamma)
+                    curr_info.done = true;
         }
 
         // Algorithm-specific update
-        learning_update();
+        learning_update(lrn_steps_elapsed);
         
         // Building the trajectory
         if (traj_step > 0 && curr_step%traj_step == 0) {
@@ -131,7 +135,6 @@ void MARLAlgorithm::run(const param& params) {
         else { 
             for(int p=0; p<(*env).n_players(); p++)
                 curr_aggr_state[p] = curr_new_aggr_state[p];
-            if (!stop_by_discount) curr_gamma_fact *= m_gamma;
             curr_ep_step++;
         }
 

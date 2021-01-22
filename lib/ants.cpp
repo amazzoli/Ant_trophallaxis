@@ -103,7 +103,7 @@ void Ants_ma::reset_state(veci& aggr_state) {
 }
 
 
-void Ants_ma::step(const veci& action, env_info& info) {
+void Ants_ma::step(const veci& action, env_info& info, int& lrn_steps_elapsed) {
 
 	for (double& r : info.reward) r = 0;
 
@@ -171,6 +171,8 @@ const str Ants_consume::descr() const {
 
 void Ants_consume::reset_state(veci& aggr_state) {
 
+	//std::cout << "Reset state\n";
+
 	if (!env_stop) forced_stops++;
 
 	ind_rec_map = veci(n_recipients);
@@ -194,7 +196,7 @@ void Ants_consume::reset_state(veci& aggr_state) {
 }
 
 
-void Ants_consume::step(const veci& action, env_info& info) {
+void Ants_consume::step(const veci& action, env_info& info, int& lrn_steps_elapsed) {
 
 	for (double& r : info.reward) r = 0;
 	info.done = false;
@@ -299,7 +301,12 @@ vecs Ants_consume::env_data_headers() {
 }
 
 
-void Ants_consume2::step(const veci& action, env_info& info) {
+const str Ants_consume2::descr() const {
+	return "Ant colony with single forager and multi-recipient interactions.\nConsumption during foraging.";	
+}
+
+
+void Ants_consume2::step(const veci& action, env_info& info, int& lrn_steps_elapsed) {
 
 	for (double& r : info.reward) r = 0;
 	info.done = false;
@@ -315,7 +322,7 @@ void Ants_consume2::step(const veci& action, env_info& info) {
 			// Success
 			if (unif_dist(generator) < p_succ) food[0] = max_k;
 
-			// Failure does not change anything, but there is the possibility of consuming food
+			// Failure does not change anything, but there is always the possibility of consuming food
 			for (int p=0; p<n_recipients+1; p++) {
 				if (food[p] > 0 && unif_dist(generator) < p_consume) {
 					food[p] -= 1;
@@ -373,4 +380,116 @@ void Ants_consume2::step(const veci& action, env_info& info) {
 			}
 		}
 	}
+}
+
+
+Ants_consume2_fast::Ants_consume2_fast(const param& par, std::mt19937& generator) : 
+Ants_consume(par, generator) {
+	gath_time_dist = std::geometric_distribution<int>(p_succ);
+}
+
+
+ const str Ants_consume2_fast::descr() const {
+	return "Ant colony with single forager and multi-recipient interactions.\nConsumption during foraging. Fast.";	
+}
+
+
+void Ants_consume2_fast::step(const veci& action, env_info& info, int& lrn_steps_elapsed) {
+
+	for (double& r : info.reward) r = 0;
+	info.done = false;
+	env_stop = false;
+	elapsed_steps++;
+	//std::cout << "decider " << decider << ", " << "action " << decider << ", ";
+	//std::cout << "food0 " << food[0] << ", " << "food1 " << food[1] << ", ";
+	
+	// Forager's decision
+	if (decider == 0) {
+
+		// Gathering
+		if (action[0] == 0) {
+
+			// Extracting the time for the forager to find food
+			int gath_time = gath_time_dist(generator);
+			//std::cout << "gath_time " << gath_time << ", ";
+
+			// Possibility of consuming food during that time
+			for (int p=0; p<n_recipients+1; p++) {
+				std::binomial_distribution<int> cons_food = std::binomial_distribution<int>(gath_time, p_consume);
+				food[p] = std::max(0, food[p]-cons_food(generator));
+				//std::cout << "food" << p << " " << food[p]<< ", ";
+
+				// Forager death
+				if (decider == 0 && food[0] <= 0) {
+					forag_deaths++;
+					info.done = true;
+					env_stop = true;
+					//std::cout << "fdeath\n";
+					break;
+				}
+
+				// Recipient death
+				else if (food[p] <= 0) {
+					// Re-defining the available recipients
+					auto ind_to_remove = std::remove(ind_rec_map.begin(), ind_rec_map.end(), p);
+					ind_rec_map.erase(ind_to_remove);
+					// Terminal state if all recipients are dead
+					if (ind_rec_map.size() == 0) {
+						rec_deaths++;
+						info.done = true;
+						env_stop = true;
+						//std::cout << "rdeath\n";
+						break;
+					}
+					else
+						unif_rec_dist = std::uniform_int_distribution<int>(0, ind_rec_map.size()-1);
+				}
+			}
+
+
+			// Gathering happens if forager doesn't die before
+			if (food[0] > 0){
+				food[0] = max_k;
+				//std::cout << "gath done ";
+			}
+			
+		}	
+
+		// Sharing
+		else {
+			//std::cout << "share";
+			// The new decider is a recipient with food>0, i.e. in ind_rec_map
+			double u = unif_rec_dist(generator);
+			decider = ind_rec_map[u];
+		}
+	}
+
+	// Recipient's decision
+	else {
+		// Reject or full health (food==0 for the exception that the rec dies when the sharing starts)
+		if (food[decider] >= max_k || food[decider] <= 0 || action[decider] == 1) {
+			decider = 0;
+			//std::cout << "reject";
+		}
+		// Accept
+		else {
+			//std::cout << "accept ";
+			food[decider] += 1;
+			food[0] -= 1;
+			//std::cout << food[0] << " "<< food[decider]<< " ";
+			info.reward[decider] = 1;
+			info.reward[0] = 1;
+			av_return[0] += 1;
+			av_return[decider] += 1;
+			// Terminal state if forager finishes food
+			if (food[0] <= 0) {
+				forag_deaths++;
+				info.done = true;
+				env_stop = true;
+				//std::cout << "fdeath\n";
+			}
+		}
+	}
+
+	//std::cout << "\n";
 }

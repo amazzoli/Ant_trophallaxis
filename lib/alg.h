@@ -57,7 +57,7 @@ class MARLAlgorithm {
         // ALGORITHM SPECIFIC METHODS
         virtual void init(const param& params) = 0;
         virtual void get_action(veci& action) = 0;
-        virtual void learning_update() = 0;
+        virtual void learning_update(int lrn_steps_elapsed) = 0;
         virtual void build_traj() = 0;
         virtual void print_traj(str out_dir) const = 0;
 

@@ -57,7 +57,7 @@ class MA_AC : public MARLAlgorithm {
         // METHODS TO OVERRIDE
         virtual void init(const param& params);
         virtual void get_action(veci& action);
-        virtual void learning_update();
+        virtual void learning_update(int lrn_steps_elapsed);
         virtual void build_traj();
         virtual void print_traj(str out_dir) const;
 

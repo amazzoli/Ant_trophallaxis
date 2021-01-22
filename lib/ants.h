@@ -64,13 +64,13 @@ class Ants_ma : public Environment {
 
         void aggr_state(veci& aggr_state);
         virtual void reset_state(veci& aggr_state);
-        virtual void step(const veci& action, env_info& info);
+        virtual void step(const veci& action, env_info& info, int& lrn_steps_elapsed);
 };
 
 
 // Forager - recipients model having resource consuption. The recipients can consume
 // 1 res at each step.
-class Ants_consume : public Ants_consume {
+class Ants_consume : public Ants_ma {
 
     protected:
 
@@ -98,7 +98,7 @@ class Ants_consume : public Ants_consume {
     public:
 
         Ants_consume(const param& par, std::mt19937& generator);
-        const str descr() const; 
+        virtual const str descr() const; 
         void reset_state(veci& aggr_state);
         virtual void step(const veci& action, env_info& info);
 
@@ -109,12 +109,26 @@ class Ants_consume : public Ants_consume {
 
 // Forager - recipients model having resource consuption. The recipients can consume
 // 1 res at each step only when the decision is on the forager side. The forager
-// does not loos res by failed gahterings.
-class Ants_consume2 : public Ants_ma {
+// does not loose res by failed gahterings.
+class Ants_consume2 : public Ants_consume {
 
 
     public:
+        Ants_consume2(const param& par, std::mt19937& generator) : Ants_consume(par, generator) {};
+        const str descr() const; 
+        void step(const veci& action, env_info& info);
+};
 
+
+
+class Ants_consume2_fast : public Ants_consume {
+
+    private:
+        std::geometric_distribution<int> gath_time_dist;
+
+    public:
+        Ants_consume2_fast(const param& par, std::mt19937& generator);
+        const str descr() const; 
         void step(const veci& action, env_info& info);
 };
 

@@ -49,7 +49,7 @@ class Environment {
         virtual void reset_state(veci& aggr_state) = 0;
         /* Environmental transition given the action which modifies the 
            internal state and return the reward and the termination flag. */
-        virtual void step(const veci& action, env_info& info) = 0;
+        virtual void step(const veci& action, env_info& info, int& lrn_steps_elapsed) = 0;
         /* Reward ot penalty in the terminal state, zero by default */
         virtual vecd terminal_reward(const double gamma, vecd& t_rew) { return vecd(n_players()); };
         /* Information about the environment */
