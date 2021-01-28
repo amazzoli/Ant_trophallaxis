@@ -17,10 +17,6 @@ class MA_AC : public MARLAlgorithm {
 
     private:
  
-        /* Critic learning rate dependent on time */
-        d_i_fnc lr_crit;
-        /* Actor learning rate dependent on time */
-        d_i_fnc lr_act;  
         /* Trajectory of the policy parameters */ 
         vec4d policy_par_traj;
         /* Trajectory of the values */ 
@@ -37,6 +33,11 @@ class MA_AC : public MARLAlgorithm {
         vec3d flat_policy();
 
     protected:  
+
+        /* Critic learning rate dependent on time */
+        d_i_fnc lr_crit;
+        /* Actor learning rate dependent on time */
+        d_i_fnc lr_act;  
 
         // "CURRENT VARIABLES" CHANGED AT EACH LEARNING STEP
         /* Critic learning rate at the current time step of the learning */
@@ -82,6 +83,7 @@ class MA_NAC_AP : public MA_AC {
 
         /* Advantage parameters */
         vec3d ap_par;
+        vec3d grad_est;
 
     protected:
 
@@ -100,7 +102,7 @@ class MA_NAC_AP : public MA_AC {
 /* Actor Critic with eligibity traces */
 class MA_AC_ET : public MA_AC {
 
-    private:
+    protected:
 
         /* ET vector actor */
         vec3d et_vec_actor;
@@ -111,9 +113,10 @@ class MA_AC_ET : public MA_AC {
         /* ET factor critic */
         double lambda_critic;
 
-    protected:
-
         virtual void learning_update(int lrn_steps_elapsed);
+
+        virtual void child_init() {};
+        virtual void actor_update();
 
     public:
         /* Construct the algorithm given the parameters dictionary */
@@ -121,6 +124,28 @@ class MA_AC_ET : public MA_AC {
 
         /* Algorithm description */
         const str descr() const { return "Multi-agent actor critic algorithm with eligibity traces."; }
+};
+
+
+/* Natural Actor Critic with advantage parameters and eligibity traces */
+class MA_NAC_AP_ET : public MA_AC_ET {
+
+    private:
+
+        /* Advantage parameters */
+        vec3d ap_par;
+
+    protected:
+
+        void child_init();
+        void actor_update();
+
+    public:
+
+        MA_NAC_AP_ET(Environment* env, const param& params, std::mt19937& generator, bool verbose=true) : 
+        MA_AC_ET{env, params, generator, verbose} {};
+
+        const str descr() const { return "Multi-agent natural actor critic with advantage parameters and eligibity traces algorithm."; }
 };
 
 

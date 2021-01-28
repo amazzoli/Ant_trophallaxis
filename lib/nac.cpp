@@ -241,29 +241,58 @@ void MA_AC::child_update(){
 
 void MA_NAC_AP::child_init(){
     ap_par = vec3d(0);
+    grad_est = vec3d(0);
     for (int p=0; p<(*env).n_players(); p++) {
         vec2d ap_par_of_player = vec2d(0);
-        for (int s=0; s<(*env).n_aggr_state(p); ++s) 
+        vec2d grad_est_of_player = vec2d(0);
+        for (int s=0; s<(*env).n_aggr_state(p); ++s) {
             ap_par_of_player.push_back(vecd((*env).n_actions(p, s)));
+            grad_est_of_player.push_back(vecd((*env).n_actions(p, s)));
+        }
         ap_par.push_back(ap_par_of_player);
+        grad_est.push_back(grad_est_of_player);
     }
 }
 
 void MA_NAC_AP::child_update(){ 
 
+    // for (int p=0; p<(*env).n_players(); p++) {
+    //     double aux_t = curr_td_error[p] - ap_par[p][curr_aggr_state[p]][curr_action[p]];
+    //     for (int a=0; a<curr_p_pars[p][curr_aggr_state[p]].size(); a++)
+    //         aux_t += curr_policy[p][curr_aggr_state[p]][a] * ap_par[p][curr_aggr_state[p]][a];
+    //     for (int a=0; a<curr_p_pars[p][curr_aggr_state[p]].size(); a++){
+    //         if (a == curr_action[p]) 
+    //             ap_par[p][curr_aggr_state[p]][a] += curr_crit_lr * (1 - curr_policy[p][curr_aggr_state[p]][a]) * aux_t; 
+    //         else 
+    //             ap_par[p][curr_aggr_state[p]][a] -= curr_crit_lr * curr_policy[p][curr_aggr_state[p]][a] * aux_t;
+    //     }
+    //     for (int s=0; s<ap_par[p].size(); s++)
+    //         for (int a=0; a<curr_p_pars[p][s].size(); a++)
+    //             curr_p_pars[p][s][a] += curr_act_lr * ap_par[p][s][a];
+    // }
+
     for (int p=0; p<(*env).n_players(); p++) {
-        double aux_t = curr_td_error[p] - ap_par[p][curr_aggr_state[p]][curr_action[p]];
-        for (int a=0; a<curr_p_pars[p][curr_aggr_state[p]].size(); a++)
-            aux_t += curr_policy[p][curr_aggr_state[p]][a] * ap_par[p][curr_aggr_state[p]][a];
-        for (int a=0; a<curr_p_pars[p][curr_aggr_state[p]].size(); a++){
-            if (a == curr_action[p]) 
-                ap_par[p][curr_aggr_state[p]][a] += curr_crit_lr * (1 - curr_policy[p][curr_aggr_state[p]][a]) * aux_t; 
-            else 
-                ap_par[p][curr_aggr_state[p]][a] -= curr_crit_lr * curr_policy[p][curr_aggr_state[p]][a] * aux_t;
-        }
-        for (int s=0; s<ap_par[p].size(); s++)
+        for (int s=0; s<ap_par[p].size(); s++) {
+            for (int a=0; a<curr_p_pars[p][curr_aggr_state[p]].size(); a++) {
+                if (s == curr_aggr_state[p]){
+                    if (a == curr_action[p])
+                        grad_est[p][s][a] = 1 - curr_policy[p][s][a];
+                    else
+                        grad_est[p][s][a] = - curr_policy[p][s][a];
+                }
+                else
+                    grad_est[p][s][a] = 0;
+            }
+
+            double aux_t = curr_td_error[p];
             for (int a=0; a<curr_p_pars[p][s].size(); a++)
+                aux_t -= grad_est[p][s][a] * ap_par[p][s][a];
+
+            for (int a=0; a<curr_p_pars[p][s].size(); a++){
+                ap_par[p][s][a] += curr_crit_lr * grad_est[p][s][a] * aux_t;
                 curr_p_pars[p][s][a] += curr_act_lr * ap_par[p][s][a];
+            }
+        }
     }
 }
 
@@ -297,46 +326,134 @@ void MA_AC_ET::learning_update(int lrn_steps_elapsed) {
 
     // WARNING: !stop_by_discount NEVER CHECKED!!
 
-    // double eff_gamma = 1;
-    // if (!stop_by_discount) eff_gamma = m_gamma; 
+    double eff_gamma = 1;
+    if (!stop_by_discount) eff_gamma = m_gamma; 
 
-    // for (int t = 0; t<lrn_steps_elapsed; t++) {
+    for (int t = 0; t<lrn_steps_elapsed; t++) {
 
-    //     // Computing temporal difference error
-    //     if (curr_info.done) {
-    //         (*env).terminal_reward(eff_gamma, curr_t_rew);
-    //         for (int p=0; p<(*env).n_players(); p++)
-    //             curr_td_error[p] = curr_t_rew[p] - curr_v_pars[p][curr_aggr_state[p]];
+        // TD is given by a self loop with zero reward
+        if (t < lrn_steps_elapsed-1) 
+            for (int p=0; p<(*env).n_players(); p++) 
+                curr_td_error[p] = eff_gamma * curr_v_pars[p][curr_aggr_state[p]] - curr_v_pars[p][curr_aggr_state[p]];
+        // normal TD for the last step
+        else {
+            if (curr_info.done) {
+                (*env).terminal_reward(eff_gamma, curr_t_rew);
+                for (int p=0; p<(*env).n_players(); p++)
+                    curr_td_error[p] = curr_t_rew[p] - curr_v_pars[p][curr_aggr_state[p]];
+            }
+            else {
+                for (int p=0; p<(*env).n_players(); p++)
+                    curr_td_error[p] = curr_info.reward[p] + eff_gamma * curr_v_pars[p][curr_new_aggr_state[p]] - curr_v_pars[p][curr_aggr_state[p]];
+            }
+        }
+
+        // Critic update (curr_gamma_fact is 1 if stop_by_discount)
+        curr_crit_lr = lr_crit(curr_step) * curr_gamma_fact;
+        for (int p=0; p<(*env).n_players(); p++)
+            for (int s=0; s<(*env).n_aggr_state(p); ++s) {
+                et_vec_critic[p][s] *= lambda_critic;
+                if (s == curr_aggr_state[p])
+                    et_vec_critic[p][s] += 1;
+                curr_v_pars[p][s] += curr_crit_lr * curr_td_error[p] * et_vec_critic[p][s];
+            }        
+
+        // Actor update (curr_gamma_fact is 1 if stop_by_discount)
+        actor_update();
+    }
+
+    // If terminal state, the eligibity vectors are re-init to zero
+    if (curr_info.done) {
+        for (int p=0; p<(*env).n_players(); p++) {
+            for (int s=0; s<(*env).n_aggr_state(p); ++s) {
+                et_vec_critic[p][s] = 0;
+                for (int a=0; a<(*env).n_actions(p,s); ++a)
+                    et_vec_actor[p][s][a] = 0;
+            }
+        }
+    }
+}
+
+
+void MA_AC_ET::actor_update() {
+    curr_act_lr = lr_act(curr_step) * curr_gamma_fact;
+    for (int p=0; p<(*env).n_players(); p++)
+        for (int s=0; s<(*env).n_aggr_state(p); ++s) 
+            for (int a=0; a<curr_p_pars[p][s].size(); a++) {
+                et_vec_actor[p][s][a] *= lambda_actor;
+                if (s == curr_aggr_state[p]){
+                    if (a == curr_action[p]) 
+                        et_vec_actor[p][s][a] += 1 - curr_policy[p][s][a];
+                    else
+                        et_vec_actor[p][s][a] -= curr_policy[p][s][a];
+                }
+                curr_p_pars[p][s][a] += curr_act_lr * curr_td_error[p] * et_vec_actor[p][s][a];
+            }  
+}
+
+
+void MA_NAC_AP_ET::child_init(){
+    ap_par = vec3d(0);
+    for (int p=0; p<(*env).n_players(); p++) {
+        vec2d ap_par_of_player = vec2d(0);
+        for (int s=0; s<(*env).n_aggr_state(p); ++s) 
+            ap_par_of_player.push_back(vecd((*env).n_actions(p, s)));
+        ap_par.push_back(ap_par_of_player);
+    }
+}
+
+
+void MA_NAC_AP_ET::actor_update(){ 
+
+    
+    // for (int p=0; p<(*env).n_players(); p++) {
+    //     for (int s=0; s<(*env).n_aggr_state(p); ++s) {
+    //         for (int a=0; a<curr_p_pars[p][s].size(); a++) {
+    //             et_vec_actor[p][s][a] *= lambda_actor;
+    //             if (s == curr_aggr_state[p]){
+    //                 if (a == curr_action[p]) 
+    //                     et_vec_actor[p][s][a] += 1 - curr_policy[p][s][a];
+    //                 else
+    //                     et_vec_actor[p][s][a] -= curr_policy[p][s][a];
+    //             }
+    //         }  
     //     }
-    //     else {
-    //         for (int p=0; p<(*env).n_players(); p++)
-    //             curr_td_error[p] = curr_info.reward[p] + eff_gamma * curr_v_pars[p][curr_new_aggr_state[p]] - curr_v_pars[p][curr_aggr_state[p]];
-    //     }
-            
-
-    //     // Critic et parameter update (curr_gamma_fact is 1 if stop_by_discount)
-    //     curr_crit_lr = lr_crit(curr_step) * curr_gamma_fact;
-    //     for (int p=0; p<(*env).n_players(); p++)
-    //         for (int s=0; s<(*env).n_aggr_state(p); ++s) {
-    //             et_vec_critic[p][s] += lambda_critic * et_vec_critic[p][s];
-    //             if (s == curr_aggr_state[p])
-    //                 et_vec_critic[p][s] += curr_v_pars[p][s];
-    //         }
-            
     // }
-    // // Actor update
-    // curr_act_lr = lr_act(curr_step) ;
-    // if (!stop_by_discount) 
-    //     curr_act_lr *= curr_gamma_fact;
 
-    // // If terminal state, the eligibity vectors are re-init to zero
-    // if (curr_info.done) {
-    //     for (int p=0; p<(*env).n_players(); p++) {
-    //         for (int s=0; s<(*env).n_aggr_state(p); ++s) {
-    //             et_vec_critic[p][s] = 0;
-    //             for (int a=0; a<(*env).n_actions(p,s); ++a)
-    //                 et_vec_actor[p][s][a] = 0;
-    //         }
+    // for (int p=0; p<(*env).n_players(); p++) {
+    //     for (int s=0; s<(*env).n_aggr_state(p); ++s) {
+    //         double aux_t = curr_td_error[p];
+    //         for (int a=0; a<curr_p_pars[p][s].size(); a++)
+    //             aux_t -= et_vec_actor[p][s][a] * ap_par[p][s][a];
+    //         for (int a=0; a<curr_p_pars[p][s].size(); a++) {
+    //             ap_par[p][s][a] += curr_crit_lr * et_vec_actor[p][s][a] * aux_t; 
+    //             curr_p_pars[p][s][a] += curr_act_lr * ap_par[p][s][a];  
+    //         }                  
     //     }
     // }
+
+    curr_act_lr = lr_act(curr_step) * curr_gamma_fact;
+    for (int p=0; p<(*env).n_players(); p++) {
+        for (int s=0; s<ap_par[p].size(); s++) {
+            for (int a=0; a<curr_p_pars[p][curr_aggr_state[p]].size(); a++) {
+                et_vec_actor[p][s][a] *= lambda_actor;
+                if (s == curr_aggr_state[p]){
+                    if (a == curr_action[p])
+                        et_vec_actor[p][s][a] = 1 - curr_policy[p][s][a];
+                    else
+                        et_vec_actor[p][s][a] = - curr_policy[p][s][a];
+                }
+            }
+            
+            double aux_t = curr_td_error[p];
+            for (int a=0; a<curr_p_pars[p][s].size(); a++)
+                aux_t -= et_vec_actor[p][s][a] * ap_par[p][s][a];
+
+            for (int a=0; a<curr_p_pars[p][s].size(); a++){
+                ap_par[p][s][a] += curr_crit_lr * et_vec_actor[p][s][a] * aux_t;
+                curr_p_pars[p][s][a] += curr_act_lr * ap_par[p][s][a];
+            }
+        }
+    }
+
 }

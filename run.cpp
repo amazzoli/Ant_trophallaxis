@@ -93,8 +93,14 @@ MARLAlgorithm* get_alg(Environment* env, const param& params, std::mt19937& gene
     if (alg_name == "ac"){
         return new MA_AC(env, params, generator);
     }
+    else if (alg_name == "ac_et"){
+        return new MA_AC_ET(env, params, generator);
+    }
     else if (alg_name == "nac"){
 		return new MA_NAC_AP(env, params, generator);
+    }
+    else if (alg_name == "nac_et"){
+        return new MA_NAC_AP_ET(env, params, generator);
     }
     else throw std::invalid_argument( "Invalid algorithm name" );
 }

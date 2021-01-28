@@ -1,0 +1,17 @@
+alg_type	ac_et
+gamma	0.995
+stop_by_discount	true
+lambda_actor	0.95
+lambda_critic	0.95
+n_steps	40000000
+traj_points	200
+eval_steps	1000
+a0	0.0005
+ac	80000.0
+a_expn	0.8
+a_burn	13333333.333333334
+b0	5e-05
+bc	133333.33333333334
+b_expn	0.8
+b_burn	40000000
+init_values	15
