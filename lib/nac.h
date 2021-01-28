@@ -97,4 +97,31 @@ class MA_NAC_AP : public MA_AC {
 };
 
 
+/* Actor Critic with eligibity traces */
+class MA_AC_ET : public MA_AC {
+
+    private:
+
+        /* ET vector actor */
+        vec3d et_vec_actor;
+        /* ET vector critic */
+        vec2d et_vec_critic;
+        /* ET factor actor */
+        double lambda_actor;
+        /* ET factor critic */
+        double lambda_critic;
+
+    protected:
+
+        virtual void learning_update(int lrn_steps_elapsed);
+
+    public:
+        /* Construct the algorithm given the parameters dictionary */
+        MA_AC_ET(Environment* env, const param& params, std::mt19937& generator, bool verbose=true);
+
+        /* Algorithm description */
+        const str descr() const { return "Multi-agent actor critic algorithm with eligibity traces."; }
+};
+
+
 #endif

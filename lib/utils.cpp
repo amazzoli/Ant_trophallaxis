@@ -151,7 +151,7 @@ void write_vecd(const vecd& v, const str file_path) {
 
 
 
-vec2d read_vec2d(str file_path) {
+vec2d read_vec2d(str file_path, bool sep_at_end) {
 
     vec2d v(0);
     std::ifstream file (file_path);
@@ -161,7 +161,7 @@ vec2d read_vec2d(str file_path) {
     str line;
     try {
         while ( getline (file, line) )
-            v.push_back(str2vecd(line, "\t", false));
+            v.push_back(str2vecd(line, "\t", sep_at_end));
     } catch (std::exception) {
         throw std::runtime_error("Error in reading the file at "+file_path);
     }
