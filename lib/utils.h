@@ -57,7 +57,7 @@ param parse_param_file(str file_path);
 
 vecd read_vecd(str file_path);
 
-vec2d read_vec2d(str file_path);
+vec2d read_vec2d(str file_path, bool sep_at_end=false);
 
 vec3d read_vec3d(str file_path);
 

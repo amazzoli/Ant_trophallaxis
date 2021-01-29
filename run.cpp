@@ -28,7 +28,7 @@ int main(int argc, char** argv) {
     param params_env = parse_param_file(data_dir+env_name+"/"+alg_name+"/param_env.txt"); // Def in utils
 
     // Constructing the environment.
-    Environment* env = get_env(env_name, params_env, generator); // Def in kite.h
+    Environment* env = get_env(env_name, params_env, generator);
     std::cout << "Environment successfully built:\n" << (*env).descr() << "\n\n";
 
     // // Constructing the algorithm
@@ -46,8 +46,24 @@ int main(int argc, char** argv) {
     (*alg).print_output(data_dir + env_name + "/" + alg_name + "/");
     std::cout << "Trajectories successfully printed at " << data_dir + env_name + "/" + alg_name + "/" << "\n";
 
-    delete env;
     delete alg;
+
+    // Evaluation
+    if (alg_params.d.find("eval_steps") != alg_params.d.end() && alg_params.d.at("eval_steps") > 0) {
+        std::cout << "\nEvaluation started\n";
+        MARLEval eval = MARLEval(env, alg_params, generator, false);
+        alg_params.d.at("n_steps") = alg_params.d.at("eval_steps");
+        alg_params.d.at("traj_points") = alg_params.d.at("n_steps");
+        alg_params.s["init_pol_dir"] = data_dir+env_name+"/"+alg_name + "/";
+        alg_params.s["save_return"] = "false";
+        alg_params.s["save_env_info"] = "false";
+        eval.run(alg_params);
+        std::cout << "Evaluation completed\n";
+        eval.print_output(data_dir + env_name + "/" + alg_name + "/");
+        std::cout << "Trajectories successfully printed\n";
+    }
+
+    delete env;
 
     return 0;
 }
@@ -60,6 +76,12 @@ Environment* get_env(std::string env_name, const param& params, std::mt19937& ge
     if (env_name == "ant_cons"){
         return new Ants_consume(params, generator);
     }
+    if (env_name == "ant_cons2"){
+        return new Ants_consume2(params, generator);
+    }
+        if (env_name == "ant_cons2_fast"){
+        return new Ants_consume2_fast(params, generator);
+    }
     else throw std::invalid_argument( "Invalid environment name" );
 }
 
@@ -71,8 +93,14 @@ MARLAlgorithm* get_alg(Environment* env, const param& params, std::mt19937& gene
     if (alg_name == "ac"){
         return new MA_AC(env, params, generator);
     }
+    else if (alg_name == "ac_et"){
+        return new MA_AC_ET(env, params, generator);
+    }
     else if (alg_name == "nac"){
 		return new MA_NAC_AP(env, params, generator);
+    }
+    else if (alg_name == "nac_et"){
+        return new MA_NAC_AP_ET(env, params, generator);
     }
     else throw std::invalid_argument( "Invalid algorithm name" );
 }

@@ -19,6 +19,8 @@ class MARLAlgorithm {
         Environment* env; 
         /* Random number generator */ 
         std::mt19937 generator;
+        /* Whether to print std::cout information */
+        bool verbose;
         /* Discount factor */
         double m_gamma;   
         /* If the discount factor is taken into account as stop probability */
@@ -29,6 +31,12 @@ class MARLAlgorithm {
         vec2d env_info_traj;
         /* Length of the episodes */
         veci ep_len_traj;
+        /* N. of steps between trajectory points. If 0 traj is not built */
+        int traj_step;
+        /* Whether to save the return trajectory */
+        bool save_return;
+        /* Whether to save the environment information trajectory */
+        bool save_env_info;
 
         // "CURRENT VARIABLES" CHANGED AT EACH LEARNING STEP
         /* Aggregate state at the current time step of the learning for each player */
@@ -51,14 +59,14 @@ class MARLAlgorithm {
         // ALGORITHM SPECIFIC METHODS
         virtual void init(const param& params) = 0;
         virtual void get_action(veci& action) = 0;
-        virtual void learning_update() = 0;
+        virtual void learning_update(int lrn_steps_elapsed) = 0;
         virtual void build_traj() = 0;
         virtual void print_traj(str out_dir) const = 0;
 
     public:
 
         /* Construct the algorithm given the parameters dictionary */
-        MARLAlgorithm(Environment* env, const param& params, std::mt19937& generator);
+        MARLAlgorithm(Environment* env, const param& params, std::mt19937& generator, bool verbose=true);
 
         /* Algorithm description */
         virtual const str descr() const = 0;
@@ -67,7 +75,31 @@ class MARLAlgorithm {
         void run(const param& params);
 
         /* Print the policy, the value trajectories and their final result */
-        virtual void print_output(str out_dir) const;
+        void print_output(str out_dir) const;
+};
+
+
+class MARLEval : public MARLAlgorithm {
+
+    private:
+        vec3d policy;
+        vec2d state_traj;
+        vec2i aggr_state_traj;
+        vec2i new_aggr_state_traj;
+        vec2i act_traj;
+        vec2d rew_traj;
+        veci done_traj;
+
+    protected:
+        void init(const param& params);
+        void get_action(veci& action);
+        void learning_update(int lrn_steps_elapsed) {};
+        void build_traj();
+        void print_traj(str out_dir) const;
+
+    public:
+        MARLEval(Environment* env, const param& params, std::mt19937& generator, bool verbose=true);
+        virtual const str descr() const { return "Evaluation"; }
 };
 
 
