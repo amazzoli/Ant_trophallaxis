@@ -74,9 +74,9 @@ def read_traj(path, header=True):
     for line in f.readlines():
         v_traj.append(line.split())
     if header:
-        return v_traj, state_labels
+        return np.array(v_traj, dtype=float), state_labels
     else:
-        return v_traj
+        return np.array(v_traj, dtype=float)
     
 
 def read_2d_traj(path):

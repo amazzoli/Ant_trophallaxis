@@ -35,6 +35,8 @@ class MARLAlgorithm {
         int traj_step;
         /* Whether to save the return trajectory */
         bool save_return;
+        /* Whether to save the environment information trajectory */
+        bool save_env_info;
 
         // "CURRENT VARIABLES" CHANGED AT EACH LEARNING STEP
         /* Aggregate state at the current time step of the learning for each player */
@@ -74,6 +76,30 @@ class MARLAlgorithm {
 
         /* Print the policy, the value trajectories and their final result */
         void print_output(str out_dir) const;
+};
+
+
+class MARLEval : public MARLAlgorithm {
+
+    private:
+        vec3d policy;
+        vec2d state_traj;
+        vec2i aggr_state_traj;
+        vec2i new_aggr_state_traj;
+        vec2i act_traj;
+        vec2d rew_traj;
+        veci done_traj;
+
+    protected:
+        void init(const param& params);
+        void get_action(veci& action);
+        void learning_update(int lrn_steps_elapsed) {};
+        void build_traj();
+        void print_traj(str out_dir) const;
+
+    public:
+        MARLEval(Environment* env, const param& params, std::mt19937& generator, bool verbose=true);
+        virtual const str descr() const { return "Evaluation"; }
 };
 
 
