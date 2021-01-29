@@ -5,57 +5,93 @@ from single_agent import Agent
 import scipy
 import time
 
+
+def from_policy_to_prob(o, policy):
+    logp = policy(o)
+    prob = np.exp(logp)
+    prob = prob / np.sum(prob)
+    return prob
+
 # ------------
 n_input = 1
 n_actions = 2
 # ------------
 
 # ------------
-forager = Agent()
-receiver = Agent()
+forager = Agent(models_rootname='./forager')
+receiver = Agent(models_rootname='./receiver')
 # ----
 agents = [forager, receiver]
 # -----------
 
-n_MD = 200
+n_MD = 100
 
 for iMD in range(n_MD):
 
         # Initialize AntEnv        
+        done = False
         Ants = AntsEnv(Nr=1, Mmax=10, c=0.01, rg=0.05, gamma=0.99)
         state = Ants.get_state()
-        active = state[1]
-        agents[active].initialize(state[2+active])
-        print(state)
+        old_state = np.zeros(state.shape)
+        old_state[:] = state
+        active = state[1] 
+
+        # initial state
+        # Since only active states are considered
+        # Agents for receiver ants could be un-initialized for whole episode. 
+        init = [False for i in range(2)]
         
-        not_init = True
-        done = False
+        agents[active].initialize(state[2+active])        
         rewards = np.zeros(2) 
+        
+        tot_time = 0
+        tot_rewards = np.zeros(2)
+        
+        count = 0
         # -----------------------------------------
         while not done:
-            active = state[1]
+            count += 1
             action = agents[active].get_actions() #return actions vector to give particles, and label
-            state, rews, done = Ants.step(action) #evolve systems from given actions
-            rewards += rews
             
-            if  state[1] == 1 and not_init:
-                rewards[1] = 0
-                agents[1].initialize(state[2+1])
-                not_init = False
+            old_state[:] = state
+            state, rews, done, time = Ants.step(action) #evolve systems from given actions
+
+            tot_time += time
+            
+            rewards += rews
+            tot_rewards += rews
+            
+            active = state[1]
+            
+            if  not init[active] :
+                rewards[active] = 0
+                agents[active].initialize(state[2+active])
+                init[active] = True
             
             if not done:
-                print(state, rewards, action, done)
-                rewards[active] = 0
+                print(old_state, state, rewards, action, done, time, tot_time)
                 agents[active].add_env_timeframe(state[2+active], rewards[active], done)
+                rewards[active] = 0
+                
             else:
-                print(state, rewards, action, done)
+                print(old_state, state, rewards, action, done, time, tot_time)
                 for i, a in enumerate(agents):
-                    a.add_env_timeframe(state[2+i], rewards[i], done)
+                    if init[i]:
+                        a.finish_path(done)
 
-        for a in agents:
-            a.train_step(epochs=20)
 
-Agent.save_models(path=models_rootname, final_save = True)
+
+        print('policy f: ', [from_policy_to_prob(np.array([[i]]), agents[0].policy)[0,0] for i in range(11)])
+        print('policy r: ', [from_policy_to_prob(np.array([[i]]), agents[1].policy)[0,0] for i in range(11)])
+        print('{} traj: time={} rew={}, {}'.format(iMD, tot_time, tot_rewards[0], tot_rewards[1]))
+        for i,a in enumerate(agents):
+            if init[i]:
+                print('training agent {}: {}'.format(i,a))
+                a.train_step(epochs=1)
+
+# save models
+#for a in agents:
+#    a.save_models(final_save = True)
 
 
 

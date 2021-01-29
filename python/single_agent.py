@@ -131,7 +131,7 @@ class Agent():
     self.logp = np.empty((0))
     self.adv = np.empty((0))
     self.target = np.empty((0))
-    self.actions = np.empty((0), dtype=np.int8)
+    self.act = np.empty((0), dtype=np.int8)
     self.idx_start = 0
     self.idx_now = 0
 
@@ -200,10 +200,12 @@ class Agent():
 
     if done:
         last_val = 0
+        self.done = True
     else:
         last_val = self.critic(self.current).numpy()
 
     # finish trajectory adding to memory the entire set of (obs, actions, logp, target)
+    self.obs = np.append(self.obs, self.current, axis=0)
     rews = np.append(self.rew, last_val)
     vals = np.append(self.val, last_val)
 
@@ -235,11 +237,18 @@ class Agent():
 
     obs = self.obs
     opt = self.optimizer
-    act = self.actions
+    act = self.act
     old_logp = self.logp
+    
+    print('obs shape {}'.format(obs.shape))
+    #print('act shape {}'.format(act.shape))
+    #print('old_logp shape {}'.format(old_logp.shape))
+    
     # ----------------------------------
     self.normalize_adv()
     adv = self.adv
+    
+    #print('adv shape {}'.format(adv.shape))
     
     for i in range(epochs):
       with tf.GradientTape() as tape:

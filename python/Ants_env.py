@@ -30,6 +30,7 @@ class AntsEnv():
         # calculate rewards
         # returns observation, rewards, done_flag
         self.rewards = np.zeros(self.N)
+        time = 0 # passing time
         # Food is consumed AFTER a gathering and AFTER a sharing.
         if not bool(self.state[0]):
             # MACRO(0) state
@@ -46,6 +47,7 @@ class AntsEnv():
                 self.share = 1
                 # No rewards.
                 # No time elapsed - End of World, Consumption: none.
+                time = 0
 
             # Gather(0)
             else :
@@ -56,7 +58,8 @@ class AntsEnv():
                 # End of World is evalued.
                 endtime = np.random.geometric(p=1-self.gamma)
                 self.done = ( endtime <= time )
-                
+                if self.done:
+                    time = np.min([endtime, time])
                 if not self.done:
                     # Consumption.
                     eaten = np.random.binomial(np.min([endtime, time]), self.c, size=self.N)
@@ -78,11 +81,10 @@ class AntsEnv():
             # if receiver is full and Takes, action is changed into pass.
             #
             if bool(action) and self.state[2+self.state[1]] == self.Mmax:
-                self.share += 1
                 action = 0
             
             if bool(action):
-                # Take()
+                # Take(1)
                 # Change of state ------
                 # Forager loses 1
                 # Recipient gains 1
@@ -100,8 +102,11 @@ class AntsEnv():
                 self.alive -= (self.state[-self.N:] == 0).astype(int)
                 if np.any([self.alive[-self.N:-self.N+1] == 0, np.all(self.alive[-self.N+1:]==0)]):
                     self.done = True
+                    time = self.share
+                time = 0
             
             else :
+                # Pass(0) 
                 #Results:
                 #Change of state ------     
                 #- from micro to MACRO
@@ -127,4 +132,4 @@ class AntsEnv():
         
         # Possibly Negative rewards for death.
         # rewards = -int(self.state[-self.N:] == 0)    
-        return self.state, self.rewards, self.done
+        return self.state, self.rewards, self.done, time
