@@ -4,6 +4,8 @@ from Ants_env import AntsEnv
 from single_agent import Agent
 import scipy
 import time
+from tqdm import tqdm
+
 
 
 def from_policy_to_prob(o, policy):
@@ -18,19 +20,22 @@ n_actions = 2
 # ------------
 
 # ------------
-forager = Agent(models_rootname='./forager')
-receiver = Agent(models_rootname='./receiver')
+
+restart = False
+
+forager = Agent(models_rootname='./forager', restart_models= restart)
+receiver = Agent(models_rootname='./receiver', restart_models= restart)
 # ----
 agents = [forager, receiver]
 # -----------
 
-n_MD = 100
+n_MD = 500
 
-for iMD in range(n_MD):
+for iMD in tqdm(range(n_MD)):
 
         # Initialize AntEnv        
         done = False
-        Ants = AntsEnv(Nr=1, Mmax=10, c=0.01, rg=0.05, gamma=0.99)
+        Ants = AntsEnv(Nr=1, Mmax=10, c=0.02, rg=0.02, gamma=1-1/300)
         state = Ants.get_state()
         old_state = np.zeros(state.shape)
         old_state[:] = state
@@ -69,25 +74,25 @@ for iMD in range(n_MD):
                 init[active] = True
             
             if not done:
-                print(old_state, state, rewards, action, done, time, tot_time)
+                #print(old_state, state, rewards, action, done, time, tot_time)
                 agents[active].add_env_timeframe(state[2+active], rewards[active], done)
                 rewards[active] = 0
                 
             else:
-                print(old_state, state, rewards, action, done, time, tot_time)
+                #print(old_state, state, rewards, action, done, time, tot_time)
                 for i, a in enumerate(agents):
                     if init[i]:
                         a.finish_path(done)
 
 
 
-        print('policy f: ', [from_policy_to_prob(np.array([[i]]), agents[0].policy)[0,0] for i in range(11)])
-        print('policy r: ', [from_policy_to_prob(np.array([[i]]), agents[1].policy)[0,0] for i in range(11)])
-        print('{} traj: time={} rew={}, {}'.format(iMD, tot_time, tot_rewards[0], tot_rewards[1]))
+        print('policy f: ', *[from_policy_to_prob(np.array([[i]]), agents[0].policy)[0,0] for i in range(11)])
+        print('policy r: ', *[from_policy_to_prob(np.array([[i]]), agents[1].policy)[0,0] for i in range(11)])
+        print('{} traj: time= {} rew= {} {} dead {}'.format(iMD, tot_time, tot_rewards[0], tot_rewards[1], np.any(state[2:]<=0)))
         for i,a in enumerate(agents):
             if init[i]:
                 print('training agent {}: {}'.format(i,a))
-                a.train_step(epochs=1)
+                a.train_step(epochs=10)
 
 # save models
 #for a in agents:

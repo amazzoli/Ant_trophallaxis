@@ -14,7 +14,7 @@ class AntsEnv():
         self.state[:2] = 0
         self.state[2] = self.Mmax
         self.state[3:] = self.Mmax//2
-        self.alive = np.ones(1+Nr)
+        self.alive = np.ones(1+Nr, dtype='bool')
         self.c = c
         self.rg = rg
         self.gamma = gamma
@@ -65,9 +65,13 @@ class AntsEnv():
                     eaten = np.random.binomial(np.min([endtime, time]), self.c, size=self.N)
                     self.state[-self.N:] -= eaten
                     # Death condition is checked for all.
-                    self.alive -= (self.state[-self.N:] == 0).astype(int)
-                
-                    if np.any([self.alive[-self.N:-self.N+1] == 0, np.all(self.alive[-self.N+1:]==0)]):
+                    # Penalty for death!
+                    self.alive = (self.state[-self.N:] > 0)
+                    self.rewards -= 10 * (np.logical_not(self.alive))
+                    
+                    if np.all(self.alive[-self.N:-self.N+1] == 0):
+                        self.done = True
+                    if np.all(self.alive[-self.N+1:] == 0):
                         self.done = True
                         
                     # gathering successfull.
@@ -99,11 +103,17 @@ class AntsEnv():
                 self.share += 1 # Length of sharing episode.
                 
                 # Death condition is checked for all.
-                self.alive -= (self.state[-self.N:] == 0).astype(int)
-                if np.any([self.alive[-self.N:-self.N+1] == 0, np.all(self.alive[-self.N+1:]==0)]):
+                # Penalty for death!
+                self.alive = (self.state[-self.N:] > 0)
+                self.rewards -= 10 * (np.logical_not(self.alive))
+                
+                if np.all(self.alive[-self.N:-self.N+1] == 0):
                     self.done = True
                     time = self.share
-                time = 0
+                if np.all(self.alive[-self.N+1:] == 0):
+                    self.done = True
+                    time = self.share
+
             
             else :
                 # Pass(0) 
@@ -124,11 +134,19 @@ class AntsEnv():
                     # Consumption.
                     eaten = np.random.binomial(np.min([endtime, time]), self.c, size = self.N)
                     self.state[-self.N:] -= eaten
-                    #Death condition is checked for all.
-                    self.alive -= (self.state[-self.N:] == 0).astype(int)
+                    
+                    # Death condition is checked for all.
+                    # Penalty for death!
+                    self.alive = (self.state[-self.N:] > 0)
+                    self.rewards -= 10 * (np.logical_not(self.alive))
+
                     #No Rewards
-                    if np.any([self.alive[-self.N:-self.N+1] == 0, np.all(self.alive[-self.N+1:]==0)]):
+                    if np.all(self.alive[-self.N:-self.N+1] == 0):
                         self.done = True
+                        time = self.share
+                    if np.all(self.alive[-self.N+1:] == 0):
+                        self.done = True
+                        time = self.share
         
         # Possibly Negative rewards for death.
         # rewards = -int(self.state[-self.N:] == 0)    
