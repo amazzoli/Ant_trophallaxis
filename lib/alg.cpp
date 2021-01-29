@@ -90,14 +90,18 @@ void MARLAlgorithm::run(const param& params) {
         // for(int p=0; p<(*env).n_players(); p++){
         //    std::cout << curr_info.reward[p] << " ";
         // }
-        // std::cout << "\n";
+        // std::cout << "ls: " << lrn_steps_elapsed << " ";
 
         // Stop with discount factor if enabled
         if (stop_by_discount) {
-            for (int = 0; i<lrn_steps_elapsed; i++)
-                if (unif_dist(generator) > m_gamma)
+            for (int i = 0; i<lrn_steps_elapsed; i++)
+                if (unif_dist(generator) > m_gamma){
                     curr_info.done = true;
+                    // std::cout << "gamma_stop ";
+                    break;
+                }
         }
+        // std::cout << "\n";
 
         // Algorithm-specific update
         learning_update(lrn_steps_elapsed);
@@ -111,7 +115,7 @@ void MARLAlgorithm::run(const param& params) {
 
         // At terminal state
         if (curr_info.done){ 
-            // std::cout << "DONE\n";
+            //std::cout << "DONE\n";
             // Updating return with last reward
             (*env).terminal_reward(m_gamma, t_reward); 
             for(int p=0; p<(*env).n_players(); p++) {

@@ -100,7 +100,7 @@ class Ants_consume : public Ants_ma {
         Ants_consume(const param& par, std::mt19937& generator);
         virtual const str descr() const; 
         void reset_state(veci& aggr_state);
-        virtual void step(const veci& action, env_info& info);
+        virtual void step(const veci& action, env_info& info, int& lrn_steps_elapsed);
 
         vecd env_data();
         vecs env_data_headers();
@@ -116,7 +116,7 @@ class Ants_consume2 : public Ants_consume {
     public:
         Ants_consume2(const param& par, std::mt19937& generator) : Ants_consume(par, generator) {};
         const str descr() const; 
-        void step(const veci& action, env_info& info);
+        void step(const veci& action, env_info& info, int& lrn_steps_elapsed);
 };
 
 
@@ -129,7 +129,7 @@ class Ants_consume2_fast : public Ants_consume {
     public:
         Ants_consume2_fast(const param& par, std::mt19937& generator);
         const str descr() const; 
-        void step(const veci& action, env_info& info);
+        void step(const veci& action, env_info& info, int& lrn_steps_elapsed);
 };
 
 

@@ -1,0 +1,15 @@
+alg_type	nac
+gamma	0.95
+stop_by_discount	true
+n_steps	1000000
+traj_points	200
+a0	0.0008
+ac	3333.3333333333335
+a_expn	0.8
+a_burn	1000000
+b0	5e-07
+bc	3333.3333333333335
+b_expn	0.8
+b_burn	1000000
+init_val_path	data/ant_cons/2p_rand_bst1/best_value.txt
+init_pol_dir	data/ant_cons/2p_rand_bst2_ev/

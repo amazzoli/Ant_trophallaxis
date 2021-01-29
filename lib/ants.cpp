@@ -400,8 +400,6 @@ void Ants_consume2_fast::step(const veci& action, env_info& info, int& lrn_steps
 	info.done = false;
 	env_stop = false;
 	elapsed_steps++;
-	//std::cout << "decider " << decider << ", " << "action " << decider << ", ";
-	//std::cout << "food0 " << food[0] << ", " << "food1 " << food[1] << ", ";
 	
 	// Forager's decision
 	if (decider == 0) {
@@ -410,21 +408,23 @@ void Ants_consume2_fast::step(const veci& action, env_info& info, int& lrn_steps
 		if (action[0] == 0) {
 
 			// Extracting the time for the forager to find food
-			int gath_time = gath_time_dist(generator);
-			//std::cout << "gath_time " << gath_time << ", ";
+			int gath_time = gath_time_dist(generator) + 1;
+			// The number of learning steps corroesponds to the gathering time
+			lrn_steps_elapsed = gath_time;
 
 			// Possibility of consuming food during that time
+			// std::cout << ". new food:  ";
 			for (int p=0; p<n_recipients+1; p++) {
 				std::binomial_distribution<int> cons_food = std::binomial_distribution<int>(gath_time, p_consume);
 				food[p] = std::max(0, food[p]-cons_food(generator));
-				//std::cout << "food" << p << " " << food[p]<< ", ";
+				// std::cout << food[p]<< " ";
 
 				// Forager death
 				if (decider == 0 && food[0] <= 0) {
 					forag_deaths++;
 					info.done = true;
 					env_stop = true;
-					//std::cout << "fdeath\n";
+					// std::cout << "for_death";
 					break;
 				}
 
@@ -438,7 +438,7 @@ void Ants_consume2_fast::step(const veci& action, env_info& info, int& lrn_steps
 						rec_deaths++;
 						info.done = true;
 						env_stop = true;
-						//std::cout << "rdeath\n";
+						// std::cout << "rec_death";
 						break;
 					}
 					else
@@ -446,13 +446,11 @@ void Ants_consume2_fast::step(const veci& action, env_info& info, int& lrn_steps
 				}
 			}
 
-
 			// Gathering happens if forager doesn't die before
 			if (food[0] > 0){
 				food[0] = max_k;
 				//std::cout << "gath done ";
 			}
-			
 		}	
 
 		// Sharing
@@ -486,7 +484,7 @@ void Ants_consume2_fast::step(const veci& action, env_info& info, int& lrn_steps
 				forag_deaths++;
 				info.done = true;
 				env_stop = true;
-				//std::cout << "fdeath\n";
+				// std::cout << "for_death";
 			}
 		}
 	}
