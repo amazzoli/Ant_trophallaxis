@@ -320,7 +320,6 @@ void Ants_consume2::step(const veci& action, env_info& info, int& lrn_steps_elap
 	for (double& r : info.reward) r = 0;
 	info.done = false;
 	env_stop = false;
-	elapsed_steps++;
 
 	// Forager's decision
 	if (decider == 0) {
@@ -389,6 +388,8 @@ void Ants_consume2::step(const veci& action, env_info& info, int& lrn_steps_elap
 			}
 		}
 	}
+	
+	elapsed_steps+=lrn_steps_elapsed;
 }
 
 
@@ -409,7 +410,6 @@ void Ants_consume2_fast::step(const veci& action, env_info& info, int& lrn_steps
 	for (double& r : info.reward) r = 0;
 	info.done = false;
 	env_stop = false;
-	elapsed_steps++;
 	
 	// Forager's decision
 	if (decider == 0) {
@@ -495,6 +495,8 @@ void Ants_consume2_fast::step(const veci& action, env_info& info, int& lrn_steps
 			}
 		}
 	}
+
+	elapsed_steps+=lrn_steps_elapsed;
 }
 
 
