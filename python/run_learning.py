@@ -29,7 +29,7 @@ receiver = Agent(models_rootname='./receiver', restart_models= restart)
 agents = [forager, receiver]
 # -----------
 
-n_MD = 500
+n_MD = 1000
 
 for iMD in tqdm(range(n_MD)):
 
@@ -46,7 +46,9 @@ for iMD in tqdm(range(n_MD)):
         # Agents for receiver ants could be un-initialized for whole episode. 
         init = [False for i in range(2)]
         
-        agents[active].initialize(state[2+active])        
+        agents[active].initialize(state[2+active])    
+        init[active] = True
+        
         rewards = np.zeros(2) 
         
         tot_time = 0
@@ -54,42 +56,50 @@ for iMD in tqdm(range(n_MD)):
         
         count = 0
         # -----------------------------------------
-        while not done:
-            count += 1
-            action = agents[active].get_actions() #return actions vector to give particles, and label
-            
-            old_state[:] = state
-            state, rews, done, time = Ants.step(action) #evolve systems from given actions
-
-            tot_time += time
-            
-            rewards += rews
-            tot_rewards += rews
-            
-            active = state[1]
-            
-            if  not init[active] :
-                rewards[active] = 0
-                agents[active].initialize(state[2+active])
-                init[active] = True
-            
-            if not done:
-                #print(old_state, state, rewards, action, done, time, tot_time)
-                agents[active].add_env_timeframe(state[2+active], rewards[active], done)
-                rewards[active] = 0
+        with open('traj_data/traj{}.dat'.format(iMD), "w") as ftraj: 
+        
+            while not done:
+                count += 1
+                action = agents[active].get_actions() #return actions vector to give particles, and label
+                action = 1
                 
-            else:
-                #print(old_state, state, rewards, action, done, time, tot_time)
-                for i, a in enumerate(agents):
-                    if init[i]:
-                        a.finish_path(done)
+                old_state[:] = state
+                state, rews, done, time = Ants.step(action) #evolve systems from given actions
+
+                tot_time += time
+                
+                rewards += rews
+                tot_rewards += rews
+                
+                active = state[1]
+
+                ftraj.write('{} {} {} {} {} {} {}\n'.format(old_state, state, rewards, action, done, time, tot_time))          
+                
+                if  not init[active]:
+                    rewards[active] = 0
+                    agents[active].initialize(state[2+active])
+                    init[active] = True
+                else:
+                    if not done:
+                        agents[active].add_env_timeframe(state[2+active], rewards[active], done)
+                        rewards[active] = 0
+                    
+                    else:
+                        for i, a in enumerate(agents):
+                            if init[i]:
+                                a.add_env_timeframe(state[2+i], rewards[i], done)
 
 
 
         print('policy f: ', *[from_policy_to_prob(np.array([[i]]), agents[0].policy)[0,0] for i in range(11)])
         print('policy r: ', *[from_policy_to_prob(np.array([[i]]), agents[1].policy)[0,0] for i in range(11)])
+        print('value f: ', *[agents[0].critic(np.array([[i]]))[0,0].numpy() for i in range(11)])
+        print('value r: ', *[agents[1].critic(np.array([[i]]))[0,0].numpy() for i in range(11)])
+        
         print('{} traj: time= {} rew= {} {} dead {}'.format(iMD, tot_time, tot_rewards[0], tot_rewards[1], np.any(state[2:]<=0)))
+        print(init, ' INIT')
         for i,a in enumerate(agents):
+            print(init[i])
             if init[i]:
                 print('training agent {}: {}'.format(i,a))
                 a.train_step(epochs=10)

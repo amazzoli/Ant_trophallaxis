@@ -141,10 +141,10 @@ class Agent():
     '''
     self.current = np.array(obs).reshape(1,self.input_dim)
     self.obs = np.empty((0, self.input_dim))
-    self.act = np.empty(1, dtype=np.int8)
-    self.rew = np.empty(1)
-    self.val = np.empty(1)
-    self.logp = np.empty(1)
+    self.act = np.empty(0, dtype=np.int8)
+    self.rew = np.empty(0)
+    self.val = np.empty(0)
+    self.logp = np.empty(0)
     self.done = False
     
   def add_env_timeframe(self, o, r, done):
@@ -205,7 +205,7 @@ class Agent():
         last_val = self.critic(self.current).numpy()
 
     # finish trajectory adding to memory the entire set of (obs, actions, logp, target)
-    self.obs = np.append(self.obs, self.current, axis=0)
+    # self.obs = np.append(self.obs, self.current, axis=0)
     rews = np.append(self.rew, last_val)
     vals = np.append(self.val, last_val)
 
@@ -240,13 +240,17 @@ class Agent():
     act = self.act
     old_logp = self.logp
     
-    print('obs shape {}'.format(obs.shape))
+    #print('obs shape {}'.format(obs.shape))
     #print('act shape {}'.format(act.shape))
     #print('old_logp shape {}'.format(old_logp.shape))
+    
     
     # ----------------------------------
     self.normalize_adv()
     adv = self.adv
+
+    #for i in range(obs.shape[0]):
+    #    print(obs[i], act[i], self.rew[i], self.val[i])
     
     #print('adv shape {}'.format(adv.shape))
     
@@ -275,7 +279,7 @@ class Agent():
 
     # -- CRITIC FITTING AND LOGGING ----------------------
     #self.critic.fit(x=obs, y=self.target, epochs=epochs*20, verbose=0)
-    self.critic.fit(x=obs, y=self.target, epochs=epochs*20, callbacks=[tf.keras.callbacks.EarlyStopping(monitor='loss', patience=2)], verbose=0)
+    self.critic.fit(x=obs, y=self.target, epochs=epochs, callbacks=[tf.keras.callbacks.EarlyStopping(monitor='loss', patience=2)], verbose=0)
     #loss_history = np.array(history_callback.history["loss"])
     #with open("loss_history.txt", "a") as f:
     #    np.savetxt(f, loss_history)

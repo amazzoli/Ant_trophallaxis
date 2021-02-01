@@ -20,6 +20,7 @@ class AntsEnv():
         self.gamma = gamma
         # length of last step of sharing
         self.share = 1
+        self.anyforager = True
         
     def get_state(self):
         return self.state
@@ -31,6 +32,8 @@ class AntsEnv():
         # returns observation, rewards, done_flag
         self.rewards = np.zeros(self.N)
         time = 0 # passing time
+        
+        
         # Food is consumed AFTER a gathering and AFTER a sharing.
         if not bool(self.state[0]):
             # MACRO(0) state
@@ -58,22 +61,34 @@ class AntsEnv():
                 # End of World is evalued.
                 endtime = np.random.geometric(p=1-self.gamma)
                 self.done = ( endtime <= time )
+                
                 if self.done:
                     time = np.min([endtime, time])
-                if not self.done:
-                    # Consumption.
-                    eaten = np.random.binomial(np.min([endtime, time]), self.c, size=self.N)
-                    self.state[-self.N:] -= eaten
-                    # Death condition is checked for all.
-                    # Penalty for death!
-                    self.alive = (self.state[-self.N:] > 0)
-                    self.rewards -= 10 * (np.logical_not(self.alive))
                     
-                    if np.all(self.alive[-self.N:-self.N+1] == 0):
-                        self.done = True
-                    if np.all(self.alive[-self.N+1:] == 0):
-                        self.done = True
-                        
+                # Consumption.
+                eaten = np.random.binomial(time, self.c, size=self.N)
+                self.state[-self.N:] -= eaten
+
+                # Death condition is checked for all.
+                # Penalty for death!
+
+                self.alive = (self.state[-self.N:] > 0)
+
+                # All foragers dead.
+                if np.all(self.alive[-self.N:-self.N+1] == 0):
+                    self.done = True
+                    # CHECK IF RECEIVERS DIE BEFORE END OF WORLD.
+                    endtime = np.random.geometric(p=1-self.gamma)
+                    time += endtime
+                    endfood = np.random.binomial(endtime, self.c, size=self.N)
+                    self.state[-self.N:] -= endfood
+                    self.alive = (self.state[-self.N:] > 0)
+
+                if np.all(self.alive[-self.N+1:] == 0):
+                    self.done = True
+
+                self.rewards -= 10 * (np.logical_not(self.alive))
+                if not self.done:
                     # gathering successfull.
                     # c_forager to max
                     self.state[-self.N] = self.Mmax
@@ -98,21 +113,32 @@ class AntsEnv():
                     self.state[2] -= 1
                     self.state[rec] += 1
                     self.rewards[0] += 1 # Forager rewarded.
-                    self.rewards[self.state[1]] += 1 # Receiver rewarded.
+                    #self.rewards[self.state[1]] += 1 # Receiver rewarded.
                     
                 self.share += 1 # Length of sharing episode.
                 
                 # Death condition is checked for all.
                 # Penalty for death!
                 self.alive = (self.state[-self.N:] > 0)
-                self.rewards -= 10 * (np.logical_not(self.alive))
                 
                 if np.all(self.alive[-self.N:-self.N+1] == 0):
                     self.done = True
                     time = self.share
+                    # CHECK IF RECEIVERS DIE BEFORE END OF WORLD.
+                    endtime = np.random.geometric(p=1-self.gamma)
+                    time += endtime
+                    endfood = np.random.binomial(endtime, self.c, size=self.N)
+                    self.state[-self.N:] -= endfood
+                    self.alive = (self.state[-self.N:] > 0)
+
+
                 if np.all(self.alive[-self.N+1:] == 0):
                     self.done = True
-                    time = self.share
+                    if np.all(self.alive[-self.N:-self.N+1] > 0):
+                        time = self.share
+                
+                # Penalty for death!
+                self.rewards -= 10 * (np.logical_not(self.alive))
 
             
             else :
@@ -138,15 +164,24 @@ class AntsEnv():
                     # Death condition is checked for all.
                     # Penalty for death!
                     self.alive = (self.state[-self.N:] > 0)
-                    self.rewards -= 10 * (np.logical_not(self.alive))
 
-                    #No Rewards
+                    #No Rewards - Only Death
                     if np.all(self.alive[-self.N:-self.N+1] == 0):
                         self.done = True
                         time = self.share
+                        # CHECK IF RECEIVERS DIE BEFORE END OF WORLD.
+                        endtime = np.random.geometric(p=1-self.gamma)
+                        time += endtime
+                        endfood = np.random.binomial(endtime, self.c, size=self.N)
+                        self.state[-self.N:] -= endfood
+                        self.alive = (self.state[-self.N:] > 0)
+
                     if np.all(self.alive[-self.N+1:] == 0):
                         self.done = True
                         time = self.share
+
+                    self.rewards -= 10 * (np.logical_not(self.alive))
+
         
         # Possibly Negative rewards for death.
         # rewards = -int(self.state[-self.N:] == 0)    
