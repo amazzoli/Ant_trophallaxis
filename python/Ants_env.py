@@ -2,7 +2,7 @@ import numpy as np
 
 class AntsEnv():
 
-    def __init__(self, Nr=1, Mmax=10, c=0.01, rg=0.05, gamma=0.99):
+    def __init__(self, Nr=1, Mmax=10, c=0.01, rg=0.05, gamma=0.99, ran_init = False):
         # contains initialization data
         self.done = False
         # initial state initialization
@@ -12,8 +12,13 @@ class AntsEnv():
         # state is M/m (MACRO/micro state), ID_active, c_forager, c_recipient1, c_recipient2, ...   
         self.state = np.zeros(3+Nr, dtype='int')
         self.state[:2] = 0
-        self.state[2] = self.Mmax
-        self.state[3:] = self.Mmax//2
+        if ran_init:
+            self.state[2] = np.random.randint(1,11)
+            self.state[3:] = np.random.randint(1,11,self.N)
+        else :
+            self.state[2] = self.Mmax//2
+            self.state[3:] = self.Mmax//2            
+            
         self.alive = np.ones(1+Nr, dtype='bool')
         self.c = c
         self.rg = rg
@@ -113,7 +118,7 @@ class AntsEnv():
                     self.state[2] -= 1
                     self.state[rec] += 1
                     self.rewards[0] += 1 # Forager rewarded.
-                    #self.rewards[self.state[1]] += 1 # Receiver rewarded.
+                    self.rewards[self.state[1]] += 1 # Receiver rewarded.
                     
                 self.share += 1 # Length of sharing episode.
                 
