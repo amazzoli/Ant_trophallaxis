@@ -1,6 +1,5 @@
 # Ignoring the trajectories
 env_info_traj.txt
-ev_info.txt
 policy0_traj.txt
 policy1_traj.txt
 policy2_traj.txt
