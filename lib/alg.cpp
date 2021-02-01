@@ -68,16 +68,16 @@ void MARLAlgorithm::run(const param& params) {
     init(params);
 
     // Main loop
-    for (curr_step=0; curr_step<n_steps; ++curr_step){
+    for (curr_step=0; curr_step<n_steps; ++curr_step){        
+
+        // Algorithm-specific action at the current step
+        get_action(curr_action);
 
         // std::cout << "s: ";
         // for(int p=0; p<(*env).n_players(); p++) {
         //     std::cout << (*env).aggr_state_descr()[p][curr_aggr_state[p]] << " ";
         // }
-        
         // std::cout << " a: ";
-        // Algorithm-specific action at the current step
-        get_action(curr_action);
         // for(int p=0; p<(*env).n_players(); p++)
             // std::cout << (*env).action_descr()[p][curr_aggr_state[p]][curr_action[p]] << " ";
 
@@ -88,13 +88,7 @@ void MARLAlgorithm::run(const param& params) {
             ret[p] += curr_info.reward[p] * curr_gamma_fact;
         (*env).aggr_state(curr_new_aggr_state);
 
-        // if (!stop_by_discount) curr_gamma_fact *= std::pow(m_gamma, lrn_steps_elapsed);
-
-        // std::cout << " r: ";
-        // for(int p=0; p<(*env).n_players(); p++){
-           // std::cout << curr_info.reward[p] << " ";
-        // }
-        // std::cout << " ls: " << lrn_steps_elapsed;
+        if (!stop_by_discount) curr_gamma_fact *= std::pow(m_gamma, lrn_steps_elapsed);
 
         // Stop with discount factor if enabled
         if (stop_by_discount) {
@@ -106,6 +100,13 @@ void MARLAlgorithm::run(const param& params) {
                     break;
                 }
         }
+        curr_ep_step += lrn_steps_elapsed;
+
+        // std::cout << " r: ";
+        // for(int p=0; p<(*env).n_players(); p++){
+           // std::cout << curr_info.reward[p] << " ";
+        // }
+        // std::cout << " ls: " << lrn_steps_elapsed;
         // std::cout << "\n";
 
         // Algorithm-specific update
@@ -120,7 +121,9 @@ void MARLAlgorithm::run(const param& params) {
 
         // At terminal state
         if (curr_info.done){ 
-            // std::cout << "DONE\n";
+
+            //std::cout << "DONE\n";
+            
             // Updating return with last reward
             (*env).terminal_reward(m_gamma, t_reward); 
             for(int p=0; p<(*env).n_players(); p++) {
@@ -144,7 +147,6 @@ void MARLAlgorithm::run(const param& params) {
         else { 
             for(int p=0; p<(*env).n_players(); p++)
                 curr_aggr_state[p] = curr_new_aggr_state[p];
-            curr_ep_step++;
         }
 
         // Std output
@@ -219,6 +221,7 @@ void MARLEval::init(const param& params) {
     act_traj = vec2i();
     rew_traj = vec2d();
     done_traj = veci();
+    time_traj = veci();
 }
 
 
@@ -241,6 +244,7 @@ void MARLEval::build_traj() {
     act_traj.push_back(curr_action);
     rew_traj.push_back(curr_info.reward);
     done_traj.push_back(curr_info.done);
+    time_traj.push_back(curr_ep_step);
 }
 
 
@@ -257,6 +261,7 @@ void MARLEval::print_traj(str out_dir) const {
     for (int p=0; p<(*env).n_players(); p++)
         ev_traj_header.push_back("reward" + std::to_string(p));
     ev_traj_header.push_back("done");
+    ev_traj_header.push_back("step");
 
     vec2d ev_traj = vec2d();
     for (int t=0; t<aggr_state_traj.size(); t++){
@@ -270,6 +275,7 @@ void MARLEval::print_traj(str out_dir) const {
         for (const double& r : rew_traj[t])
             aux_traj.push_back(r);
         aux_traj.push_back(done_traj[t]);
+        aux_traj.push_back(time_traj[t]);
         ev_traj.push_back(aux_traj);
     }
 

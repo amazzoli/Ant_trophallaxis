@@ -320,7 +320,6 @@ void Ants_consume2::step(const veci& action, env_info& info, int& lrn_steps_elap
 	for (double& r : info.reward) r = 0;
 	info.done = false;
 	env_stop = false;
-	elapsed_steps++;
 
 	// Forager's decision
 	if (decider == 0) {
@@ -389,6 +388,8 @@ void Ants_consume2::step(const veci& action, env_info& info, int& lrn_steps_elap
 			}
 		}
 	}
+	
+	elapsed_steps+=lrn_steps_elapsed;
 }
 
 
@@ -409,7 +410,6 @@ void Ants_consume2_fast::step(const veci& action, env_info& info, int& lrn_steps
 	for (double& r : info.reward) r = 0;
 	info.done = false;
 	env_stop = false;
-	elapsed_steps++;
 	
 	// Forager's decision
 	if (decider == 0) {
@@ -422,6 +422,7 @@ void Ants_consume2_fast::step(const veci& action, env_info& info, int& lrn_steps
 			lrn_steps_elapsed = gath_time;
 
 			// Possibility of consuming food during that time
+			// std::cout << ". new food:  ";
 			for (int p=0; p<n_recipients+1; p++) {
 				std::binomial_distribution<int> cons_food_dist = std::binomial_distribution<int>(gath_time, p_consume);
 				consume_food(p, cons_food_dist(generator), info);
@@ -494,6 +495,8 @@ void Ants_consume2_fast::step(const veci& action, env_info& info, int& lrn_steps
 			}
 		}
 	}
+
+	elapsed_steps+=lrn_steps_elapsed;
 }
 
 

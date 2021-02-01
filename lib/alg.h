@@ -89,6 +89,7 @@ class MARLEval : public MARLAlgorithm {
         vec2i act_traj;
         vec2d rew_traj;
         veci done_traj;
+        veci time_traj;
 
     protected:
         void init(const param& params);

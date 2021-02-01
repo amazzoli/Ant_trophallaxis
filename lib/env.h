@@ -48,7 +48,9 @@ class Environment {
         /* Set the environment in the initial state and returns the state */
         virtual void reset_state(veci& aggr_state) = 0;
         /* Environmental transition given the action which modifies the 
-           internal state and return the reward and the termination flag. */
+           internal state, the reward and the termination flag (within info).
+           If the step ivolves more than 1 learning steps can be specified by
+           changing lrn_steps_elapsed (1 by default) */
         virtual void step(const veci& action, env_info& info, int& lrn_steps_elapsed) = 0;
         /* Reward ot penalty in the terminal state, zero by default */
         virtual vecd terminal_reward(const double gamma, vecd& t_rew) { return vecd(n_players()); };
