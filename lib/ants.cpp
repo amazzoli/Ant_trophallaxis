@@ -310,102 +310,19 @@ vecs Ants_consume::env_data_headers() {
 }
 
 
-const str Ants_consume2::descr() const {
-	return "Ant colony with single forager and multi-recipient interactions.\nConsumption during foraging.";	
-}
-
-
-void Ants_consume2::step(const veci& action, env_info& info, int& lrn_steps_elapsed) {
-
-	for (double& r : info.reward) r = 0;
-	info.done = false;
-	env_stop = false;
-
-	// Forager's decision
-	if (decider == 0) {
-
-		// Gathering
-		if (action[0] == 0) {
-
-			// Success
-			if (unif_dist(generator) < p_succ) food[0] = max_k;
-
-			// Failure does not change anything, but there is always the possibility of consuming food
-			for (int p=0; p<n_recipients+1; p++) {
-				if (food[p] > 0 && unif_dist(generator) < p_consume) {
-					food[p] -= 1;
-
-					// Forager death
-					if (decider == 0 && food[0] == 0) {
-						forag_deaths_out++;
-						info.done = true;
-						env_stop = true;
-					}
-
-					// Recipient death
-					else if (food[p] == 0) {
-						// Re-defining the available recipients
-						auto ind_to_remove = std::remove(ind_rec_map.begin(), ind_rec_map.end(), p);
-						ind_rec_map.erase(ind_to_remove);
-						// Terminal state if all recipients are dead
-						if (ind_rec_map.size() == 0) {
-							rec_deaths++;
-							info.done = true;
-							env_stop = true;
-						}
-						else
-							unif_rec_dist = std::uniform_int_distribution<int>(0, ind_rec_map.size()-1);
-					}
-				}
-			}
-		}
-
-		// Sharing
-		else {
-			// The new decider is a recipient with food>0, i.e. in ind_rec_map
-			double u = unif_rec_dist(generator);
-			decider = ind_rec_map[u];
-		}
-	}
-
-	// Recipient's decision
-	else {
-		// Reject or full health (food==0 for the exception that the rec dies when the sharing starts)
-		if (food[decider] == max_k || food[decider] == 0 || action[decider] == 1) decider = 0;
-		// Accept
-		else {
-			food[decider] += 1;
-			food[0] -= 1;
-			info.reward[decider] = 1;
-			info.reward[0] = 1;
-			av_return[0] += 1;
-			av_return[decider] += 1;
-			// Terminal state if forager finishes food
-			if (food[0] == 0) {
-				forag_deaths_in++;
-				info.done = true;
-				env_stop = true;
-			}
-		}
-	}
-	
-	elapsed_steps+=lrn_steps_elapsed;
-}
-
-
-Ants_consume2_fast::Ants_consume2_fast(const param& par, std::mt19937& generator) : 
+Ants_consume2::Ants_consume2(const param& par, std::mt19937& generator) : 
 Ants_consume(par, generator) {
 	gath_time_dist = std::geometric_distribution<int>(p_succ);
 	cons_time_dist = std::geometric_distribution<int>(p_consume);
 }
 
 
- const str Ants_consume2_fast::descr() const {
+ const str Ants_consume2::descr() const {
 	return "Ant colony with single forager and multi-recipient interactions.\nConsumption during foraging. Fast.";	
 }
 
 
-void Ants_consume2_fast::step(const veci& action, env_info& info, int& lrn_steps_elapsed) {
+void Ants_consume2::step(const veci& action, env_info& info, int& lrn_steps_elapsed) {
 
 	for (double& r : info.reward) r = 0;
 	info.done = false;
@@ -500,7 +417,7 @@ void Ants_consume2_fast::step(const veci& action, env_info& info, int& lrn_steps
 }
 
 
-void Ants_consume2_fast::consume_food(int player, int amount, env_info& info){
+void Ants_consume2::consume_food(int player, int amount, env_info& info){
 
 	food[player] = std::max(0, food[player]-amount);
 
