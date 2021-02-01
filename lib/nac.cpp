@@ -403,35 +403,8 @@ void MA_NAC_AP_ET::child_init(){
 }
 
 
-void MA_NAC_AP_ET::actor_update(){ 
-
+void MA_NAC_AP_ET::actor_update(){
     
-    // for (int p=0; p<(*env).n_players(); p++) {
-    //     for (int s=0; s<(*env).n_aggr_state(p); ++s) {
-    //         for (int a=0; a<curr_p_pars[p][s].size(); a++) {
-    //             et_vec_actor[p][s][a] *= lambda_actor;
-    //             if (s == curr_aggr_state[p]){
-    //                 if (a == curr_action[p]) 
-    //                     et_vec_actor[p][s][a] += 1 - curr_policy[p][s][a];
-    //                 else
-    //                     et_vec_actor[p][s][a] -= curr_policy[p][s][a];
-    //             }
-    //         }  
-    //     }
-    // }
-
-    // for (int p=0; p<(*env).n_players(); p++) {
-    //     for (int s=0; s<(*env).n_aggr_state(p); ++s) {
-    //         double aux_t = curr_td_error[p];
-    //         for (int a=0; a<curr_p_pars[p][s].size(); a++)
-    //             aux_t -= et_vec_actor[p][s][a] * ap_par[p][s][a];
-    //         for (int a=0; a<curr_p_pars[p][s].size(); a++) {
-    //             ap_par[p][s][a] += curr_crit_lr * et_vec_actor[p][s][a] * aux_t; 
-    //             curr_p_pars[p][s][a] += curr_act_lr * ap_par[p][s][a];  
-    //         }                  
-    //     }
-    // }
-
     curr_act_lr = lr_act(curr_step) * curr_gamma_fact;
     for (int p=0; p<(*env).n_players(); p++) {
         for (int s=0; s<ap_par[p].size(); s++) {

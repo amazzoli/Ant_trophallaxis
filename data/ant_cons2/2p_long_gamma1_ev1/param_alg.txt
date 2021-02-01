@@ -1,5 +1,5 @@
 alg_type	nac
-gamma	0.995
+gamma	0.999
 stop_by_discount	true
 n_steps	2000000
 traj_points	200
@@ -12,4 +12,4 @@ bc	6666.666666666667
 b_expn	0.8
 b_burn	2000000
 init_values	20
-init_pol_dir	data/ant_cons2/2p_long_gamma1_ev1/
+init_pol_dir	data/ant_cons2_fast/2p_long_gamma1_ev1/

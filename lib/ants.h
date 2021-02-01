@@ -112,17 +112,17 @@ class Ants_consume : public Ants_ma {
 // Forager - recipients model having resource consuption. The recipients can consume
 // 1 res at each step only when the decision is on the forager side. The forager
 // does not loose res by failed gahterings.
+// class Ants_consume2 : public Ants_consume {
+
+//     public:
+//         Ants_consume2(const param& par, std::mt19937& generator) : Ants_consume(par, generator) {};
+//         const str descr() const; 
+//         void step(const veci& action, env_info& info, int& lrn_steps_elapsed);
+// };
+
+
+
 class Ants_consume2 : public Ants_consume {
-
-    public:
-        Ants_consume2(const param& par, std::mt19937& generator) : Ants_consume(par, generator) {};
-        const str descr() const; 
-        void step(const veci& action, env_info& info, int& lrn_steps_elapsed);
-};
-
-
-
-class Ants_consume2_fast : public Ants_consume {
 
     private:
         std::geometric_distribution<int> gath_time_dist;
@@ -130,7 +130,7 @@ class Ants_consume2_fast : public Ants_consume {
         void consume_food(int player, int amount, env_info& info);
 
     public:
-        Ants_consume2_fast(const param& par, std::mt19937& generator);
+        Ants_consume2(const param& par, std::mt19937& generator);
         const str descr() const; 
         void step(const veci& action, env_info& info, int& lrn_steps_elapsed);
 };

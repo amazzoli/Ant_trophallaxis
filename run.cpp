@@ -76,11 +76,8 @@ Environment* get_env(std::string env_name, const param& params, std::mt19937& ge
     if (env_name == "ant_cons"){
         return new Ants_consume(params, generator);
     }
-    if (env_name == "ant_cons2"){
+    if (env_name == "ant_cons2" || env_name == "ant_cons2_fast"){
         return new Ants_consume2(params, generator);
-    }
-        if (env_name == "ant_cons2_fast"){
-        return new Ants_consume2_fast(params, generator);
     }
     else throw std::invalid_argument( "Invalid environment name" );
 }

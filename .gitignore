@@ -1,0 +1,23 @@
+# Ignoring the trajectories
+env_info_traj.txt
+ev_info.txt
+policy0_traj.txt
+policy1_traj.txt
+policy2_traj.txt
+policy3_traj.txt
+policy4_traj.txt
+policy5_traj.txt
+policy6_traj.txt
+policy7_traj.txt
+policy8_traj.txt
+policy9_traj.txt
+return_traj.txt
+value_traj.txt
+
+# Ignoring exe
+*.exe
+
+# Ignoring other meta stuff
+__pycache__/
+.ipynb_checkpoints/
+.vscode/
