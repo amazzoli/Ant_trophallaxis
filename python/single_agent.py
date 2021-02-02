@@ -43,10 +43,17 @@ class Agent():
   Complete class for Reinforcement Learning.
   Contains two Neural Networks for Actor and Critic, tracks and stores the trajectories
   '''
-  def __init__(self, input_dim=1, output_dim=2, lrPI=0.002, lrV=0.003, gamma=1.0, CL=0.02, en_coeff=0.0, lam=0.95, batch_size=64, target_kl=0.02, models_rootname='./model', restart_models = False, model_structure=[(32, 'relu'),(16, 'relu'),(16, 'relu')], **unused_parameters):
+  def __init__(self, input_dim=1, output_dim=2, lrPI=0.002, lrV=0.003, lrDecay = False , gamma=1.0, CL=0.02, en_coeff=0.0, lam=0.95, batch_size=64, target_kl=0.02, models_rootname='./model', restart_models = False, model_structure=[(32, 'relu'),(16, 'relu'),(16, 'relu')] **unused_parameters):
 
     # internal knowledge
-    self.optimizer = tf.optimizers.Adam(learning_rate=lrPI) # optimizer
+    if lrDecay:
+        lrDecay = tf.keras.optimizers.schedules.PolynomialDecay(
+        lrPI, 100000, end_learning_rate=0.0001, power=1.0)
+    cycle=False, name=None
+)
+        self.optimizer = tf.optimizers.Adam(learning_rate=lrDecay)
+    else:
+        self.optimizer = tf.optimizers.Adam(learning_rate=lrPI) # optimizer
     self.gamma = gamma                                      # gamma for discount future rewards
     self.lam = lam                                          # lambda for GAE
     self.CL = CL                                            # clipping parameter
@@ -82,27 +89,37 @@ class Agent():
 
       assert model_structure, 'model structure is not defined!'
 
-      # Create Actor NN      
-      # First Dense Layer
-      policy_layers_list = [tf.keras.layers.Dense(model_structure[0][0], activation=model_structure[0][1], input_shape=(self.input_dim,))]
-      # All intermediate Layers
-      for size, act in model_structure[1:]:
-        policy_layers_list.append(tf.keras.layers.Dense(size, activation=act))
-      policy_layers_list.append(tf.keras.layers.Dense(self.n_actions, activation='linear'))
+      # # Create Actor NN      
+      # # First Dense Layer
+      # policy_layers_list = [tf.keras.layers.Dense(model_structure[0][0], activation=model_structure[0][1], input_shape=(self.input_dim,))]
+      # # All intermediate Layers
+      # for size, act in model_structure[1:]:
+        # policy_layers_list.append(tf.keras.layers.Dense(size, activation=act))
+      # policy_layers_list.append(tf.keras.layers.Dense(self.n_actions, activation='linear'))
+      # self.policy = tf.keras.Sequential( policy_layers_list )
+     
+      # STUPID POLICY
+      policy_layers_list = [tf.keras.layers.Dense(self.n_actions, activation='linear', input_shape=(self.input_dim,))]
       self.policy = tf.keras.Sequential( policy_layers_list )
       # ------------------------------------------
 
-      # ------------------------------------------
-      # Create Critic NN
-      # First Dense Layer
-      critic_layers_list = [tf.keras.layers.Dense(model_structure[0][0], activation=model_structure[0][1], input_shape=(self.input_dim,))]
-      # All intermediate Layers
-      for size, act in model_structure[1:]:
-        critic_layers_list.append(tf.keras.layers.Dense(size, activation=act))
-      critic_layers_list.append(tf.keras.layers.Dense(1, activation='linear'))
+      # # ------------------------------------------
+      # # Create Critic NN
+      # # First Dense Layer
+      # critic_layers_list = [tf.keras.layers.Dense(model_structure[0][0], activation=model_structure[0][1], input_shape=(self.input_dim,))]
+      # # All intermediate Layers
+      # for size, act in model_structure[1:]:
+        # critic_layers_list.append(tf.keras.layers.Dense(size, activation=act))
+      # critic_layers_list.append(tf.keras.layers.Dense(1, activation='linear'))
+      critic_layers_list = [tf.keras.layers.Dense(1, activation='linear', input_shape=(self.input_dim,))]
       self.critic = tf.keras.Sequential( critic_layers_list )
       # ------------------------------------------
-      self.critic.compile(optimizer=tf.optimizers.Adam(learning_rate=lrV), loss='mse')
+      if lrDecay:
+        lrDecay = tf.keras.optimizers.schedules.PolynomialDecay(
+        lrV, 100000, end_learning_rate=0.0001, power=1.0)
+        self.critic.compile(optimizer=tf.optimizers.Adam(learning_rate=lrDecay), loss='mse')
+      else:
+        self.critic.compile(optimizer=tf.optimizers.Adam(learning_rate=lrV), loss='mse')
       # ------------------------------------------
 
 #  -----------------------------

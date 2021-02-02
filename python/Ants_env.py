@@ -2,7 +2,7 @@ import numpy as np
 
 class AntsEnv():
 
-    def __init__(self, Nr=1, Mmax=10, c=0.01, rg=0.05, gamma=0.99, ran_init = False):
+    def __init__(self, Nr=1, Mmax=10, c=0.05, rg=0.1, gamma=0.995, ran_init = True, deathpenalty=0):
         # contains initialization data
         self.done = False
         # initial state initialization
@@ -14,7 +14,7 @@ class AntsEnv():
         self.state[:2] = 0
         if ran_init:
             self.state[2] = np.random.randint(1,11)
-            self.state[3:] = np.random.randint(1,11,self.N)
+            self.state[3:] = np.random.randint(1,11,self.Nr)
         else :
             self.state[2] = self.Mmax//2
             self.state[3:] = self.Mmax//2            
@@ -26,6 +26,7 @@ class AntsEnv():
         # length of last step of sharing
         self.share = 1
         self.anyforager = True
+        self.deathpenalty = deathpenalty
         
     def get_state(self):
         return self.state
@@ -52,6 +53,11 @@ class AntsEnv():
                 self.state[0] = 1
                 # Recipient ID randomly chosen
                 self.state[1] = 1 + np.random.randint(self.Nr)
+                
+                # Cycle until ID randomly chosen is alive
+                while not self.alive[self.state[1]]:
+                    self.state[1] = 1 + np.random.randint(self.Nr)
+                
                 self.share = 1
                 # No rewards.
                 # No time elapsed - End of World, Consumption: none.
@@ -92,7 +98,8 @@ class AntsEnv():
                 if np.all(self.alive[-self.N+1:] == 0):
                     self.done = True
 
-                self.rewards -= 10 * (np.logical_not(self.alive))
+                
+                self.rewards -= self.deathpenalty * (np.logical_not(self.alive))
                 if not self.done:
                     # gathering successfull.
                     # c_forager to max
@@ -143,7 +150,7 @@ class AntsEnv():
                         time = self.share
                 
                 # Penalty for death!
-                self.rewards -= 10 * (np.logical_not(self.alive))
+                self.rewards -= self.deathpenalty * (np.logical_not(self.alive))
 
             
             else :
@@ -185,9 +192,10 @@ class AntsEnv():
                         self.done = True
                         time = self.share
 
-                    self.rewards -= 10 * (np.logical_not(self.alive))
+                    self.rewards -= self.deathpenalty * (np.logical_not(self.alive))
 
-        
+        # Crop cannot be negative
+        self.state[self.state < 0] = 0
         # Possibly Negative rewards for death.
         # rewards = -int(self.state[-self.N:] == 0)    
         return self.state, self.rewards, self.done, time
