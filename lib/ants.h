@@ -56,6 +56,7 @@ class Ants_ma : public Environment {
         const int n_actions(int player, int state) const { return m_action_descr[player][state].size(); }
         const vec2s& aggr_state_descr() const { return m_aggr_state_descr; }
         const vec3s& action_descr() const { return m_action_descr; }
+        virtual void gamma_stop(const int& lrn_steps_elapsed) {};
 
         const int n_players() const { return n_recipients+1; }
         virtual const str descr() const; 
@@ -77,6 +78,8 @@ class Ants_consume : public Ants_ma {
         // PARAMETERS
         // Probability that an ant consumes one unit of food each step
         double p_consume;
+        // Whether the game stops at the first death recipient
+        bool stop_at_first_death;
 
         // List of recipient indexes that are not death
         veci ind_rec_map;
@@ -88,8 +91,10 @@ class Ants_consume : public Ants_ma {
         int forag_deaths_in;
         /* Episodes ended by forager's death outside colony */
         int forag_deaths_out;
+        /* Episodes ended by forager's death outside colony */
+        int forag_deaths_cons;
         /* Episodes ended by all recipients death */
-        int rec_deaths;
+        veci rec_deaths;
         /* Episodes ended discount forced stop */
         int forced_stops;
         /* Aux var to control the forced stop */
@@ -103,7 +108,7 @@ class Ants_consume : public Ants_ma {
         virtual const str descr() const; 
         void reset_state(veci& aggr_state);
         virtual void step(const veci& action, env_info& info, int& lrn_steps_elapsed);
-
+        void gamma_stop(const int& lrn_steps_diff) {forced_stops++; elapsed_steps-=lrn_steps_diff; }
         vecd env_data();
         vecs env_data_headers();
 };

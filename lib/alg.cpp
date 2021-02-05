@@ -79,7 +79,7 @@ void MARLAlgorithm::run(const param& params) {
         // }
         // std::cout << " a: ";
         // for(int p=0; p<(*env).n_players(); p++)
-            // std::cout << (*env).action_descr()[p][curr_aggr_state[p]][curr_action[p]] << " ";
+        //     std::cout << (*env).action_descr()[p][curr_aggr_state[p]][curr_action[p]] << " ";
 
         // Envitonmental step
         int lrn_steps_elapsed = 1;
@@ -92,19 +92,22 @@ void MARLAlgorithm::run(const param& params) {
 
         // Stop with discount factor if enabled
         if (stop_by_discount) {
-            for (int i = 0; i<lrn_steps_elapsed; i++)
+            int i = 0;
+            bool stop_by_gamma = false;
+            for (i; i<lrn_steps_elapsed; i++)
                 if (unif_dist(generator) > m_gamma) {
                     curr_info.done = true;
-                    lrn_steps_elapsed = i+1;
-                    // std::cout << " g_done";
+                    (*env).gamma_stop(lrn_steps_elapsed-i-1);
+                    stop_by_gamma = true;
                     break;
                 }
+            if (stop_by_gamma) lrn_steps_elapsed = i+1;
         }
         curr_ep_step += lrn_steps_elapsed;
 
         // std::cout << " r: ";
         // for(int p=0; p<(*env).n_players(); p++){
-           // std::cout << curr_info.reward[p] << " ";
+        //    std::cout << curr_info.reward[p] << " ";
         // }
         // std::cout << " ls: " << lrn_steps_elapsed;
         // std::cout << "\n";
@@ -122,7 +125,11 @@ void MARLAlgorithm::run(const param& params) {
         // At terminal state
         if (curr_info.done){ 
 
-            //std::cout << "DONE\n";
+            // std::cout << "s': ";
+            // for(int p=0; p<(*env).n_players(); p++) {
+            //     std::cout << (*env).aggr_state_descr()[p][curr_new_aggr_state[p]] << " ";
+            // }
+            // std::cout << "DONE\n";
             
             // Updating return with last reward
             (*env).terminal_reward(m_gamma, t_reward); 
@@ -149,7 +156,7 @@ void MARLAlgorithm::run(const param& params) {
                 curr_aggr_state[p] = curr_new_aggr_state[p];
         }
 
-        // Std output
+        // // Std output
         if (verbose && perc.step(curr_step)) {
             if (ep_for_av_ret != 0){
                 std::cout << " average return over " << ep_for_av_ret << " ep: ";

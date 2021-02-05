@@ -151,6 +151,10 @@ Ants_ma(par, generator) {
 
 	try {
 		p_consume = par.d.at("p_consume");
+		stop_at_first_death = false;
+		if (par.s.find("stop_at_first_death") != par.s.end())
+			if (par.s.at("stop_at_first_death") == "true" || par.s.at("stop_at_first_death") == "True")
+				stop_at_first_death = true;
 	} catch (std::exception) {
 	    throw std::invalid_argument( "Invalid ant-environment parameters (Ants_consume model)" );
 	}
@@ -158,7 +162,8 @@ Ants_ma(par, generator) {
 	av_return = veci(n_recipients+1);
     forag_deaths_in = 0;
     forag_deaths_out = 0;
-    rec_deaths = 0;
+    forag_deaths_cons = 0;
+    rec_deaths = veci(n_recipients);
     elapsed_steps = 0;
     forced_stops = 0;
     env_stop = true;
@@ -171,10 +176,6 @@ const str Ants_consume::descr() const {
 
 
 void Ants_consume::reset_state(veci& aggr_state) {
-
-	//std::cout << "Reset state\n";
-
-	if (!env_stop) forced_stops++;
 
 	ind_rec_map = veci(n_recipients);
 	for (int i=0; i<n_recipients; i++) 
@@ -202,7 +203,7 @@ void Ants_consume::step(const veci& action, env_info& info, int& lrn_steps_elaps
 	for (double& r : info.reward) r = 0;
 	info.done = false;
 	env_stop = false;
-	elapsed_steps++;
+	elapsed_steps+=lrn_steps_elapsed;
 
 	// Forager's decision
 	if (decider == 0) {
@@ -255,17 +256,24 @@ void Ants_consume::step(const veci& action, env_info& info, int& lrn_steps_elaps
 			food[p] -= 1;
 			// Recipient death
 			if (food[p] == 0) {
-				// Re-defining the available recipients
-				auto ind_to_remove = std::remove(ind_rec_map.begin(), ind_rec_map.end(), p);
-				ind_rec_map.erase(ind_to_remove);
-				// Terminal state if all recipients are dead
-				if (ind_rec_map.size() == 0) {
-					rec_deaths++;
+				if (stop_at_first_death){
 					info.done = true;
 					env_stop = true;
+					rec_deaths[0]++;
 				}
-				else
-					unif_rec_dist = std::uniform_int_distribution<int>(0, ind_rec_map.size()-1);
+				else {
+					// Re-defining the available recipients
+					auto ind_to_remove = std::remove(ind_rec_map.begin(), ind_rec_map.end(), p);
+					ind_rec_map.erase(ind_to_remove);
+					rec_deaths[n_recipients-ind_rec_map.size()-1]++;
+					// Terminal state if all recipients are dead
+					if (ind_rec_map.size() == 0) {
+						info.done = true;
+						env_stop = true;
+					}
+					else
+						unif_rec_dist = std::uniform_int_distribution<int>(0, ind_rec_map.size()-1);
+				}
 			}
 		}
 	}
@@ -276,25 +284,32 @@ vecd Ants_consume::env_data() {
 
 	vecd v = vecd { 
 		(double)forag_deaths_in/elapsed_steps, 
-		(double)forag_deaths_out/elapsed_steps, 
-		(double)rec_deaths/elapsed_steps, 
-		(double)forced_stops/elapsed_steps 
+		(double)forag_deaths_out/elapsed_steps,  
+		(double)forag_deaths_cons/elapsed_steps,  
 	};
-	if (elapsed_steps == 0){
-		v[0] = 0; v[1] = 0; v[2] = 0; v[3] = 0;
-	}
+	for (const int& d : rec_deaths) v.push_back((double)d/elapsed_steps);
+	v.push_back((double)forced_stops/elapsed_steps);
 
-	int ep_count = forag_deaths_in+forag_deaths_out+rec_deaths+forced_stops;
+	if (elapsed_steps == 0)
+		for (int i=0; i<n_recipients+4; i++) v[i] = 0;
+
+	int ep_count = forag_deaths_in+forag_deaths_out+forag_deaths_cons+forced_stops;
+	if(stop_at_first_death) ep_count += rec_deaths[0];
+	else ep_count += rec_deaths[rec_deaths.size()-1];
+
 	for (int& r : av_return) {
-		if (ep_count > 0) v.push_back(r/(float)ep_count);
+		if (ep_count > 0){
+			v.push_back(r/(float)ep_count);
+			r = 0;
+		}
 		else v.push_back(0);
-		r = 0;
 	}
 
 	elapsed_steps = 0;
 	forag_deaths_in = 0;
 	forag_deaths_out = 0;
-	rec_deaths = 0;
+	forag_deaths_cons = 0;
+	rec_deaths = veci(n_recipients);
 	forced_stops = 0;
 
 	return v;
@@ -302,18 +317,31 @@ vecd Ants_consume::env_data() {
 
 
 vecs Ants_consume::env_data_headers() {
-	vecs h = vecs { "Prob_forag_in_death\tProb_forag_out_death\tProb_recipients_death\tProb_gamma_stop" };
-	for (int p=0; p<n_recipients+1; p++) {
+	vecs h = vecs { "Prob_forag_in_death\tProb_forag_out_death\tProb_forag_cons_death" };
+	for (int p=0; p<n_recipients; p++)
+		h.push_back("\tProb_recip_death_" + std::to_string(p));
+	h.push_back("\tProb_gamma_stop");
+	for (int p=0; p<n_recipients+1; p++) 
 		h.push_back("\tAv_return_" + std::to_string(p));
-	}
 	return h;
 }
 
 
 Ants_consume2::Ants_consume2(const param& par, std::mt19937& generator) : 
 Ants_consume(par, generator) {
+
+	try {
+		stop_at_first_death = false;
+		if (par.s.find("stop_at_first_death") != par.s.end())
+			if (par.s.at("stop_at_first_death") == "true" || par.s.at("stop_at_first_death") == "True")
+				stop_at_first_death = true;
+	} catch (std::exception) {
+	    throw std::invalid_argument( "Invalid ant-environment parameters (Ants_consume2 model)" );
+	}
+
 	gath_time_dist = std::geometric_distribution<int>(p_succ);
 	cons_time_dist = std::geometric_distribution<int>(p_consume);
+
 }
 
 
@@ -324,6 +352,7 @@ Ants_consume(par, generator) {
 
 void Ants_consume2::step(const veci& action, env_info& info, int& lrn_steps_elapsed) {
 
+	// By default, rewards are zero and the game continues
 	for (double& r : info.reward) r = 0;
 	info.done = false;
 	env_stop = false;
@@ -336,27 +365,28 @@ void Ants_consume2::step(const veci& action, env_info& info, int& lrn_steps_elap
 
 			// Extracting the time for the forager to find food
 			int gath_time = gath_time_dist(generator)+1;
+			// Updating n steps of learning. This controls also the death by disc factor (in alg.cpp)
 			lrn_steps_elapsed = gath_time;
 
 			// Possibility of consuming food during that time
-			// std::cout << ". new food:  ";
 			for (int p=0; p<n_recipients+1; p++) {
 				std::binomial_distribution<int> cons_food_dist = std::binomial_distribution<int>(gath_time, p_consume);
 				consume_food(p, cons_food_dist(generator), info);
 				if (info.done) {
-					if (food[0] == 0) forag_deaths_out++;
-					else rec_deaths++;
+					// Here the forager dies outside and because of gathering
+					if (food[0] <= 0) forag_deaths_out++;
 					break;
 				}
 			}
 
-			// Gathering happens if forager did't die before
-			if (food[0] > 0) food[0] = max_k;  
+			// Gathering happens if the game doesn't stop
+			if (!info.done) food[0] = max_k;  
 		}	
 
 		// Sharing
 		else {
 			// The new decider is a recipient with food>0, i.e. in ind_rec_map
+			// No food consumed here
 			double u = unif_rec_dist(generator);
 			decider = ind_rec_map[u];
 		}
@@ -364,47 +394,46 @@ void Ants_consume2::step(const veci& action, env_info& info, int& lrn_steps_elap
 
 	// Recipient's decision
 	else {
+
 		// To avoid being stuck in a full-recipient full-forager loop, the food consumption of one
 		// unit is imposed to the full recipient.
-		if (food[decider] >= max_k){
-			int cons_time = cons_time_dist(generator)+1;
-			lrn_steps_elapsed = cons_time;
-			consume_food(decider, 1, info);
-			std::binomial_distribution<int> cons_food_dist = std::binomial_distribution<int>(cons_time, p_consume);
-			for (int p=0; p<n_recipients+1; p++) {
-				if (decider != p) {
-					consume_food(p, cons_food_dist(generator), info);
-				}
-			}
+		// if (food[decider] >= max_k){
+		// 	// Time needed for the full recipient to eat one resource
+		// 	int cons_time = cons_time_dist(generator)+1;
+		// 	lrn_steps_elapsed = cons_time;
+		// 	consume_food(decider, 1, info);
+		// 	// Imposing consuption to all the other players
+		// 	std::binomial_distribution<int> cons_food_dist = std::binomial_distribution<int>(cons_time, p_consume);
+		// 	for (int p=0; p<n_recipients+1; p++)
+		// 		if (decider != p) consume_food(p, cons_food_dist(generator), info);
 
-			if (info.done) {
-				if (food[0] == 0) forag_deaths_out++; // morte per consumo distinta da morte per troph
-				else rec_deaths++;
-			}
+		// 	if (info.done) {
+		// 		if (food[0] == 0) forag_deaths_cons++; // morte per consumo distinta da morte per troph
+		// 	}
 
-			decider = 0;
+		// 	// After this waiting time we can imagine that the choice 
+		// 	decider = 0;
+		// }
+
+		// Consuption check over all the players 
+		for (int p=0; p<n_recipients+1; p++)
+			if (unif_dist(generator) < p_consume) consume_food(p, 1, info);
+
+		if (info.done) {
+			if (food[0] == 0) forag_deaths_cons++; // morte per consumo dentro colonia
 		}
-		// Otherwise there is a consuption check over all the players and the recipient acts
 		else {
-			for (int p=0; p<n_recipients+1; p++)
-				if (unif_dist(generator) < p_consume) consume_food(p, 1, info);
+			// Reject or full recipient
+			if (food[decider] >= max_k || action[decider] == 1) decider = 0;
 
-			if (info.done) {
-				if (food[0] == 0) forag_deaths_out++; // morte per consumo distinta da morte per troph
-				else rec_deaths++;
-			}
-			// Reject
-			if (action[decider] == 1) {
-				decider = 0;
-			}
 			// Accept
 			else {
 				food[decider] += 1;
 				consume_food(0, 1, info);
-				if (info.done) {
-					if (food[0] == 0) forag_deaths_in++; // morte per consumo distinta da morte per troph
-					else rec_deaths++;
-				}
+				if (info.done)
+					// morte per trophallassi
+					if (food[0] == 0) forag_deaths_in++; 
+
 				info.reward[decider] = 1;
 				info.reward[0] = 1;
 				av_return[0] += 1;
@@ -419,25 +448,39 @@ void Ants_consume2::step(const veci& action, env_info& info, int& lrn_steps_elap
 
 void Ants_consume2::consume_food(int player, int amount, env_info& info){
 
-	food[player] = std::max(0, food[player]-amount);
+	// Check only for a forager or a living recipient
+	if (player == 0 || std::find(ind_rec_map.begin(), ind_rec_map.end(), player) != ind_rec_map.end()) {
 
-	// Death check
-	if (food[player] <= 0) {
+		food[player] = std::max(0, food[player]-amount);
 
-		// Forager death
-		if (player == 0)  info.done = true;
+		// Death check
+		if (food[player] <= 0) {
 
-		// Recipient death
-		else{
-			// Re-defining the available recipients
-			auto ind_to_remove = std::remove(ind_rec_map.begin(), ind_rec_map.end(), player);
-			ind_rec_map.erase(ind_to_remove);
-			// Terminal state if all recipients are dead
-			if (ind_rec_map.size() == 0) 
-				info.done = true; 
-			else
-				unif_rec_dist = std::uniform_int_distribution<int>(0, ind_rec_map.size()-1);
-		}
-	}			
-	if (info.done) env_stop = true;
+			// Forager death
+			if (player == 0) info.done = true;
+
+			// Recipient death
+			else {
+
+				if (stop_at_first_death) {
+					rec_deaths[0]++;
+					info.done = true; 
+				}
+
+				else {
+					// Re-defining the available recipients
+					auto ind_to_remove = std::remove(ind_rec_map.begin(), ind_rec_map.end(), player);
+					ind_rec_map.erase(ind_to_remove);
+					rec_deaths[n_recipients-ind_rec_map.size()-1]++;
+					// Terminal state if all recipients are dead
+					if (ind_rec_map.size() == 0) 
+						info.done = true; 
+					else
+						unif_rec_dist = std::uniform_int_distribution<int>(0, ind_rec_map.size()-1);
+				}
+			}
+		}			
+		if (info.done) env_stop = true;
+	}
+
 }

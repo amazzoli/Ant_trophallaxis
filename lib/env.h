@@ -52,6 +52,8 @@ class Environment {
            If the step ivolves more than 1 learning steps can be specified by
            changing lrn_steps_elapsed (1 by default) */
         virtual void step(const veci& action, env_info& info, int& lrn_steps_elapsed) = 0;
+        /* Method called when there is a forced stop by discount factor */
+        virtual void gamma_stop(const int& lrn_steps_diff) {};
         /* Reward ot penalty in the terminal state, zero by default */
         virtual vecd terminal_reward(const double gamma, vecd& t_rew) { return vecd(n_players()); };
         /* Information about the environment */
