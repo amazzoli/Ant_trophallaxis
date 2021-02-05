@@ -2,7 +2,7 @@ import numpy as np
 
 class AntsEnv():
 
-    def __init__(self, Nr=1, Mmax=10, c=0.05, rg=0.1, gamma=0.995, ran_init = True, deathpenalty=0):
+    def __init__(self, Nr=1, Mmax=10, c=0.05, rg=0.1, gamma=0.995, ran_init = True, deathpenalty=0, eatreward=1):
         # contains initialization data
         self.done = False
         # initial state initialization
@@ -27,6 +27,7 @@ class AntsEnv():
         self.share = 1
         self.anyforager = True
         self.deathpenalty = deathpenalty
+        self.eatreward = eatreward
         
     def get_state(self):
         return self.state
@@ -38,7 +39,7 @@ class AntsEnv():
         # returns observation, rewards, done_flag
         self.rewards = np.zeros(self.N)
         time = 0 # passing time
-        
+        were_alive = self.alive
         
         # Food is consumed AFTER a gathering and AFTER a sharing.
         if not bool(self.state[0]):
@@ -99,7 +100,7 @@ class AntsEnv():
                     self.done = True
 
                 
-                self.rewards -= self.deathpenalty * (np.logical_not(self.alive))
+                self.rewards -= self.deathpenalty * (np.logical_not(self.alive)*were_alive)
                 if not self.done:
                     # gathering successfull.
                     # c_forager to max
@@ -125,7 +126,7 @@ class AntsEnv():
                     self.state[2] -= 1
                     self.state[rec] += 1
                     self.rewards[0] += 1 # Forager rewarded.
-                    self.rewards[self.state[1]] += 1 # Receiver rewarded.
+                    self.rewards[self.state[1]] += self.eatreward # Receiver rewarded.
                     
                 self.share += 1 # Length of sharing episode.
                 
@@ -150,7 +151,7 @@ class AntsEnv():
                         time = self.share
                 
                 # Penalty for death!
-                self.rewards -= self.deathpenalty * (np.logical_not(self.alive))
+                self.rewards -= self.deathpenalty * (np.logical_not(self.alive)*were_alive)
 
             
             else :
@@ -192,7 +193,7 @@ class AntsEnv():
                         self.done = True
                         time = self.share
 
-                    self.rewards -= self.deathpenalty * (np.logical_not(self.alive))
+                    self.rewards -= self.deathpenalty * (np.logical_not(self.alive)*were_alive)
 
         # Crop cannot be negative
         self.state[self.state < 0] = 0

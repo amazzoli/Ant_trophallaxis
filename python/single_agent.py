@@ -43,14 +43,12 @@ class Agent():
   Complete class for Reinforcement Learning.
   Contains two Neural Networks for Actor and Critic, tracks and stores the trajectories
   '''
-  def __init__(self, input_dim=1, output_dim=2, lrPI=0.002, lrV=0.003, lrDecay = False , gamma=1.0, CL=0.02, en_coeff=0.0, lam=0.95, batch_size=64, target_kl=0.02, models_rootname='./model', restart_models = False, model_structure=[(32, 'relu'),(16, 'relu'),(16, 'relu')] **unused_parameters):
+  def __init__(self, input_dim=1, output_dim=2, lrPI=0.002, lrV=0.003, lrDecay = False , gamma=1.0, CL=0.02, en_coeff=0.0, lam=0.9, batch_size=64, target_kl=0.02, models_rootname='./model', restart_models = False, model_structure=[(32, 'relu'),(16, 'relu'),(16, 'relu')], **unused_parameters):
 
     # internal knowledge
     if lrDecay:
         lrDecay = tf.keras.optimizers.schedules.PolynomialDecay(
-        lrPI, 100000, end_learning_rate=0.0001, power=1.0)
-    cycle=False, name=None
-)
+        lrPI, 30000, end_learning_rate=0.0001, power=0.5)
         self.optimizer = tf.optimizers.Adam(learning_rate=lrDecay)
     else:
         self.optimizer = tf.optimizers.Adam(learning_rate=lrPI) # optimizer
@@ -99,7 +97,7 @@ class Agent():
       # self.policy = tf.keras.Sequential( policy_layers_list )
      
       # STUPID POLICY
-      policy_layers_list = [tf.keras.layers.Dense(self.n_actions, activation='linear', input_shape=(self.input_dim,))]
+      policy_layers_list = [tf.keras.layers.Dense(self.n_actions, use_bias=False, activation='linear', input_shape=(self.input_dim,))]
       self.policy = tf.keras.Sequential( policy_layers_list )
       # ------------------------------------------
 
@@ -111,12 +109,12 @@ class Agent():
       # for size, act in model_structure[1:]:
         # critic_layers_list.append(tf.keras.layers.Dense(size, activation=act))
       # critic_layers_list.append(tf.keras.layers.Dense(1, activation='linear'))
-      critic_layers_list = [tf.keras.layers.Dense(1, activation='linear', input_shape=(self.input_dim,))]
+      critic_layers_list = [tf.keras.layers.Dense(1,use_bias=False,  activation='linear', input_shape=(self.input_dim,))]
       self.critic = tf.keras.Sequential( critic_layers_list )
       # ------------------------------------------
       if lrDecay:
         lrDecay = tf.keras.optimizers.schedules.PolynomialDecay(
-        lrV, 100000, end_learning_rate=0.0001, power=1.0)
+        lrV, 30000, end_learning_rate=0.0001, power=0.5)
         self.critic.compile(optimizer=tf.optimizers.Adam(learning_rate=lrDecay), loss='mse')
       else:
         self.critic.compile(optimizer=tf.optimizers.Adam(learning_rate=lrV), loss='mse')
