@@ -502,7 +502,7 @@ Ants_consume(par, generator) {
         rew_eat = par.d.at("rew_eat");
         true_gamma = par.d.at("true_gamma");
 	} catch (std::exception) {
-	    throw std::invalid_argument( "Invalid ant-environment parameters (Ants_consume2_death model)" );
+	    throw std::invalid_argument( "Invalid ant-environment parameters (Ants_consume_death model)" );
 	}
     
     gath_time_dist = std::geometric_distribution<int>(p_succ);
@@ -548,8 +548,8 @@ void Ants_consume_death::step(const veci& action, env_info& info, int& lrn_steps
                     consume_food(p, cons_food_dist(generator), info);
                     // Death check here and penalty.
                     if (food[p] <= 0){
-                        info.reward[p] = -pen_death;
-                        av_return[p] -= pen_death;  
+                        //info.reward[p] = -pen_death;
+                        //av_return[p] -= pen_death;  
                     }
                     if (info.done && env_stop) {
                         // Stop because forager died outside while gathering
@@ -597,7 +597,7 @@ void Ants_consume_death::step(const veci& action, env_info& info, int& lrn_steps
 		// }
 
 
-		if (unif_dist(generator) < 1-true_gamma){
+	if (unif_dist(generator) < 1-true_gamma){
             info.done = true;
         }
         // Consuption check over all the players anyways.
@@ -607,8 +607,8 @@ void Ants_consume_death::step(const veci& action, env_info& info, int& lrn_steps
                     consume_food(p, 1, info);
                 }
                 if (food[p]<=0) {
-                    info.reward[p] = -pen_death;
-                    av_return[p] -= pen_death;  
+                    //info.reward[p] = -pen_death;
+                    //av_return[p] -= pen_death;  
                 }
             }
         }
@@ -630,8 +630,8 @@ void Ants_consume_death::step(const veci& action, env_info& info, int& lrn_steps
                 consume_food(0, 1, info);
                 if (info.done && env_stop) { 
                     // Death for trophallaxis.
-                    info.reward[0] = -pen_death;
-                    av_return[0] -= pen_death;                     
+                    //info.reward[0] = -pen_death;
+                    //av_return[0] -= pen_death;                     
                     forag_deaths_in++; 
                 } else {
                     info.reward[0] = 1;
@@ -642,6 +642,7 @@ void Ants_consume_death::step(const veci& action, env_info& info, int& lrn_steps
 	}
 
 	elapsed_steps+=lrn_steps_elapsed;
+    if (info.done && (!env_stop)) forced_stops++;
 }
 
 // UNCHANGED
@@ -679,4 +680,12 @@ void Ants_consume_death::consume_food(int player, int amount, env_info& info){
 		}			
 		if (info.done) env_stop = true; // only when somebody dies for food reasons.
 	}
+}
+
+vecd Ants_consume_death::terminal_reward(const double gamma, vecd& t_rew){
+    vecd terminal_rew(n_players());
+    for (int p=0; p<n_recipients+1; p++){
+        if (food[p] <= 0) terminal_rew[p] = -pen_death * gamma;
+    }
+    return terminal_rew;
 }
