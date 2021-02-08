@@ -98,7 +98,7 @@ class Ants_consume : public Ants_ma {
         /* Episodes ended discount forced stop */
         int forced_stops;
         /* Aux var to control the forced stop */
-        bool env_stop;
+        // bool env_stop;
         /* N. steps from the last writing of the trajectory quantities */
         double elapsed_steps;
 
