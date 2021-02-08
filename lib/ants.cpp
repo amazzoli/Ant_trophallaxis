@@ -522,7 +522,7 @@ void Ants_consume_death::step(const veci& action, env_info& info, int& lrn_steps
 	// By default, rewards are zero and the game continues
 	for (double& r : info.reward) r = 0;
 	info.done = false;
-	env_stop = false;
+	disc_stop = false;
 	
 	// Forager's decision
 	if (decider == 0) {
@@ -536,6 +536,7 @@ void Ants_consume_death::step(const veci& action, env_info& info, int& lrn_steps
            ; 
             if (disc_time <= gath_time) {
                 info.done = true;
+                disc_stop = true;
             }
             
 			lrn_steps_elapsed = std::min(gath_time, disc_time);
@@ -551,7 +552,7 @@ void Ants_consume_death::step(const veci& action, env_info& info, int& lrn_steps
                         //info.reward[p] = -pen_death;
                         //av_return[p] -= pen_death;  
                     }
-                    if (info.done && env_stop) {
+                    if (info.done && (!disc_stop)) {
                         // Stop because forager died outside while gathering
                         if ( (p==0) && (food[0] <= 0) ) forag_deaths_out++;
                         break;
@@ -599,6 +600,7 @@ void Ants_consume_death::step(const veci& action, env_info& info, int& lrn_steps
 
 	if (unif_dist(generator) < 1-true_gamma){
             info.done = true;
+            disc_stop = true;
         }
         // Consuption check over all the players anyways.
         for (int p=0; p<n_recipients+1; p++){
@@ -614,7 +616,7 @@ void Ants_consume_death::step(const veci& action, env_info& info, int& lrn_steps
         }
         if (info.done && env_stop){
             // Terminal state due to dead ants, skips the trophallaxis event.
-            if ((food[0] == 0) && env_stop) forag_deaths_cons++; // Stop because forager died inside colony.
+            if ((food[0] == 0) && (!disc_stop)) forag_deaths_cons++; // Stop because forager died inside colony.
         } else {
             // Reject or full recipient
             if (food[decider] >= max_k || action[decider] == 1){
@@ -628,7 +630,7 @@ void Ants_consume_death::step(const veci& action, env_info& info, int& lrn_steps
                 av_return[decider] += rew_eat;
                 
                 consume_food(0, 1, info);
-                if (info.done && env_stop) { 
+                if (info.done && (!disc_stop)) { 
                     // Death for trophallaxis.
                     //info.reward[0] = -pen_death;
                     //av_return[0] -= pen_death;                     
@@ -642,7 +644,7 @@ void Ants_consume_death::step(const veci& action, env_info& info, int& lrn_steps
 	}
 
 	elapsed_steps+=lrn_steps_elapsed;
-    if (info.done && (!env_stop)) forced_stops++;
+    if (disc_stop) forced_stops++;
 }
 
 // UNCHANGED
@@ -677,8 +679,7 @@ void Ants_consume_death::consume_food(int player, int amount, env_info& info){
 						unif_rec_dist = std::uniform_int_distribution<int>(0, ind_rec_map.size()-1);
 				}
 			}
-		}			
-		if (info.done) env_stop = true; // only when somebody dies for food reasons.
+		}
 	}
 }
 

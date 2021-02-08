@@ -146,6 +146,8 @@ class Ants_consume_death : public Ants_consume {
         double pen_death;
         double rew_eat;
         double true_gamma;
+        /* Aux var to control the stop by discount*/
+        bool disc_stop;
 
     private:
         std::geometric_distribution<int> gath_time_dist;
