@@ -140,5 +140,26 @@ class Ants_consume2 : public Ants_consume {
         void step(const veci& action, env_info& info, int& lrn_steps_elapsed);
 };
 
+class Ants_consume_death : public Ants_consume {
+
+    protected: 
+        double pen_death;
+        double rew_eat;
+        double true_gamma;
+
+    private:
+        std::geometric_distribution<int> gath_time_dist;
+        std::geometric_distribution<int> cons_time_dist;
+        std::geometric_distribution<int> disc_time_dist;
+        void consume_food(int player, int amount, env_info& info);
+
+    public:
+        Ants_consume_death(const param& par, std::mt19937& generator);
+        const str descr() const; 
+        void step(const veci& action, env_info& info, int& lrn_steps_elapsed);
+        vecd terminal_reward(const double gamma, vecd& t_rew);
+};
+
+
 
 #endif

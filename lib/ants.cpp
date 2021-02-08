@@ -484,3 +484,208 @@ void Ants_consume2::consume_food(int player, int amount, env_info& info){
 	}
 
 }
+
+// -----------------------------
+// Ant environment with death penalty (explicit) and variable reward for food.
+// -----------------------------
+
+
+Ants_consume_death::Ants_consume_death(const param& par, std::mt19937& generator) : 
+Ants_consume(par, generator) {
+
+	try {
+        stop_at_first_death = false;
+		if (par.s.find("stop_at_first_death") != par.s.end())
+            if (par.s.at("stop_at_first_death") == "true" || par.s.at("stop_at_first_death") == "True")
+				stop_at_first_death = true;
+        pen_death = par.d.at("pen_death");
+        rew_eat = par.d.at("rew_eat");
+        true_gamma = par.d.at("true_gamma");
+	} catch (std::exception) {
+	    throw std::invalid_argument( "Invalid ant-environment parameters (Ants_consume_death model)" );
+	}
+    
+    gath_time_dist = std::geometric_distribution<int>(p_succ);
+	cons_time_dist = std::geometric_distribution<int>(p_consume);
+    disc_time_dist = std::geometric_distribution<int>(1-true_gamma);
+    
+}
+
+
+ const str Ants_consume_death::descr() const {
+	return "Ant colony with single forager and multi-recipient interactions.\nConsumption during foraging. Fast. Death is explicitly taken in consideration with a penalty. Stop by discount is internally calculated in environment.";	
+}
+
+
+void Ants_consume_death::step(const veci& action, env_info& info, int& lrn_steps_elapsed) {
+
+	// By default, rewards are zero and the game continues
+	for (double& r : info.reward) r = 0;
+	info.done = false;
+	env_stop = false;
+	
+	// Forager's decision
+	if (decider == 0) {
+
+		// Gathering
+		if (action[0] == 0) {
+
+			// Extracting the time for the forager to find food
+			int gath_time = gath_time_dist(generator)+1;
+            int disc_time = disc_time_dist(generator)+1;
+           ; 
+            if (disc_time <= gath_time) {
+                info.done = true;
+            }
+            
+			lrn_steps_elapsed = std::min(gath_time, disc_time);
+
+			// Possibility of consuming food during that time
+			for (int p=0; p<n_recipients+1; p++) {
+                if (food[p]>0){ // skips dead ants.
+                    // Consumption.
+                    std::binomial_distribution<int> cons_food_dist = std::binomial_distribution<int>(lrn_steps_elapsed, p_consume);
+                    consume_food(p, cons_food_dist(generator), info);
+                    // Death check here and penalty.
+                    if (food[p] <= 0){
+                        //info.reward[p] = -pen_death;
+                        //av_return[p] -= pen_death;  
+                    }
+                    if (info.done && env_stop) {
+                        // Stop because forager died outside while gathering
+                        if ( (p==0) && (food[0] <= 0) ) forag_deaths_out++;
+                        break;
+                    }
+                }
+			}
+
+			// Gathering happens if the game doesn't stop
+			if (!info.done) food[0] = max_k;  
+		}	
+
+		// Sharing
+		else {
+			// The new decider is a recipient with food>0, i.e. in ind_rec_map
+			// No food consumed here
+            // No check on stop_by_discount
+			double u = unif_rec_dist(generator);
+			decider = ind_rec_map[u];
+		}
+	}
+
+	// Recipient's decision
+	else {
+
+		// To avoid being stuck in a full-recipient full-forager loop, the food consumption of one
+		// unit is imposed to the full recipient.
+		// if (food[decider] >= max_k){
+		// 	// Time needed for the full recipient to eat one resource
+		// 	int cons_time = cons_time_dist(generator)+1;
+		// 	lrn_steps_elapsed = cons_time;
+		// 	consume_food(decider, 1, info);
+		// 	// Imposing consuption to all the other players
+		// 	std::binomial_distribution<int> cons_food_dist = std::binomial_distribution<int>(cons_time, p_consume);
+		// 	for (int p=0; p<n_recipients+1; p++)
+		// 		if (decider != p) consume_food(p, cons_food_dist(generator), info);
+
+		// 	if (info.done) {
+		// 		if (food[0] == 0) forag_deaths_cons++; // morte per consumo distinta da morte per troph
+		// 	}
+
+		// 	// After this waiting time we can imagine that the choice 
+		// 	decider = 0;
+		// }
+
+
+	if (unif_dist(generator) < 1-true_gamma){
+            info.done = true;
+        }
+        // Consuption check over all the players anyways.
+        for (int p=0; p<n_recipients+1; p++){
+            if (food[p]>0){ // skips dead ants.
+                if (unif_dist(generator) < p_consume) {
+                    consume_food(p, 1, info);
+                }
+                if (food[p]<=0) {
+                    //info.reward[p] = -pen_death;
+                    //av_return[p] -= pen_death;  
+                }
+            }
+        }
+        if (info.done && env_stop){
+            // Terminal state due to dead ants, skips the trophallaxis event.
+            if ((food[0] == 0) && env_stop) forag_deaths_cons++; // Stop because forager died inside colony.
+        } else {
+            // Reject or full recipient
+            if (food[decider] >= max_k || action[decider] == 1){
+                decider = 0;
+            }
+            // Accept
+            else {
+                food[decider] += 1;
+                // Recipient is rewarded.
+                info.reward[decider] = rew_eat;
+                av_return[decider] += rew_eat;
+                
+                consume_food(0, 1, info);
+                if (info.done && env_stop) { 
+                    // Death for trophallaxis.
+                    //info.reward[0] = -pen_death;
+                    //av_return[0] -= pen_death;                     
+                    forag_deaths_in++; 
+                } else {
+                    info.reward[0] = 1;
+                    av_return[0] += 1;
+                }                    
+            }
+        }
+	}
+
+	elapsed_steps+=lrn_steps_elapsed;
+    if (info.done && (!env_stop)) forced_stops++;
+}
+
+// UNCHANGED
+void Ants_consume_death::consume_food(int player, int amount, env_info& info){
+
+	// Check only for a forager or a living recipient
+	if (player == 0 || std::find(ind_rec_map.begin(), ind_rec_map.end(), player) != ind_rec_map.end()) { // Now superflous.
+
+		food[player] = std::max(0, food[player]-amount);
+
+		// Death check
+		if (food[player] <= 0) {
+
+			// Forager death
+			if (player == 0) info.done = true;
+
+			// Recipient death
+			else {
+
+				if (stop_at_first_death) {
+					rec_deaths[0]++;
+					info.done = true; 
+				} else {
+					// Re-defining the available recipients
+					auto ind_to_remove = std::remove(ind_rec_map.begin(), ind_rec_map.end(), player);
+					ind_rec_map.erase(ind_to_remove);
+					rec_deaths[n_recipients-ind_rec_map.size()-1]++;
+					// Terminal state if all recipients are dead
+					if (ind_rec_map.size() == 0) 
+						info.done = true; 
+					else
+						unif_rec_dist = std::uniform_int_distribution<int>(0, ind_rec_map.size()-1);
+				}
+			}
+		}			
+		if (info.done) env_stop = true; // only when somebody dies for food reasons.
+	}
+}
+
+vecd Ants_consume_death::terminal_reward(const double gamma, vecd& t_rew){
+    vecd terminal_rew(n_players());
+    for (int p=0; p<n_recipients+1; p++){
+        if (food[p] <= 0) terminal_rew[p] = -pen_death * gamma;
+    }
+    return terminal_rew;
+}
