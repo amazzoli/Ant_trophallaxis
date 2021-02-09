@@ -98,7 +98,7 @@ class Ants_consume : public Ants_ma {
         /* Episodes ended discount forced stop */
         int forced_stops;
         /* Aux var to control the forced stop */
-        // bool env_stop;
+        bool env_stop;
         /* N. steps from the last writing of the trajectory quantities */
         double elapsed_steps;
 
@@ -153,13 +153,12 @@ class Ants_consume_death : public Ants_consume {
         std::geometric_distribution<int> gath_time_dist;
         std::geometric_distribution<int> cons_time_dist;
         std::geometric_distribution<int> disc_time_dist;
-        void consume_food(int player, int amount, env_info& info);
+        void consume_food(int player, int amount, env_info& info, bool disc_stop);
 
     public:
         Ants_consume_death(const param& par, std::mt19937& generator);
         const str descr() const; 
         void step(const veci& action, env_info& info, int& lrn_steps_elapsed);
-        vecd terminal_reward(const double gamma, vecd& t_rew);
 };
 
 

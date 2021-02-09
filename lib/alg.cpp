@@ -132,9 +132,9 @@ void MARLAlgorithm::run(const param& params) {
             // std::cout << "DONE\n";
             
             // Updating return with last reward
-            (*env).terminal_reward(m_gamma, t_reward); 
+            // (*env).terminal_reward(m_gamma, t_reward); 
             for(int p=0; p<(*env).n_players(); p++) {
-                ret[p] += t_reward[p] * curr_gamma_fact;
+                // ret[p] += curr_info.reward[p] * curr_gamma_fact;
                 av_ret[p] += ret[p];
             }
             if (save_return){

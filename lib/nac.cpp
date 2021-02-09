@@ -155,9 +155,10 @@ void MA_AC::learning_update(int lrn_steps_elapsed) {
         // normal TD for the last step
         else {
             if (curr_info.done) {
-                (*env).terminal_reward(eff_gamma, curr_t_rew);
+                //(*env).terminal_reward(eff_gamma, curr_t_rew);
                 for (int p=0; p<(*env).n_players(); p++)
-                    curr_td_error[p] = curr_t_rew[p] - curr_v_pars[p][curr_aggr_state[p]];
+                    //curr_td_error[p] = curr_t_rew[p] - curr_v_pars[p][curr_aggr_state[p]];
+                    curr_td_error[p] = curr_info.reward[p] - curr_v_pars[p][curr_aggr_state[p]];
             }
             else {
                 for (int p=0; p<(*env).n_players(); p++)
@@ -338,9 +339,10 @@ void MA_AC_ET::learning_update(int lrn_steps_elapsed) {
         // normal TD for the last step
         else {
             if (curr_info.done) {
-                (*env).terminal_reward(eff_gamma, curr_t_rew);
+                //(*env).terminal_reward(eff_gamma, curr_t_rew);
                 for (int p=0; p<(*env).n_players(); p++)
-                    curr_td_error[p] = curr_t_rew[p] - curr_v_pars[p][curr_aggr_state[p]];
+                    //curr_td_error[p] = curr_t_rew[p] - curr_v_pars[p][curr_aggr_state[p]];
+                    curr_td_error[p] = curr_info.reward[p] - curr_v_pars[p][curr_aggr_state[p]];
             }
             else {
                 for (int p=0; p<(*env).n_players(); p++)

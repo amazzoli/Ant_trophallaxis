@@ -55,7 +55,7 @@ class Environment {
         /* Method called when there is a forced stop by discount factor */
         virtual void gamma_stop(const int& lrn_steps_diff) {};
         /* Reward ot penalty in the terminal state, zero by default */
-        virtual vecd terminal_reward(const double gamma, vecd& t_rew) { return vecd(n_players()); };
+        virtual void terminal_reward(const double gamma, vecd& t_rew) { for (int p=0; p<t_rew.size(); p++) t_rew[p] = 0; };
         /* Information about the environment */
         virtual vecd env_data() { return vecd(0); }
         virtual vecs env_data_headers() { return vecs(0); }
