@@ -640,8 +640,29 @@ void Ants_consume_death::step(const veci& action, env_info& info, int& lrn_steps
         }
 	}
 
+    // IF THE FORAGER DIES, I LOOK TO THE END OF THE EPISODE TO CHECK FOR THE DEATH OF THE REMAINING RECIPIENTS.
+    if ((food[0] == 0) && (!disc_stop)) {
+            int dead_forager_time = disc_time_dist(generator)+1;        
+			lrn_steps_elapsed += dead_forager_time;
+
+			// Possibility of consuming food during that time
+			for (int p=1; p<n_recipients+1; p++) {
+                if (food[p]>0){ // skips dead ants and forager.
+                    // Consumption.
+                    std::binomial_distribution<int> cons_food_dist = std::binomial_distribution<int>(dead_forager_time, p_consume);
+                    consume_food(p, cons_food_dist(generator), info, disc_stop);
+                    // Death check here and penalty.
+                    if (food[p] <= 0){
+                        info.reward[p] = -pen_death; 
+                        av_return[p] -= pen_death;  
+                    }
+                }
+			}        
+    }
+
 	elapsed_steps+=lrn_steps_elapsed;
     if (disc_stop) forced_stops++;
+    
 }
 
 // UNCHANGED
