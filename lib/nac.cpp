@@ -16,6 +16,16 @@ MARLAlgorithm(env, params, generator, verbose) {
                 return plaw_dacay(step, params.d.at("b_burn"), params.d.at("b_expn"), params.d.at("b0"), params.d.at("bc"));
             }
         };
+
+        //Learning rate factors
+        if (params.vecd.find("a_lr_factor") != params.vecd.end())
+            lr_act_factors = params.vecd.at("a_lr_factor");
+        else
+            lr_act_factors = vecd((*env).n_players(), 1);
+        if (params.vecd.find("c_lr_factor") != params.vecd.end())
+            lr_crit_factors = params.vecd.at("c_lr_factor");
+        else
+            lr_crit_factors = vecd((*env).n_players(), 1);
         
     } catch (std::exception) {
         throw std::invalid_argument( "Invalid learning rates in Actor Critic" );
@@ -167,16 +177,12 @@ void MA_AC::learning_update(int lrn_steps_elapsed) {
         }
         
         // Critic update (curr_gamma_fact is 1 if stop_by_discount)
-        curr_crit_lr = lr_crit(curr_step) * curr_gamma_fact;
-        for (int p=0; p<(*env).n_players(); p++)
-            curr_v_pars[p][curr_aggr_state[p]] += curr_crit_lr * curr_td_error[p];
+        double aux_lr = lr_crit(curr_step) * curr_gamma_fact;
+        for (int p=0; p<(*env).n_players(); p++) {
+            curr_v_pars[p][curr_aggr_state[p]] += aux_lr * lr_crit_factors[p] * curr_td_error[p];
+        }
 
-        // Actor update
-        curr_act_lr = lr_act(curr_step) ;
-        if (!stop_by_discount) 
-            curr_act_lr *= curr_gamma_fact;
-
-        child_update();
+        actor_update();
     }
 }
 
@@ -225,13 +231,16 @@ void MA_AC::print_traj(str out_dir) const {
 
 // CHILD ACTOR CRITIC
 
-void MA_AC::child_update(){ 
+void MA_AC::actor_update(){ 
+    // Actor update (curr_gamma_fact is 1 if stop_by_discount)
+    double aux_lr = lr_act(curr_step) * curr_gamma_fact;
     for (int p=0; p<(*env).n_players(); p++){
+        double lr = aux_lr * lr_act_factors[p];
         for (int a=0; a<curr_p_pars[p][curr_aggr_state[p]].size(); a++){
             if (a == curr_action[p]) 
-                curr_p_pars[p][curr_aggr_state[p]][a] += curr_act_lr * curr_td_error[p] * (1 - curr_policy[p][curr_aggr_state[p]][a]); 
+                curr_p_pars[p][curr_aggr_state[p]][a] += lr * curr_td_error[p] * (1 - curr_policy[p][curr_aggr_state[p]][a]); 
             else 
-                curr_p_pars[p][curr_aggr_state[p]][a] -= curr_act_lr * curr_td_error[p] * curr_policy[p][curr_aggr_state[p]][a];
+                curr_p_pars[p][curr_aggr_state[p]][a] -= lr * curr_td_error[p] * curr_policy[p][curr_aggr_state[p]][a];
         }
     }
 }
@@ -272,7 +281,11 @@ void MA_NAC_AP::child_update(){
     //             curr_p_pars[p][s][a] += curr_act_lr * ap_par[p][s][a];
     // }
 
+    double aux_crit_lr = lr_crit(curr_step) * curr_gamma_fact;
+    double aux_act_lr = lr_act(curr_step) * curr_gamma_fact;
     for (int p=0; p<(*env).n_players(); p++) {
+        double lr_crit = aux_crit_lr * lr_crit_factors[p];
+        double lr_act = aux_act_lr * lr_act_factors[p];
         for (int s=0; s<ap_par[p].size(); s++) {
             for (int a=0; a<curr_p_pars[p][curr_aggr_state[p]].size(); a++) {
                 if (s == curr_aggr_state[p]){
@@ -290,8 +303,8 @@ void MA_NAC_AP::child_update(){
                 aux_t -= grad_est[p][s][a] * ap_par[p][s][a];
 
             for (int a=0; a<curr_p_pars[p][s].size(); a++){
-                ap_par[p][s][a] += curr_crit_lr * grad_est[p][s][a] * aux_t;
-                curr_p_pars[p][s][a] += curr_act_lr * ap_par[p][s][a];
+                ap_par[p][s][a] += lr_crit * grad_est[p][s][a] * aux_t;
+                curr_p_pars[p][s][a] += lr_act * ap_par[p][s][a];
             }
         }
     }
@@ -351,14 +364,16 @@ void MA_AC_ET::learning_update(int lrn_steps_elapsed) {
         }
 
         // Critic update (curr_gamma_fact is 1 if stop_by_discount)
-        curr_crit_lr = lr_crit(curr_step) * curr_gamma_fact;
-        for (int p=0; p<(*env).n_players(); p++)
+        double aux_lr = lr_crit(curr_step) * curr_gamma_fact;
+        for (int p=0; p<(*env).n_players(); p++){
+            double lr = aux_lr * lr_crit_factors[p];
             for (int s=0; s<(*env).n_aggr_state(p); ++s) {
                 et_vec_critic[p][s] *= lambda_critic;
                 if (s == curr_aggr_state[p])
                     et_vec_critic[p][s] += 1;
-                curr_v_pars[p][s] += curr_crit_lr * curr_td_error[p] * et_vec_critic[p][s];
-            }        
+                curr_v_pars[p][s] += lr * curr_td_error[p] * et_vec_critic[p][s];
+            }      
+        }  
 
         // Actor update (curr_gamma_fact is 1 if stop_by_discount)
         actor_update();
@@ -378,9 +393,10 @@ void MA_AC_ET::learning_update(int lrn_steps_elapsed) {
 
 
 void MA_AC_ET::actor_update() {
-    curr_act_lr = lr_act(curr_step) * curr_gamma_fact;
-    for (int p=0; p<(*env).n_players(); p++)
-        for (int s=0; s<(*env).n_aggr_state(p); ++s) 
+    double aux_lr = lr_act(curr_step) * curr_gamma_fact;
+    for (int p=0; p<(*env).n_players(); p++) {
+        double lr = aux_lr * lr_act_factors[p];
+        for (int s=0; s<(*env).n_aggr_state(p); ++s) {
             for (int a=0; a<curr_p_pars[p][s].size(); a++) {
                 et_vec_actor[p][s][a] *= lambda_actor;
                 if (s == curr_aggr_state[p]){
@@ -389,8 +405,10 @@ void MA_AC_ET::actor_update() {
                     else
                         et_vec_actor[p][s][a] -= curr_policy[p][s][a];
                 }
-                curr_p_pars[p][s][a] += curr_act_lr * curr_td_error[p] * et_vec_actor[p][s][a];
+                curr_p_pars[p][s][a] += lr * curr_td_error[p] * et_vec_actor[p][s][a];
             }  
+        }
+    }
 }
 
 
@@ -406,9 +424,12 @@ void MA_NAC_AP_ET::child_init(){
 
 
 void MA_NAC_AP_ET::actor_update(){
-    
-    curr_act_lr = lr_act(curr_step) * curr_gamma_fact;
+
+    double aux_act_lr = lr_act(curr_step) * curr_gamma_fact;
+    double aux_crit_lr = lr_crit(curr_step) * curr_gamma_fact;
     for (int p=0; p<(*env).n_players(); p++) {
+        double lr_crit = aux_crit_lr * lr_crit_factors[p];
+        double lr_act = aux_act_lr * lr_act_factors[p];
         for (int s=0; s<ap_par[p].size(); s++) {
             for (int a=0; a<curr_p_pars[p][curr_aggr_state[p]].size(); a++) {
                 et_vec_actor[p][s][a] *= lambda_actor;
@@ -425,8 +446,8 @@ void MA_NAC_AP_ET::actor_update(){
                 aux_t -= et_vec_actor[p][s][a] * ap_par[p][s][a];
 
             for (int a=0; a<curr_p_pars[p][s].size(); a++){
-                ap_par[p][s][a] += curr_crit_lr * et_vec_actor[p][s][a] * aux_t;
-                curr_p_pars[p][s][a] += curr_act_lr * ap_par[p][s][a];
+                ap_par[p][s][a] += lr_crit * et_vec_actor[p][s][a] * aux_t;
+                curr_p_pars[p][s][a] += lr_act * ap_par[p][s][a];
             }
         }
     }

@@ -36,14 +36,14 @@ class MA_AC : public MARLAlgorithm {
 
         /* Critic learning rate dependent on time */
         d_i_fnc lr_crit;
+        /* Multiplicative factors on the learning rates for each player */
+        vecd lr_crit_factors;
         /* Actor learning rate dependent on time */
-        d_i_fnc lr_act;  
+        d_i_fnc lr_act; 
+        /* Multiplicative factors on the learning rates for each player */
+        vecd lr_act_factors; 
 
         // "CURRENT VARIABLES" CHANGED AT EACH LEARNING STEP
-        /* Critic learning rate at the current time step of the learning */
-        double curr_crit_lr;
-        /* Actor learning rate at the current time step of the learning */
-        double curr_act_lr;
         /* Value/critic parameters. Index1 player, index2 state */
         vec2d curr_v_pars;
         /* Policy/actor parameters. Index1 player, index2 state, index3 action */
@@ -64,7 +64,7 @@ class MA_AC : public MARLAlgorithm {
 
         // CHILD ALGORITHM METHODS
         virtual void child_init() {};
-        virtual void child_update();
+        virtual void actor_update();
 
     public:
 
