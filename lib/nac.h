@@ -34,6 +34,8 @@ class MA_AC : public MARLAlgorithm {
 
     protected:  
 
+        bool continuous_task;
+        
         /* Critic learning rate dependent on time */
         d_i_fnc lr_crit;
         /* Multiplicative factors on the learning rates for each player */
@@ -42,6 +44,7 @@ class MA_AC : public MARLAlgorithm {
         d_i_fnc lr_act; 
         /* Multiplicative factors on the learning rates for each player */
         vecd lr_act_factors; 
+        double lr_rew_factor;
 
         // "CURRENT VARIABLES" CHANGED AT EACH LEARNING STEP
         /* Value/critic parameters. Index1 player, index2 state */
@@ -54,6 +57,8 @@ class MA_AC : public MARLAlgorithm {
         vecd curr_td_error;
         /* Terminal reward */
         vecd curr_t_rew;
+
+        vecd curr_av_rew;
 
         // METHODS TO OVERRIDE
         virtual void init(const param& params);

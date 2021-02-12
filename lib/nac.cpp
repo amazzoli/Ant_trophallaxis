@@ -26,7 +26,17 @@ MARLAlgorithm(env, params, generator, verbose) {
             lr_crit_factors = params.vecd.at("c_lr_factor");
         else
             lr_crit_factors = vecd((*env).n_players(), 1);
-        
+
+        continuous_task = false;
+        if (params.s.find("continuous_task") != params.s.end()) {
+            if (params.s.at("continuous_task") == "true") {
+                continuous_task = true;
+                lr_rew_factor = params.d.at("lr_rew_factor");
+                m_gamma = 1;
+                stop_by_discount = false;
+            }
+        }
+
     } catch (std::exception) {
         throw std::invalid_argument( "Invalid learning rates in Actor Critic" );
     }
@@ -91,6 +101,7 @@ void MA_AC::init(const param& params){
 
     curr_td_error = vecd((*env).n_players());
     curr_t_rew = vecd((*env).n_players());
+    curr_av_rew =  vecd((*env).n_players());
 
     // Child algorithm init
     child_init();
@@ -156,6 +167,9 @@ void MA_AC::learning_update(int lrn_steps_elapsed) {
     double eff_gamma = 1;
     if (!stop_by_discount) eff_gamma = m_gamma; 
 
+    if (lrn_steps_elapsed > 1 && continuous_task)
+        std::cout << "Warning: learning step > 1 in continuous task\n";
+
     for (int t=0; t<lrn_steps_elapsed; t++) {
 
         // TD is given by a self loop with zero reward
@@ -171,8 +185,16 @@ void MA_AC::learning_update(int lrn_steps_elapsed) {
                     curr_td_error[p] = curr_info.reward[p] - curr_v_pars[p][curr_aggr_state[p]];
             }
             else {
-                for (int p=0; p<(*env).n_players(); p++)
-                    curr_td_error[p] = curr_info.reward[p] + eff_gamma * curr_v_pars[p][curr_new_aggr_state[p]] - curr_v_pars[p][curr_aggr_state[p]];
+
+                for (int p=0; p<(*env).n_players(); p++){
+                    if (continuous_task) {
+                        double lrr = lr_crit(curr_step) * lr_rew_factor;
+                        curr_av_rew[p] = (1 - lrr) * curr_av_rew[p] + lrr * curr_info.reward[p];
+                        curr_td_error[p] = curr_info.reward[p] - curr_av_rew[p] + curr_v_pars[p][curr_new_aggr_state[p]] - curr_v_pars[p][curr_aggr_state[p]];
+                    }
+                    else
+                        curr_td_error[p] = curr_info.reward[p] + eff_gamma * curr_v_pars[p][curr_new_aggr_state[p]] - curr_v_pars[p][curr_aggr_state[p]];
+                }
             }
         }
         
@@ -343,6 +365,9 @@ void MA_AC_ET::learning_update(int lrn_steps_elapsed) {
     double eff_gamma = 1;
     if (!stop_by_discount) eff_gamma = m_gamma; 
 
+    if (lrn_steps_elapsed > 1 && continuous_task)
+        std::cout << "Warning: learning step > 1 in continuous task\n";
+
     for (int t = 0; t<lrn_steps_elapsed; t++) {
 
         // TD is given by a self loop with zero reward
@@ -358,8 +383,15 @@ void MA_AC_ET::learning_update(int lrn_steps_elapsed) {
                     curr_td_error[p] = curr_info.reward[p] - curr_v_pars[p][curr_aggr_state[p]];
             }
             else {
-                for (int p=0; p<(*env).n_players(); p++)
-                    curr_td_error[p] = curr_info.reward[p] + eff_gamma * curr_v_pars[p][curr_new_aggr_state[p]] - curr_v_pars[p][curr_aggr_state[p]];
+                for (int p=0; p<(*env).n_players(); p++){
+                    if (continuous_task) {
+                        double lrr = lr_crit(curr_step) * lr_rew_factor;
+                        curr_av_rew[p] = (1 - lrr) * curr_av_rew[p] + lrr * curr_info.reward[p];
+                        curr_td_error[p] = curr_info.reward[p] - curr_av_rew[p] + curr_v_pars[p][curr_new_aggr_state[p]] - curr_v_pars[p][curr_aggr_state[p]];
+                    }
+                    else
+                        curr_td_error[p] = curr_info.reward[p] + eff_gamma * curr_v_pars[p][curr_new_aggr_state[p]] - curr_v_pars[p][curr_aggr_state[p]];
+                }
             }
         }
 
