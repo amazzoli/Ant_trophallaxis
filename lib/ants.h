@@ -146,6 +146,7 @@ class Ants_consume_death : public Ants_consume {
         double pen_death;
         double rew_eat;
         double true_gamma;
+        double rew_life = 0;
         /* Aux var to control the stop by discount*/
         bool disc_stop;
 
@@ -161,6 +162,23 @@ class Ants_consume_death : public Ants_consume {
         void step(const veci& action, env_info& info, int& lrn_steps_elapsed);
 };
 
+
+class Ants_consume_stress : public Ants_consume {
+
+    protected: 
+        double pen_stress;
+        double rew_eat;
+        double rew_life;
+
+
+    private:
+        void consume_food(int player, int amount, env_info& info);
+
+    public:
+        Ants_consume_stress(const param& par, std::mt19937& generator);
+        const str descr() const; 
+        void step(const veci& action, env_info& info, int& lrn_steps_elapsed);
+};
 
 
 #endif

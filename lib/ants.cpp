@@ -501,6 +501,12 @@ Ants_consume(par, generator) {
         pen_death = par.d.at("pen_death");
         rew_eat = par.d.at("rew_eat");
         true_gamma = par.d.at("true_gamma");
+        
+        if (par.s.find("reward_life") != par.s.end())
+            if (par.s.at("reward_life") == "true")
+                rew_life = pen_death * (1 - true_gamma);
+                pen_death = 0;
+        
 	} catch (std::exception) {
 	    throw std::invalid_argument( "Invalid ant-environment parameters (Ants_consume_death model)" );
 	}
@@ -660,9 +666,16 @@ void Ants_consume_death::step(const veci& action, env_info& info, int& lrn_steps
 			}        
     }
 
+    for (int p=0; p<n_recipients+1; p++) {
+        if (food[p]>0){
+            info.reward[p] = lrn_steps_elapsed*rew_life; 
+            av_return[p] += lrn_steps_elapsed*rew_life;              
+        }
+    }
+
 	elapsed_steps+=lrn_steps_elapsed;
     if (disc_stop) forced_stops++;
-    
+
 }
 
 // UNCHANGED
@@ -700,3 +713,125 @@ void Ants_consume_death::consume_food(int player, int amount, env_info& info, bo
 		}
 	}
 }
+
+// STRESS, NO DEATH
+
+Ants_consume_stress::Ants_consume_stress(const param& par, std::mt19937& generator) : 
+Ants_consume(par, generator) {
+
+	try {
+        stop_at_first_death = false;
+        pen_stress = par.d.at("pen_stress");
+        rew_eat = par.d.at("rew_eat");
+        
+        rew_life = 0;
+        if (par.s.find("reward_life") != par.s.end())
+            if (par.s.at("reward_life") == "true")
+                rew_life = pen_stress;
+                pen_stress = 0;
+        
+	} catch (std::exception) {
+	    throw std::invalid_argument( "Invalid ant-environment parameters (Ants_consume_stress model)" );
+	}
+}
+
+
+ const str Ants_consume_stress::descr() const {
+	return "Ant colony with single forager and multi-recipient interactions.\nConsumption during foraging. Fast. Having an empty crop is explicitly taken in consideration with a penalty. Suited for continuous task.";	
+}
+
+
+void Ants_consume_stress::step(const veci& action, env_info& info, int& lrn_steps_elapsed) {
+
+	// By default, rewards are zero and the game continues
+	for (double& r : info.reward) r = 0;
+	info.done = false;
+	
+	// Forager's decision
+	if (decider == 0) {
+
+		// Gathering
+		if (action[0] == 0) {
+
+			// Possibility of consuming food during that time
+			for (int p=0; p<n_recipients+1; p++) {
+                if (unif_dist(generator) < p_consume) {
+                    // Consumption.
+                    consume_food(p, 1, info);
+                    if ( (p==0) && (food[0] <= 0) ) forag_deaths_out++; // Forager stressed outside colony.            
+                }
+            }
+            
+			// Gathering happens
+            if (unif_dist(generator) < p_succ) {
+                food[0] = max_k;
+            }
+		}	
+
+		// Sharing
+		else {            
+            // Consuption check over all the players anyways.
+            for (int p=0; p<n_recipients+1; p++){
+                if (unif_dist(generator) < p_consume) {
+                    consume_food(p, 1, info);
+                }
+            }
+            if (food[0] == 0) forag_deaths_cons++; // Forager stressed inside colony.
+
+            // The new decider is any recipient, i.e. in ind_rec_map
+            double u = unif_rec_dist(generator);
+            decider = ind_rec_map[u];
+        }
+	} else {
+	// Recipient's decision
+
+        // Consuption check over all the players anyways.
+        for (int p=0; p<n_recipients+1; p++){
+            if (unif_dist(generator) < p_consume) {
+                consume_food(p, 1, info);
+            }
+        }
+
+        if (food[0] == 0) forag_deaths_cons++; // Stop because forager died inside colony.
+
+        // Reject or full recipient
+        if (food[decider] >= max_k || action[decider] == 1){
+            decider = 0;
+        }  else {
+        // Accept
+            food[decider] += 1;
+            // Recipient is possibly rewarded.
+            info.reward[decider] = rew_eat;
+            av_return[decider] += rew_eat;
+            
+            consume_food(0, 1, info);
+            if ((food[0] == 0)) forag_deaths_in++; // Forager died inside colony.
+            info.reward[0] = 1;
+            av_return[0] += 1;
+        }                    
+    }
+
+    int stressed;
+    stressed = 0;
+    
+    for (int p=0; p<n_recipients+1; p++) {
+        if (food[p]>0){
+            info.reward[p] = rew_life; 
+            av_return[p] += rew_life;              
+        } else {
+            if (p>0) stressed++;
+            info.reward[p] = - pen_stress; 
+            av_return[p] -= pen_stress;                      
+        }
+    }
+    
+    if (stressed > 0)
+        rec_deaths[stressed-1]++ ;
+
+}
+
+// Basically useless now.
+void Ants_consume_stress::consume_food(int player, int amount, env_info& info){
+    food[player] = std::max(0, food[player]-amount);
+}
+
