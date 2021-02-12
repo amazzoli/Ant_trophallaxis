@@ -725,10 +725,12 @@ Ants_consume(par, generator) {
         rew_eat = par.d.at("rew_eat");
         
         rew_life = 0;
-        if (par.s.find("reward_life") != par.s.end())
-            if (par.s.at("reward_life") == "true")
+        if (par.s.find("reward_life") != par.s.end()) {
+            if (par.s.at("reward_life") == "true"){
                 rew_life = pen_stress;
                 pen_stress = 0;
+            }
+        }
         
 	} catch (std::exception) {
 	    throw std::invalid_argument( "Invalid ant-environment parameters (Ants_consume_stress model)" );
@@ -816,11 +818,11 @@ void Ants_consume_stress::step(const veci& action, env_info& info, int& lrn_step
     
     for (int p=0; p<n_recipients+1; p++) {
         if (food[p]>0){
-            info.reward[p] = rew_life; 
+            info.reward[p] += rew_life; 
             av_return[p] += rew_life;              
         } else {
             if (p>0) stressed++;
-            info.reward[p] = - pen_stress; 
+            info.reward[p] -= pen_stress; 
             av_return[p] -= pen_stress;                      
         }
     }
