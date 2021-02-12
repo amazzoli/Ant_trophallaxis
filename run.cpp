@@ -82,6 +82,9 @@ Environment* get_env(std::string env_name, const param& params, std::mt19937& ge
     if (env_name == "ant_cons2_death"){
         return new Ants_consume_death(params, generator);
     }
+    if (env_name == "ant_cons2_stress"){
+        return new Ants_consume_stress(params, generator);
+    }
     
     else throw std::invalid_argument( "Invalid environment name" );
 }
