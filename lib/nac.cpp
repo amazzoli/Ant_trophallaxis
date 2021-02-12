@@ -27,9 +27,10 @@ MARLAlgorithm(env, params, generator, verbose) {
         else
             lr_crit_factors = vecd((*env).n_players(), 1);
 
+        // Continuous task conditions
         continuous_task = false;
         if (params.s.find("continuous_task") != params.s.end()) {
-            if (params.s.at("continuous_task") == "true") {
+            if (params.s.at("continuous_task") == "true" || params.s.at("continuous_task") == "True") {
                 continuous_task = true;
                 lr_rew_factor = params.d.at("lr_rew_factor");
                 m_gamma = 1;
@@ -52,7 +53,7 @@ void MA_AC::init(const param& params){
             save_alg_traj = false;
     policy_par_traj = vec4d(0);
     value_traj = vec3d(0);
-    return_traj = vec2d(0);
+    av_rew_traj = vec2d(0);
 
     // Value parameter init
     if (params.s.find("init_val_path") != params.s.end()){
@@ -77,7 +78,7 @@ void MA_AC::init(const param& params){
         }
     }
     
-    // Policy parameters init
+    // Policy init
     curr_policy = vec3d((*env).n_players());
     if (params.s.find("init_pol_dir") != params.s.end()){
         std::cout << "Init policy from data: " << params.s.at("init_pol_dir") << "\n";
@@ -88,6 +89,7 @@ void MA_AC::init(const param& params){
     else
         curr_policy = flat_policy();
 
+    // Policy parameters init
     curr_p_pars = vec3d(0);
     for (int p=0; p<(*env).n_players(); p++) {
         vec2d par_of_player = vec2d(0);
@@ -162,13 +164,15 @@ void MA_AC::get_action(veci& action) {
 
 void MA_AC::learning_update(int lrn_steps_elapsed) {
 
-    // WARNING: !stop_by_discount NEVER CHECKED!!
-
     double eff_gamma = 1;
     if (!stop_by_discount) eff_gamma = m_gamma; 
-
-    if (lrn_steps_elapsed > 1 && continuous_task)
-        std::cout << "Warning: learning step > 1 in continuous task\n";
+    
+    if (continuous_task){
+        if (lrn_steps_elapsed > 1)
+            std::cout << "Warning: learning step > 1 in continuous task\n";
+        if (curr_info.done)
+            std::cout << "Warning: episode done at step " << curr_step << " in continuous task\n";
+    }
 
     for (int t=0; t<lrn_steps_elapsed; t++) {
 
@@ -197,21 +201,42 @@ void MA_AC::learning_update(int lrn_steps_elapsed) {
                 }
             }
         }
-        
-        // Critic update (curr_gamma_fact is 1 if stop_by_discount)
-        double aux_lr = lr_crit(curr_step) * curr_gamma_fact;
-        for (int p=0; p<(*env).n_players(); p++) {
-            curr_v_pars[p][curr_aggr_state[p]] += aux_lr * lr_crit_factors[p] * curr_td_error[p];
-        }
 
+        critic_update();
         actor_update();
     }
 }
 
 
+void MA_AC::actor_update() { 
+    // Actor update (curr_gamma_fact is 1 if stop_by_discount)
+    double aux_lr = lr_act(curr_step) * curr_gamma_fact;
+    for (int p=0; p<(*env).n_players(); p++){
+        double lr = aux_lr * lr_act_factors[p];
+        for (int a=0; a<curr_p_pars[p][curr_aggr_state[p]].size(); a++){
+            if (a == curr_action[p]) 
+                curr_p_pars[p][curr_aggr_state[p]][a] += lr * curr_td_error[p] * (1 - curr_policy[p][curr_aggr_state[p]][a]); 
+            else 
+                curr_p_pars[p][curr_aggr_state[p]][a] -= lr * curr_td_error[p] * curr_policy[p][curr_aggr_state[p]][a];
+        }
+    }
+}
+
+
+void MA_AC::critic_update() {
+    // Critic update (curr_gamma_fact is 1 if stop_by_discount)
+    double aux_lr = lr_crit(curr_step) * curr_gamma_fact;
+    for (int p=0; p<(*env).n_players(); p++) {
+        curr_v_pars[p][curr_aggr_state[p]] += aux_lr * lr_crit_factors[p] * curr_td_error[p];
+    }
+}
+
+
 void MA_AC::build_traj() {
+
     policy_par_traj.push_back(curr_p_pars);
     value_traj.push_back(curr_v_pars);
+    av_rew_traj.push_back(curr_av_rew);
 }
 
 
@@ -220,6 +245,10 @@ void MA_AC::print_traj(str out_dir) const {
     // Value trajectory
     if (save_alg_traj && traj_step > 0)
         write_vec3d(value_traj, out_dir + "value_traj.txt", (*env).aggr_state_descr());
+
+    // Value trajectory
+    if (save_alg_traj && traj_step > 0 && continuous_task)
+        write_vec2d(av_rew_traj, out_dir + "av_reward_traj.txt");
 
     // Policy trajectory
     vec4d policy;
@@ -251,24 +280,6 @@ void MA_AC::print_traj(str out_dir) const {
 }
 
 
-// CHILD ACTOR CRITIC
-
-void MA_AC::actor_update(){ 
-    // Actor update (curr_gamma_fact is 1 if stop_by_discount)
-    double aux_lr = lr_act(curr_step) * curr_gamma_fact;
-    for (int p=0; p<(*env).n_players(); p++){
-        double lr = aux_lr * lr_act_factors[p];
-        for (int a=0; a<curr_p_pars[p][curr_aggr_state[p]].size(); a++){
-            if (a == curr_action[p]) 
-                curr_p_pars[p][curr_aggr_state[p]][a] += lr * curr_td_error[p] * (1 - curr_policy[p][curr_aggr_state[p]][a]); 
-            else 
-                curr_p_pars[p][curr_aggr_state[p]][a] -= lr * curr_td_error[p] * curr_policy[p][curr_aggr_state[p]][a];
-        }
-    }
-}
-
-
-
 // NATURAL ACTOR CRITIC WITH ADVANTAGE PARAMETERS
 
 void MA_NAC_AP::child_init(){
@@ -286,22 +297,7 @@ void MA_NAC_AP::child_init(){
     }
 }
 
-void MA_NAC_AP::child_update(){ 
-
-    // for (int p=0; p<(*env).n_players(); p++) {
-    //     double aux_t = curr_td_error[p] - ap_par[p][curr_aggr_state[p]][curr_action[p]];
-    //     for (int a=0; a<curr_p_pars[p][curr_aggr_state[p]].size(); a++)
-    //         aux_t += curr_policy[p][curr_aggr_state[p]][a] * ap_par[p][curr_aggr_state[p]][a];
-    //     for (int a=0; a<curr_p_pars[p][curr_aggr_state[p]].size(); a++){
-    //         if (a == curr_action[p]) 
-    //             ap_par[p][curr_aggr_state[p]][a] += curr_crit_lr * (1 - curr_policy[p][curr_aggr_state[p]][a]) * aux_t; 
-    //         else 
-    //             ap_par[p][curr_aggr_state[p]][a] -= curr_crit_lr * curr_policy[p][curr_aggr_state[p]][a] * aux_t;
-    //     }
-    //     for (int s=0; s<ap_par[p].size(); s++)
-    //         for (int a=0; a<curr_p_pars[p][s].size(); a++)
-    //             curr_p_pars[p][s][a] += curr_act_lr * ap_par[p][s][a];
-    // }
+void MA_NAC_AP::actor_update(){ 
 
     double aux_crit_lr = lr_crit(curr_step) * curr_gamma_fact;
     double aux_act_lr = lr_act(curr_step) * curr_gamma_fact;
@@ -358,69 +354,78 @@ MA_AC(env, params, generator, verbose) {
 }
 
 
-void MA_AC_ET::learning_update(int lrn_steps_elapsed) {
+// void MA_AC_ET::learning_update(int lrn_steps_elapsed) {
 
-    // WARNING: !stop_by_discount NEVER CHECKED!!
+//     // WARNING: !stop_by_discount NEVER CHECKED!!
 
-    double eff_gamma = 1;
-    if (!stop_by_discount) eff_gamma = m_gamma; 
+//     double eff_gamma = 1;
+//     if (!stop_by_discount) eff_gamma = m_gamma; 
 
-    if (lrn_steps_elapsed > 1 && continuous_task)
-        std::cout << "Warning: learning step > 1 in continuous task\n";
+//     if (continuous_task){
+//         if (lrn_steps_elapsed > 1)
+//             std::cout << "Warning: learning step > 1 in continuous task\n";
+//         if (curr_info.done)
+//             std::cout << "Warning: episode done at step " << curr_step << " in continuous task\n";
+//     }
 
-    for (int t = 0; t<lrn_steps_elapsed; t++) {
+//     for (int t = 0; t<lrn_steps_elapsed; t++) {
 
-        // TD is given by a self loop with zero reward
-        if (t < lrn_steps_elapsed-1) 
-            for (int p=0; p<(*env).n_players(); p++) 
-                curr_td_error[p] = eff_gamma * curr_v_pars[p][curr_aggr_state[p]] - curr_v_pars[p][curr_aggr_state[p]];
-        // normal TD for the last step
-        else {
-            if (curr_info.done) {
-                //(*env).terminal_reward(eff_gamma, curr_t_rew);
-                for (int p=0; p<(*env).n_players(); p++)
-                    //curr_td_error[p] = curr_t_rew[p] - curr_v_pars[p][curr_aggr_state[p]];
-                    curr_td_error[p] = curr_info.reward[p] - curr_v_pars[p][curr_aggr_state[p]];
-            }
-            else {
-                for (int p=0; p<(*env).n_players(); p++){
-                    if (continuous_task) {
-                        double lrr = lr_crit(curr_step) * lr_rew_factor;
-                        curr_av_rew[p] = (1 - lrr) * curr_av_rew[p] + lrr * curr_info.reward[p];
-                        curr_td_error[p] = curr_info.reward[p] - curr_av_rew[p] + curr_v_pars[p][curr_new_aggr_state[p]] - curr_v_pars[p][curr_aggr_state[p]];
-                    }
-                    else
-                        curr_td_error[p] = curr_info.reward[p] + eff_gamma * curr_v_pars[p][curr_new_aggr_state[p]] - curr_v_pars[p][curr_aggr_state[p]];
-                }
-            }
-        }
+//         // TD is given by a self loop with zero reward
+//         if (t < lrn_steps_elapsed-1) 
+//             for (int p=0; p<(*env).n_players(); p++) 
+//                 curr_td_error[p] = eff_gamma * curr_v_pars[p][curr_aggr_state[p]] - curr_v_pars[p][curr_aggr_state[p]];
+//         // normal TD for the last step
+//         else {
+//             if (curr_info.done) {
+//                 //(*env).terminal_reward(eff_gamma, curr_t_rew);
+//                 for (int p=0; p<(*env).n_players(); p++)
+//                     //curr_td_error[p] = curr_t_rew[p] - curr_v_pars[p][curr_aggr_state[p]];
+//                     curr_td_error[p] = curr_info.reward[p] - curr_v_pars[p][curr_aggr_state[p]];
+//             }
+//             else {
+//                 for (int p=0; p<(*env).n_players(); p++){
+//                     if (continuous_task) {
+//                         double lrr = lr_crit(curr_step) * lr_rew_factor;
+//                         curr_av_rew[p] = (1 - lrr) * curr_av_rew[p] + lrr * curr_info.reward[p];
+//                         curr_td_error[p] = curr_info.reward[p] - curr_av_rew[p] + curr_v_pars[p][curr_new_aggr_state[p]] - curr_v_pars[p][curr_aggr_state[p]];
+//                     }
+//                     else
+//                         curr_td_error[p] = curr_info.reward[p] + eff_gamma * curr_v_pars[p][curr_new_aggr_state[p]] - curr_v_pars[p][curr_aggr_state[p]];
+//                 }
+//             }
+//         }
 
-        // Critic update (curr_gamma_fact is 1 if stop_by_discount)
-        double aux_lr = lr_crit(curr_step) * curr_gamma_fact;
-        for (int p=0; p<(*env).n_players(); p++){
-            double lr = aux_lr * lr_crit_factors[p];
-            for (int s=0; s<(*env).n_aggr_state(p); ++s) {
-                et_vec_critic[p][s] *= lambda_critic;
-                if (s == curr_aggr_state[p])
-                    et_vec_critic[p][s] += 1;
-                curr_v_pars[p][s] += lr * curr_td_error[p] * et_vec_critic[p][s];
-            }      
-        }  
+//         critic_update();
+//         // Actor update (curr_gamma_fact is 1 if stop_by_discount)
+//         actor_update();
+//     }
 
-        // Actor update (curr_gamma_fact is 1 if stop_by_discount)
-        actor_update();
-    }
+//     // If terminal state, the eligibity vectors are re-init to zero
+//     if (curr_info.done) {
+//         for (int p=0; p<(*env).n_players(); p++) {
+//             for (int s=0; s<(*env).n_aggr_state(p); ++s) {
+//                 et_vec_critic[p][s] = 0;
+//                 for (int a=0; a<(*env).n_actions(p,s); ++a)
+//                     et_vec_actor[p][s][a] = 0;
+//             }
+//         }
+//     }
+// }
 
-    // If terminal state, the eligibity vectors are re-init to zero
-    if (curr_info.done) {
-        for (int p=0; p<(*env).n_players(); p++) {
-            for (int s=0; s<(*env).n_aggr_state(p); ++s) {
-                et_vec_critic[p][s] = 0;
-                for (int a=0; a<(*env).n_actions(p,s); ++a)
-                    et_vec_actor[p][s][a] = 0;
-            }
-        }
-    }
+
+
+void MA_AC_ET::critic_update() {
+    // Critic update (curr_gamma_fact is 1 if stop_by_discount)
+    double aux_lr = lr_crit(curr_step) * curr_gamma_fact;
+    for (int p=0; p<(*env).n_players(); p++){
+        double lr = aux_lr * lr_crit_factors[p];
+        for (int s=0; s<(*env).n_aggr_state(p); ++s) {
+            et_vec_critic[p][s] *= lambda_critic;
+            if (s == curr_aggr_state[p])
+                et_vec_critic[p][s] += 1;
+            curr_v_pars[p][s] += lr * curr_td_error[p] * et_vec_critic[p][s];
+        }      
+    }  
 }
 
 
@@ -439,6 +444,17 @@ void MA_AC_ET::actor_update() {
                 }
                 curr_p_pars[p][s][a] += lr * curr_td_error[p] * et_vec_actor[p][s][a];
             }  
+        }
+    }
+
+    // If terminal state, the eligibity vectors are re-init to zero
+    if (curr_info.done) {
+        for (int p=0; p<(*env).n_players(); p++) {
+            for (int s=0; s<(*env).n_aggr_state(p); ++s) {
+                et_vec_critic[p][s] = 0;
+                for (int a=0; a<(*env).n_actions(p,s); ++a)
+                    et_vec_actor[p][s][a] = 0;
+            }
         }
     }
 }
