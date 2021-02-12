@@ -21,6 +21,8 @@ class MA_AC : public MARLAlgorithm {
         vec4d policy_par_traj;
         /* Trajectory of the values */ 
         vec3d value_traj;
+        /* Trajectory of the average rewards of the continuing task */ 
+        vec2d av_rew_traj;
         /* Whether to save the policy trajectory */
         bool save_alg_traj;
         
@@ -34,6 +36,7 @@ class MA_AC : public MARLAlgorithm {
 
     protected:  
 
+        /* Wheather the task is continuous (gamma=1, no episode)*/
         bool continuous_task;
         
         /* Critic learning rate dependent on time */
@@ -44,6 +47,7 @@ class MA_AC : public MARLAlgorithm {
         d_i_fnc lr_act; 
         /* Multiplicative factors on the learning rates for each player */
         vecd lr_act_factors; 
+        /* Multiplicative factor on the learning rates of the average reward */
         double lr_rew_factor;
 
         // "CURRENT VARIABLES" CHANGED AT EACH LEARNING STEP
@@ -51,13 +55,13 @@ class MA_AC : public MARLAlgorithm {
         vec2d curr_v_pars;
         /* Policy/actor parameters. Index1 player, index2 state, index3 action */
         vec3d curr_p_pars;
-        /* Policy. Index1 player, index2 state, Index2 action */
+        /* Policy. Index1 player, index2 state, Index3 action */
         vec3d curr_policy;
         /* Temporal difference error */
         vecd curr_td_error;
         /* Terminal reward */
         vecd curr_t_rew;
-
+        /* Average rewards of the continuous task */
         vecd curr_av_rew;
 
         // METHODS TO OVERRIDE
@@ -69,6 +73,7 @@ class MA_AC : public MARLAlgorithm {
 
         // CHILD ALGORITHM METHODS
         virtual void child_init() {};
+        virtual void critic_update();
         virtual void actor_update();
 
     public:
@@ -93,7 +98,7 @@ class MA_NAC_AP : public MA_AC {
     protected:
 
         void child_init();
-        void child_update();
+        void actor_update();
 
     public:
 
@@ -118,9 +123,10 @@ class MA_AC_ET : public MA_AC {
         /* ET factor critic */
         double lambda_critic;
 
-        virtual void learning_update(int lrn_steps_elapsed);
+        //virtual void learning_update(int lrn_steps_elapsed);
 
         virtual void child_init() {};
+        void critic_update();
         virtual void actor_update();
 
     public:
