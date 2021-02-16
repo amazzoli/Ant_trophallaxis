@@ -742,6 +742,31 @@ Ants_consume(par, generator) {
 	return "Ant colony with single forager and multi-recipient interactions.\nConsumption during foraging. Fast. Having an empty crop is explicitly taken in consideration with a penalty. Suited for continuous task.";	
 }
 
+vecd Ants_consume_stress::env_data() {
+
+	vecd v = vecd { 
+		(double)forag_deaths_in/elapsed_steps, 
+		(double)forag_deaths_out/elapsed_steps,  
+		(double)forag_deaths_cons/elapsed_steps,  
+	};
+	for (const int& d : rec_deaths) v.push_back((double)d/elapsed_steps);
+
+	if (elapsed_steps == 0)
+		for (int i=0; i<n_recipients+4; i++) v[i] = 0;
+
+	for (int& r : av_return) {
+		v.push_back(r/(float)elapsed_steps);
+	}
+
+	elapsed_steps = 0;
+	forag_deaths_in = 0;
+	forag_deaths_out = 0;
+	forag_deaths_cons = 0;
+	rec_deaths = veci(n_recipients);
+	forced_stops = 0;
+
+	return v;
+}
 
 void Ants_consume_stress::step(const veci& action, env_info& info, int& lrn_steps_elapsed) {
 
@@ -840,6 +865,8 @@ void Ants_consume_stress::step(const veci& action, env_info& info, int& lrn_step
     
     if (stressed > 0)
         rec_deaths[stressed-1]++ ;
+
+    elapsed_steps++;
 
 }
 

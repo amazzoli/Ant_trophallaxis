@@ -178,6 +178,7 @@ class Ants_consume_stress : public Ants_consume {
         Ants_consume_stress(const param& par, std::mt19937& generator);
         const str descr() const; 
         void step(const veci& action, env_info& info, int& lrn_steps_elapsed);
+        vecd env_data();
 };
 
 

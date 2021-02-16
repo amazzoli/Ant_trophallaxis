@@ -56,7 +56,7 @@ void MARLAlgorithm::run(const param& params) {
     vecd t_reward = vecd((*env).n_players());
     return_traj = vec2d(0);
     ep_len_traj = veci(0);
-    int ep_for_av_ret = 1;  
+    int ep_for_av_ret = 0;  
     Perc perc(10, n_steps-1);
 
     // Env initialization   
@@ -105,7 +105,7 @@ void MARLAlgorithm::run(const param& params) {
         }
         curr_ep_step += lrn_steps_elapsed;
 
-        // std::cout << " r: ";
+        //std::cout << " step: " << curr_step;
         // for(int p=0; p<(*env).n_players(); p++){
         //    std::cout << curr_info.reward[p] << " ";
         // }
@@ -157,11 +157,17 @@ void MARLAlgorithm::run(const param& params) {
         }
 
         // // Std output
+        //std::cout << " average return over " << curr_step << " steps: ";
         if (verbose && perc.step(curr_step)) {
             if (ep_for_av_ret != 0){
                 std::cout << " average return over " << ep_for_av_ret << " ep: ";
                 for(int p=0; p<(*env).n_players(); p++)
                     std::cout << av_ret[p] / (float)ep_for_av_ret << " ";
+            }
+            else { // Continuous task
+                std::cout << " average return over " << curr_step << " steps: ";
+                for(int p=0; p<(*env).n_players(); p++)
+                    std::cout << ret[p] / (float)curr_step << " ";            
             }
             ep_for_av_ret = 0;
             for(double& r : av_ret) r = 0;
