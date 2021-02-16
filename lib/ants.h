@@ -19,7 +19,7 @@ class Ants_ma : public Environment {
         // Number of recipent ants
         int n_recipients;
         // Foraging success probability
-        float p_succ;
+        double p_succ;
         // Initial food in the colony. If elem>max_k the food is random btw 1 and max_k. Random by default
         vecd init_k;
 
@@ -29,7 +29,7 @@ class Ants_ma : public Environment {
         // Which ant is the decider
         int decider;
         // Total food in the colony
-        float tot_food;
+        double tot_food;
 
         // AUX VARIABLES
         /* It contains all the information about environment */     
