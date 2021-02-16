@@ -123,6 +123,7 @@ class MA_AC_ET : public MA_AC {
         /* ET factor critic */
         double lambda_critic;
 
+        const double et_low_bound = 0.01;
         //virtual void learning_update(int lrn_steps_elapsed);
 
         virtual void child_init() {};
