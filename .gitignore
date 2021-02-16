@@ -10,6 +10,7 @@
 **/data
 
 write_parameters.ipynb
+*ipynb
 =======
 # Ignoring the trajectories
 env_info_traj.txt
