@@ -169,6 +169,8 @@ class Ants_consume_stress : public Ants_consume {
         double pen_stress;
         double rew_eat;
         double rew_life;
+        double av_colony_food;
+        double av_forager_food;
 
 
     private:

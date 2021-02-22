@@ -1,9 +1,12 @@
 # Analysis of food distribution.
 import numpy as np
 data_dir = './'
-data = np.loadtxt(data_dir+'/ev_info.txt', skiprows=1)
 
-N = 11
+Ndata = 10000
+data = np.loadtxt(data_dir+'/ev_info.txt', skiprows=1, max_rows=Ndata)
+
+Nrecipients = 2
+N = Nrecipients + 1
 Mmax = 10
 histo = np.zeros(Mmax+1)
 

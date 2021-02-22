@@ -758,12 +758,18 @@ vecd Ants_consume_stress::env_data() {
 		v.push_back(r/(float)elapsed_steps);
 	}
 
-	elapsed_steps = 0;
+    v.push_back(av_colony_food/elapsed_steps);
+    v.push_back(av_forager_food/elapsed_steps);
+
+	av_return = veci(n_recipients+1);
+    elapsed_steps = 0;
 	forag_deaths_in = 0;
 	forag_deaths_out = 0;
 	forag_deaths_cons = 0;
 	rec_deaths = veci(n_recipients);
 	forced_stops = 0;
+    av_colony_food = 0;
+    av_forager_food = 0;
 
 	return v;
 }
@@ -853,9 +859,17 @@ void Ants_consume_stress::step(const veci& action, env_info& info, int& lrn_step
     stressed = 0;
     
     for (int p=0; p<n_recipients+1; p++) {
+        
+        if (p==0){
+            av_forager_food += food[0];
+        } else {           
+            av_colony_food += food[p];
+        }
+        
         if (food[p]>0){
             info.reward[p] += rew_life; 
-            av_return[p] += rew_life;              
+            av_return[p] += rew_life;
+            
         } else {
             if (p>0) stressed++;
             info.reward[p] -= pen_stress; 
