@@ -39,6 +39,11 @@ class MA_AC : public MARLAlgorithm {
         /* Wheather the task is continuous (gamma=1, no episode)*/
         bool continuous_task;
         
+        /* Simplex clipping parameters 
+        At the moment, only NAC*/
+        bool simpl_clip;
+        double simpl_clip_eps;
+        
         /* Critic learning rate dependent on time */
         d_i_fnc lr_crit;
         /* Multiplicative factors on the learning rates for each player */
@@ -94,6 +99,7 @@ class MA_NAC_AP : public MA_AC {
         /* Advantage parameters */
         vec3d ap_par;
         vec3d grad_est;
+
 
     protected:
 

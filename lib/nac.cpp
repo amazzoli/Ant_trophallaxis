@@ -37,6 +37,19 @@ MARLAlgorithm(env, params, generator, verbose) {
                 stop_by_discount = false;
             }
         }
+        
+        // Simplex clipping (only for NAC)
+        simpl_clip = false;
+        simpl_clip_eps = 0.0;
+        if (params.s.find("simplex_clipping") != params.s.end()) {
+            if (params.s.at("simplex_clipping") == "true" || params.s.at("simplex_clipping") == "True") {
+                simpl_clip = true;
+                simpl_clip_eps = params.d.at("simplex_clipping_epsilon");
+            }
+        }
+        
+        
+        
 
     } catch (std::exception) {
         throw std::invalid_argument( "Invalid learning rates in Actor Critic" );
@@ -46,7 +59,7 @@ MARLAlgorithm(env, params, generator, verbose) {
 
 void MA_AC::init(const param& params){
 
-    // Trejectory init
+    // Trajectory init
     save_alg_traj = true;
     if (params.s.find("save_alg_traj") != params.s.end()) 
         if (params.s.at("save_alg_traj") == "false" || params.s.at("save_alg_traj") == "False")
@@ -323,6 +336,18 @@ void MA_NAC_AP::actor_update(){
             for (int a=0; a<curr_p_pars[p][s].size(); a++){
                 ap_par[p][s][a] += lr_crit * grad_est[p][s][a] * aux_t;
                 curr_p_pars[p][s][a] += lr_act * ap_par[p][s][a];
+            }
+            
+            // Simplex Clipping
+            int n_act = curr_p_pars[p][s].size();
+            if (simpl_clip && (n_act > 1) ){
+                
+                vecd temp_policy = vecd(n_act);
+                par2pol_boltzmann(curr_p_pars[p][s], temp_policy);
+                for (int a=0; a<curr_policy[p][s].size(); a++){
+                    curr_policy[p][s][a] = (1-temp_policy[a])*simpl_clip_eps + (1-simpl_clip_eps*(n_act-1))*temp_policy[a];
+                }
+                pol2par_boltzmann(curr_policy[p][s], curr_p_pars[p][s]);
             }
         }
     }

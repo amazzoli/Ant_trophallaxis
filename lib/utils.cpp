@@ -13,12 +13,30 @@ void par2pol_boltzmann(const vecd& params, vecd& policy){
     for (int i=0; i<policy.size(); i++) policy[i] /= norm;
 }
 
-
+/*
 void pol2par_boltzmann(const vecd& policy, vecd& params){
     for (int i=0; i<params.size(); i++){
         double val = 0;
         if (policy[i] > 10E-20)
             params[i] = log(policy[i]);
+        else
+            params[i] = -20;
+    }
+}
+*/
+
+
+void pol2par_boltzmann(const vecd& policy, vecd& params){
+    double norm = 0;
+    for (int i=0; i<params.size(); i++){
+        if (policy[i] > 10E-20)
+            norm += policy[i]*log(policy[i]);
+    }
+    
+    for (int i=0; i<params.size(); i++){
+        double val = 0;
+        if (policy[i] > 10E-20)
+            params[i] = log(policy[i]) - norm ;
         else
             params[i] = -20;
     }
