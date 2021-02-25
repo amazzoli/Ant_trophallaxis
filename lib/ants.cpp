@@ -799,7 +799,8 @@ void Ants_consume_stress::step(const veci& action, env_info& info, int& lrn_step
             double p_succ_eff = p_succ;
             // If forager is stressed, p_succ is decreased
             if (food[0] == 0){
-                p_succ_eff = std::min( p_succ, p_consume/max_k);
+                //p_succ_eff = std::min( p_succ, p_consume/max_k);
+                p_succ_eff = p_succ / 10.;
             }
             if (unif_dist(generator) < p_succ_eff) {
                 food[0] = max_k;

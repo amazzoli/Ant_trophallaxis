@@ -341,11 +341,11 @@ void MA_NAC_AP::actor_update(){
             // Simplex Clipping
             int n_act = curr_p_pars[p][s].size();
             if (simpl_clip && (n_act > 1) ){
-                
                 vecd temp_policy = vecd(n_act);
                 par2pol_boltzmann(curr_p_pars[p][s], temp_policy);
-                for (int a=0; a<curr_policy[p][s].size(); a++){
-                    curr_policy[p][s][a] = (1-temp_policy[a])*simpl_clip_eps + (1-simpl_clip_eps*(n_act-1))*temp_policy[a];
+                // WORKING ONLY IF N_ACTIONS = 2
+                for (int a=0; a < n_act; a++){
+                    curr_policy[p][s][a] = std::max( std::min(temp_policy[a], (1-simpl_clip_eps*(n_act-1))), simpl_clip_eps);
                 }
                 pol2par_boltzmann(curr_policy[p][s], curr_p_pars[p][s]);
             }

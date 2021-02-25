@@ -3,16 +3,25 @@ import numpy as np
 data_dir = './'
 
 Ndata = 1000000
-data = np.loadtxt(data_dir+'/ev_info.txt', skiprows=1, max_rows=Ndata)
+data = np.loadtxt(data_dir+'/ev_info.txt', skiprows=Ndata//2+1, max_rows=Ndata)
 
-Nrecipients = 3
-N = Nrecipients + 1
+N = (data.shape[1]-2) // 4
+print(N)
+Nrecipients = N - 1
+#N = Nrecipients + 1
 Mmax = 10
 histo = np.zeros(Mmax+1)
 
 forager_gathering_food = np.array([])
 agents = np.array([])
 food_exch = np.array([])
+
+rewardF = [np.mean(data[:,N*3]), np.std(data[:,N*3])/np.sqrt(data.shape[0]) ]
+rewardR = [ [np.mean(data[:,N*3+1+i]) , np.std(data[:,N*3+1+i])/np.sqrt(data.shape[0])]  for i in range(Nrecipients)]
+
+dead = np.logical_or(data[:,:N] == 0, data[:,:N] == Mmax + 1)
+deadF = [np.mean(dead[:,0]) , np.std(dead[:,1:N])/np.sqrt(dead.shape[0])]
+deadR = [ [np.mean(dead[:,1+i]) , np.std(dead[:,1+i])/np.sqrt(dead.shape[0])]  for i in range(Nrecipients)]
 
 agents = np.argmax( data[:,:N] < N, axis=1)
 actions = data[range(agents.shape[0]),N+agents]
@@ -48,5 +57,13 @@ food_dist_exch = food_dist_exch / food_exch.shape[0]
 for i in range(Mmax+1):
     #print('{:.5f} {:.5f} {:.5f} {:.5f}'.format(food_dist_r[i], food_dist_f[i], food_dist_gath[i], food_dist_exch[i]))
     print('{:.5f} {:.5f}'.format(food_dist_gath[i], food_dist_exch[i]))
+
+print("rewards for F and R")
+print(*rewardF, "\n", *rewardR)
+print("death for F and R")
+print(*deadF, "\n", *deadR)
+print("death for F and R")
+print(*deadF, "\n", *deadR)
+print(deadF[0], np.mean(np.array(deadR)[:,0]), rewardF[0], np.mean(np.array(rewardR)[:,0]))
     
 
