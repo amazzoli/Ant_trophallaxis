@@ -16,15 +16,40 @@ forager_gathering_food = np.array([])
 agents = np.array([])
 food_exch = np.array([])
 
-rewardF = [np.mean(data[:,N*3]), np.std(data[:,N*3])/np.sqrt(data.shape[0]) ]
-rewardR = [ [np.mean(data[:,N*3+1+i]) , np.std(data[:,N*3+1+i])/np.sqrt(data.shape[0])]  for i in range(Nrecipients)]
+
+food_forager = data[:,0]%11
+food_colony = np.mean(data[:,1:N]%11, axis=1)
+food_colony_after = np.mean(data[:,N*3+1:N*4]%11, axis=1)
+change_food = food_colony_after - food_colony
+
+np.savetxt('food_F.txt', food_forager.reshape(-1,1))
+np.savetxt('food_R.txt', food_colony.reshape(-1,1))
+
+rewardF = np.mean(data[:,N*3])
+rewardR = [np.mean(data[:,N*3+1+i]) for i in range(Nrecipients)]
 
 dead = np.logical_or(data[:,:N] == 0, data[:,:N] == Mmax + 1)
-deadF = [np.mean(dead[:,0]) , np.std(dead[:,1:N])/np.sqrt(dead.shape[0])]
-deadR = [ [np.mean(dead[:,1+i]) , np.std(dead[:,1+i])/np.sqrt(dead.shape[0])]  for i in range(Nrecipients)]
+deadF = [np.mean(dead[:,0])]
+deadR = [ np.mean(dead[:,1+i])  for i in range(Nrecipients)]
 
+
+# Fractions of accepts per colony health.
 agents = np.argmax( data[:,:N] < N, axis=1)
+
 actions = data[range(agents.shape[0]),N+agents]
+
+accept = np.logical_and(agents>0, actions==0)
+reject = np.logical_and(agents>0, actions==1)
+
+
+food_accept, _ = np.histogram(food_colony[accept], bins=(Mmax*Nrecipients), range=(-0.5/(Mmax*Nrecipients), Mmax+0.5/(Mmax*Nrecipients) ) )
+histo_colony, _ = np.histogram(food_colony[np.logical_not(dead[:,0])], bins=(Mmax*Nrecipients), range=(-0.5/(Mmax*Nrecipients), Mmax+0.5/(Mmax*Nrecipients) ) )
+histo_change, _ = np.histogram(food_colony[np.logical_not(dead[:,0])])
+food_reject, _ = np.histogram(food_colony[reject], bins=(Mmax*Nrecipients), range=(-0.5/(Mmax*Nrecipients), Mmax+0.5/(Mmax*Nrecipients) ) )
+
+
+np.savetxt('accept_ratio.txt', food_accept/(food_accept + food_reject))
+np.savetxt('inflow.txt', food_accept/histo_colony)
 
 gathering_events = np.logical_and(data[:,0] < Mmax+1, data[:,N] == 0)
 food_gather = data[gathering_events, 0]
@@ -64,6 +89,6 @@ print("death for F and R")
 print(*deadF, "\n", *deadR)
 print("death for F and R")
 print(*deadF, "\n", *deadR)
-print(deadF[0], np.mean(np.array(deadR)[:,0]), rewardF[0], np.mean(np.array(rewardR)[:,0]))
+print(deadF, np.mean(np.array(deadR)[:]), rewardF, np.mean(np.array(rewardR)[:]))
     
 

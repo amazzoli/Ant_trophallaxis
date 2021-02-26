@@ -786,6 +786,130 @@ void Ants_consume_stress::step(const veci& action, env_info& info, int& lrn_step
 		// Gathering
 		if (action[0] == 0) {
 
+            double p_consume_eff = p_consume;
+            // If forager is stressed, p_succ is decreased
+            if (food[0] == 0){
+                p_consume_eff = 1;
+            }
+
+			// Possibility of consuming food during that time
+			for (int p=0; p<n_recipients+1; p++) {
+                if (unif_dist(generator) < p_consume_eff) {
+                    // Consumption.
+                    consume_food(p, 1, info);
+                    if ( (p==0) && (food[0] <= 0) ) forag_deaths_out++; // Forager stressed outside colony.            
+                }
+            }
+            
+			// Gathering happens
+            if (unif_dist(generator) < p_succ) {
+                food[0] = max_k;
+            }
+		}	
+
+		// Sharing
+		else {            
+            // Consuption check over all the players anyways.
+            double p_consume_eff = p_consume;
+            // If forager is stressed, p_succ is decreased
+            if (food[0] == 0){
+                p_consume_eff = 1;
+            }
+
+            for (int p=0; p<n_recipients+1; p++){
+                if (unif_dist(generator) < p_consume_eff) {
+                    consume_food(p, 1, info);
+                }
+            }
+            if (food[0] == 0) forag_deaths_cons++; // Forager stressed inside colony.
+
+            // The new decider is any recipient, i.e. in ind_rec_map
+            double u = unif_rec_dist(generator);
+            decider = ind_rec_map[u];
+        }
+	} else {
+	// Recipient's decision
+
+        // Consuption check over all the players anyways.
+        double p_consume_eff = p_consume;
+        // If forager is stressed, p_succ is decreased
+        if (food[0] == 0){
+            p_consume_eff = 1;
+        }
+
+        for (int p=0; p<n_recipients+1; p++){
+            if (unif_dist(generator) < p_consume_eff) {
+                consume_food(p, 1, info);
+            }
+        }
+
+        if (food[0] == 0){
+           forag_deaths_cons++; // Stop because forager died inside colony.
+           decider = 0;
+        }
+        // Reject or full recipient
+        else if (food[decider] >= max_k || action[decider] == 1){
+            decider = 0;
+        }  
+        else {
+        // Accept
+            food[decider] += 1;
+            // Recipient is possibly rewarded.
+            info.reward[decider] = rew_eat;
+            av_return[decider] += rew_eat;
+            
+            consume_food(0, 1, info);
+            if ((food[0] == 0)) {
+                forag_deaths_in++; // Forager died inside colony.
+                decider = 0;
+            }
+            info.reward[0] = 1;
+            av_return[0] += 1;
+        }                    
+    }
+
+    int stressed;
+    stressed = 0;
+    
+    for (int p=0; p<n_recipients+1; p++) {
+        
+        if (p==0){
+            av_forager_food += food[0];
+        } else {           
+            av_colony_food += food[p];
+        }
+        
+        if (food[p]>0){
+            info.reward[p] += rew_life; 
+            av_return[p] += rew_life;
+            
+        } else {
+            if (p>0) stressed++;
+            info.reward[p] -= pen_stress; 
+            av_return[p] -= pen_stress;                      
+        }
+    }
+    
+    if (stressed > 0)
+        rec_deaths[stressed-1]++ ;
+
+    elapsed_steps++;
+
+}
+
+/*
+void Ants_consume_stress::step(const veci& action, env_info& info, int& lrn_steps_elapsed) {
+
+	// By default, rewards are zero and the game continues
+	for (double& r : info.reward) r = 0;
+	info.done = false;
+	
+	// Forager's decision
+	if (decider == 0) {
+
+		// Gathering
+		if (action[0] == 0) {
+
 			// Possibility of consuming food during that time
 			for (int p=0; p<n_recipients+1; p++) {
                 if (unif_dist(generator) < p_consume) {
@@ -799,8 +923,8 @@ void Ants_consume_stress::step(const veci& action, env_info& info, int& lrn_step
             double p_succ_eff = p_succ;
             // If forager is stressed, p_succ is decreased
             if (food[0] == 0){
-                //p_succ_eff = std::min( p_succ, p_consume/max_k);
-                p_succ_eff = p_succ / 10.;
+                p_succ_eff = std::min( p_succ, p_consume/max_k);
+                //p_succ_eff = p_succ / 10.;
             }
             if (unif_dist(generator) < p_succ_eff) {
                 food[0] = max_k;
@@ -815,11 +939,33 @@ void Ants_consume_stress::step(const veci& action, env_info& info, int& lrn_step
                     consume_food(p, 1, info);
                 }
             }
-            if (food[0] == 0) forag_deaths_cons++; // Forager stressed inside colony.
 
-            // The new decider is any recipient, i.e. in ind_rec_map
             double u = unif_rec_dist(generator);
             decider = ind_rec_map[u];
+            // The new decider is any recipient, i.e. in ind_rec_map
+
+            
+            if ( (food[0] == 0) || (food[decider] >= max_k)){
+
+                if (food[0]==0) forag_deaths_cons++; // Forager stressed inside colony.
+                decider = 0
+            
+            } else {
+                // First exchange always happens.
+                food[decider] += 1;
+                // Recipient is possibly rewarded.
+                info.reward[decider] = rew_eat;
+                av_return[decider] += rew_eat;
+            
+                consume_food(0, 1, info);
+                if ((food[0] == 0)) {
+                    forag_deaths_in++; // Forager died inside colony.
+                    decider = 0;
+                }
+                info.reward[0] = 1;
+                av_return[0] += 1;
+            }
+            
         }
 	} else {
 	// Recipient's decision
@@ -884,6 +1030,7 @@ void Ants_consume_stress::step(const veci& action, env_info& info, int& lrn_step
     elapsed_steps++;
 
 }
+*/
 
 // Basically useless now.
 void Ants_consume_stress::consume_food(int player, int amount, env_info& info){

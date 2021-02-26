@@ -38,7 +38,7 @@ MARLAlgorithm(env, params, generator, verbose) {
             }
         }
         
-        // Simplex clipping (only for NAC)
+        // Simplex clipping (only for NAC and NAC_ET)
         simpl_clip = false;
         simpl_clip_eps = 0.0;
         if (params.s.find("simplex_clipping") != params.s.end()) {
@@ -521,6 +521,18 @@ void MA_NAC_AP_ET::actor_update(){
             for (int a=0; a<curr_p_pars[p][s].size(); a++){
                 ap_par[p][s][a] += lr_crit * et_vec_actor[p][s][a] * aux_t;
                 curr_p_pars[p][s][a] += lr_act * ap_par[p][s][a];
+            }
+            
+            // Simplex Clipping
+            int n_act = curr_p_pars[p][s].size();
+            if (simpl_clip && (n_act > 1) ){
+                vecd temp_policy = vecd(n_act);
+                par2pol_boltzmann(curr_p_pars[p][s], temp_policy);
+                // WORKING ONLY IF N_ACTIONS = 2
+                for (int a=0; a < n_act; a++){
+                    curr_policy[p][s][a] = std::max( std::min(temp_policy[a], (1-simpl_clip_eps*(n_act-1))), simpl_clip_eps);
+                }
+                pol2par_boltzmann(curr_policy[p][s], curr_p_pars[p][s]);
             }
         }
     }
