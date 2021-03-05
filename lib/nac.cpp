@@ -448,7 +448,7 @@ void MA_AC_ET::critic_update() {
             et_vec_critic[p][s] *= lambda_critic;
             if (s == curr_aggr_state[p])
                 et_vec_critic[p][s] += 1;
-            curr_v_pars[p][s] += lr * curr_td_error[p] * et_vec_critic[p][s];
+            curr_v_pars[p][s] += lr * curr_td_error[p] * et_vec_critic[p][s] * (1-lambda_critic);
         }      
     }  
 }
@@ -467,7 +467,7 @@ void MA_AC_ET::actor_update() {
                     else
                         et_vec_actor[p][s][a] -= curr_policy[p][s][a];
                 }
-                curr_p_pars[p][s][a] += lr * curr_td_error[p] * et_vec_actor[p][s][a];
+                curr_p_pars[p][s][a] += lr * curr_td_error[p] * et_vec_actor[p][s][a] * (1-lambda_actor) ;
             }  
         }
     }
@@ -520,7 +520,7 @@ void MA_NAC_AP_ET::actor_update(){
 
             for (int a=0; a<curr_p_pars[p][s].size(); a++){
                 ap_par[p][s][a] += lr_crit * et_vec_actor[p][s][a] * aux_t;
-                curr_p_pars[p][s][a] += lr_act * ap_par[p][s][a];
+                curr_p_pars[p][s][a] += lr_act * ap_par[p][s][a] * (1-lambda_actor) ;
             }
             
             // Simplex Clipping
