@@ -380,7 +380,10 @@ void Ants_consume2::step(const veci& action, env_info& info, int& lrn_steps_elap
 			}
 
 			// Gathering happens if the game doesn't stop
-			if (!info.done) food[0] = max_k;  
+            
+            // CHANGED - HARD CODED filling of 0.8
+            std::binomial_distribution<int> gath_food_dist = std::binomial_distribution<int>(max_k, 0.8);
+			if (!info.done) food[0] = gath_food_dist(generator);  
 		}	
 
 		// Sharing
@@ -803,7 +806,8 @@ void Ants_consume_stress::step(const veci& action, env_info& info, int& lrn_step
             
 			// Gathering happens
             if (unif_dist(generator) < p_succ) {
-                food[0] = max_k;
+            // DEBUG!
+                food[0] = max_k / 2 ;
             }
 		}	
 
