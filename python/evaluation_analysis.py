@@ -2,13 +2,30 @@
 import numpy as np
 data_dir = './'
 
-Ndata = 10000
+Ndata = 1000000
 data = np.loadtxt(data_dir+'/ev_info.txt', skiprows=1, max_rows=Ndata)
 
-Nrecipients = 2
-N = Nrecipients + 1
-Mmax = 10
+N = (data.shape[1]-2) // 4
+print(N)
+Nrecipients = N - 1
+#N = Nrecipients + 1
+Mmax = 20
 histo = np.zeros(Mmax+1)
+
+forager_gathering_food = np.array([])
+agents = np.array([])
+food_exch = np.array([])
+
+
+food_forager = data[:,0]%(Mmax+1)
+food_colony = np.mean(data[:,1:N]%(Mmax+1), axis=1)
+food_forager_after = data[:,N*2]%(Mmax+1)
+food_colony_after = np.mean(data[:,N*2+1:N*3]%(Mmax+1), axis=1)
+change_food = food_colony_after - food_colony
+
+np.savetxt('food_F.txt', food_forager.reshape(-1,1))
+np.savetxt('food_F_after.txt', food_forager_after.reshape(-1,1))
+np.savetxt('food_R.txt', food_colony.reshape(-1,1))
 
 count_ep = 0
 
