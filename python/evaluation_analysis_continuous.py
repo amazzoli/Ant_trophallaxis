@@ -36,7 +36,7 @@ deadR = [ np.mean(dead[:,1+i])  for i in range(Nrecipients)]
 
 
 # Fractions of accepts per colony health.
-agents = np.argmax( data[:,:N] < N, axis=1)
+agents = np.argmax( data[:,:N] < Mmax, axis=1)
 
 actions = data[range(agents.shape[0]),N+agents]
 
@@ -85,7 +85,7 @@ food_dist_exch = food_dist_exch / food_exch.shape[0]
 
 for i in range(Mmax+1):
     #print('{:.5f} {:.5f} {:.5f} {:.5f}'.format(food_dist_r[i], food_dist_f[i], food_dist_gath[i], food_dist_exch[i]))
-    print('{:.5f} {:.5f}'.format(food_dist_gath[i], food_dist_exch[i]))
+    print('{:.10f} {:.10f}'.format(food_dist_gath[i], food_dist_exch[i]))
 
 print("rewards for F and R")
 print(*rewardF, "\n", *rewardR)

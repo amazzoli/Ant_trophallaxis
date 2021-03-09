@@ -381,8 +381,8 @@ void Ants_consume2::step(const veci& action, env_info& info, int& lrn_steps_elap
 
 			// Gathering happens if the game doesn't stop
             
-            // CHANGED - HARD CODED filling of 0.8
-            std::binomial_distribution<int> gath_food_dist = std::binomial_distribution<int>(max_k, 0.8);
+            // CHANGED - HARD CODED filling of 0.5
+            std::binomial_distribution<int> gath_food_dist = std::binomial_distribution<int>(max_k, 0.5);
 			if (!info.done) food[0] = gath_food_dist(generator);  
 		}	
 
@@ -441,11 +441,22 @@ void Ants_consume2::step(const veci& action, env_info& info, int& lrn_steps_elap
 				info.reward[0] = 1;
 				av_return[0] += 1;
 				av_return[decider] += 1;
+
+                // Episode finishes if no consume and colony full
+                if (p_consume == 0 && info.done == false){
+                    info.done = true;
+                    for (int p=1; p < n_recipients+1; p++)
+                        if (food[p] < max_k) info.done = false;        
+                    }
+
 			}
 		}
 	}
 
 	elapsed_steps+=lrn_steps_elapsed;
+    
+
+    
 }
 
 
