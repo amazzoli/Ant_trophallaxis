@@ -132,7 +132,11 @@ class Ants_consume2 : public Ants_consume {
     private:
         std::geometric_distribution<int> gath_time_dist;
         std::geometric_distribution<int> cons_time_dist;
+        std::binomial_distribution<int> gath_food_dist;
         void consume_food(int player, int amount, env_info& info);
+        std::uniform_int_distribution<int> unif_filling_dist;
+        bool unif_filling;
+        double p_filling;
 
     public:
         Ants_consume2(const param& par, std::mt19937& generator);

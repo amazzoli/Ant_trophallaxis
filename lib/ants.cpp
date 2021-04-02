@@ -225,7 +225,7 @@ void Ants_consume::step(const veci& action, env_info& info, int& lrn_steps_elaps
 		// Sharing
 		else {
 			// The new decider is a recipient with food>0, i.e. in ind_rec_map
-			double u = unif_rec_dist(generator);
+			int u = unif_rec_dist(generator);
 			decider = ind_rec_map[u];
 		}
 	}
@@ -330,17 +330,27 @@ vecs Ants_consume::env_data_headers() {
 Ants_consume2::Ants_consume2(const param& par, std::mt19937& generator) : 
 Ants_consume(par, generator) {
 
-	try {
+
+    try {
+        p_filling = 0.5;
+        unif_filling = false;
 		stop_at_first_death = false;
 		if (par.s.find("stop_at_first_death") != par.s.end())
 			if (par.s.at("stop_at_first_death") == "true" || par.s.at("stop_at_first_death") == "True")
 				stop_at_first_death = true;
+		if (par.d.find("p_filling") != par.d.end())
+            p_filling = par.d.at("p_filling");
+		if (par.s.find("unif_filling") != par.s.end())
+			if (par.s.at("unif_filling") == "true" || par.s.at("unif_filling") == "True")
+				unif_filling = true;
 	} catch (std::exception) {
 	    throw std::invalid_argument( "Invalid ant-environment parameters (Ants_consume2 model)" );
 	}
 
 	gath_time_dist = std::geometric_distribution<int>(p_succ);
 	cons_time_dist = std::geometric_distribution<int>(p_consume);
+    gath_food_dist = std::binomial_distribution<int>(max_k, p_filling);
+    unif_filling_dist = std::uniform_int_distribution<int>(1, max_k);
 
 }
 
@@ -348,6 +358,8 @@ Ants_consume(par, generator) {
  const str Ants_consume2::descr() const {
 	return "Ant colony with single forager and multi-recipient interactions.\nConsumption during foraging. Fast.";	
 }
+
+
 
 
 void Ants_consume2::step(const veci& action, env_info& info, int& lrn_steps_elapsed) {
@@ -381,9 +393,14 @@ void Ants_consume2::step(const veci& action, env_info& info, int& lrn_steps_elap
 
 			// Gathering happens if the game doesn't stop
             
-            // CHANGED - HARD CODED filling of 0.5
-            std::binomial_distribution<int> gath_food_dist = std::binomial_distribution<int>(max_k, 0.5);
-			if (!info.done) food[0] = gath_food_dist(generator);  
+            // If p_filling is not given as input, it is put 0.5 as default.
+            if(!info.done) {
+                if (unif_filling){
+                    food[0] = unif_filling_dist(generator);
+                }else{
+                    food[0] = gath_food_dist(generator);
+                }
+            }
 		}	
 
 		// Sharing
@@ -392,6 +409,7 @@ void Ants_consume2::step(const veci& action, env_info& info, int& lrn_steps_elap
 			// No food consumed here
 			double u = unif_rec_dist(generator);
 			decider = ind_rec_map[u];
+            //decider = unif_rec_dist(generator);
 		}
 	}
 
@@ -441,21 +459,18 @@ void Ants_consume2::step(const veci& action, env_info& info, int& lrn_steps_elap
 				info.reward[0] = 1;
 				av_return[0] += 1;
 				av_return[decider] += 1;
-
-                // Episode finishes if no consume and colony full
-                if (p_consume == 0 && info.done == false){
-                    info.done = true;
-                    for (int p=1; p < n_recipients+1; p++)
-                        if (food[p] < max_k) info.done = false;        
-                    }
-
 			}
 		}
 	}
 
 	elapsed_steps+=lrn_steps_elapsed;
     
-
+    // Episode finishes if no consume and colony full
+    if (p_consume == 0 && info.done == false){
+        info.done = true;
+        for (int p=1; p < n_recipients+1; p++)
+            if (food[p] < max_k) info.done = false;        
+        }
     
 }
 
@@ -607,7 +622,7 @@ void Ants_consume_death::step(const veci& action, env_info& info, int& lrn_steps
             }
             // The new decider is a recipient with food>0, i.e. in ind_rec_map
             // ADD STEP.
-            double u = unif_rec_dist(generator);
+            int u = unif_rec_dist(generator);
             decider = ind_rec_map[u];
         }
 	}
@@ -839,7 +854,7 @@ void Ants_consume_stress::step(const veci& action, env_info& info, int& lrn_step
             if (food[0] == 0) forag_deaths_cons++; // Forager stressed inside colony.
 
             // The new decider is any recipient, i.e. in ind_rec_map
-            double u = unif_rec_dist(generator);
+            int u = unif_rec_dist(generator);
             decider = ind_rec_map[u];
         }
 	} else {
