@@ -233,6 +233,7 @@ void MARLEval::init(const param& params) {
     else
         throw std::invalid_argument( "Invalid policy path for evaluation" );
 
+
     state_traj = vec2d();
     aggr_state_traj = vec2i();
     new_aggr_state_traj = vec2i();
@@ -244,6 +245,7 @@ void MARLEval::init(const param& params) {
 
 
 void MARLEval::get_action(veci& action) {
+    
     // Lazy way.. we should build a vector of distributions...
     for (int p=0; p<(*env).n_players(); p++) {
         std::discrete_distribution<int> dist (
@@ -251,7 +253,9 @@ void MARLEval::get_action(veci& action) {
             policy[p][curr_aggr_state[p]].end()
         );
         action[p] = dist(generator);
+            
     }
+    
 }
 
 

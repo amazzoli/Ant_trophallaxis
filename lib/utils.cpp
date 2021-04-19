@@ -54,6 +54,7 @@ double plaw_dacay(double t, double t_burn, double expn, double a0, double ac){
 
 vecd str2vecd(str line, str separator, bool sep_at_end) {
     std::size_t sep_pos = line.find(separator);
+    
     if (sep_pos == std::string::npos) {
         if (sep_at_end)
             throw std::runtime_error(separator + " separator not found in " + line);
@@ -76,6 +77,7 @@ vecd str2vecd(str line, str separator, bool sep_at_end) {
         std::size_t next_sep_pos = line.find(separator, sep_pos+1);
         if (sep_at_end && next_sep_pos == std::string::npos) break;
         str elem = line.substr(sep_pos+1, next_sep_pos-sep_pos);
+        
         try{
             v.push_back(std::stod(elem));
         }
@@ -144,6 +146,10 @@ vecd read_vecd(str file_path) {
         throw std::runtime_error("Error in opening the file at "+file_path);
 
     str line;
+    
+    
+
+    
     try {
         while ( getline (file, line) )
             val.push_back(std::stod(line));
@@ -177,9 +183,13 @@ vec2d read_vec2d(str file_path, bool sep_at_end) {
         throw std::runtime_error("Error in opening the file at "+file_path);
 
     str line;
+    
+
+    
     try {
-        while ( getline (file, line) )
+        while ( getline (file, line) ){
             v.push_back(str2vecd(line, "\t", sep_at_end));
+            }
     } catch (std::exception) {
         throw std::runtime_error("Error in reading the file at "+file_path);
     }

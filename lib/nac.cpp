@@ -18,14 +18,17 @@ MARLAlgorithm(env, params, generator, verbose) {
         };
 
         //Learning rate factors
+
         if (params.vecd.find("a_lr_factor") != params.vecd.end())
-            lr_act_factors = params.vecd.at("a_lr_factor");
-        else
-            lr_act_factors = vecd((*env).n_players(), 1);
-        if (params.vecd.find("c_lr_factor") != params.vecd.end())
-            lr_crit_factors = params.vecd.at("c_lr_factor");
+            lr_crit_factors = params.vecd.at("a_lr_factor");
         else
             lr_crit_factors = vecd((*env).n_players(), 1);
+
+        if (params.vecd.find("b_lr_factor") != params.vecd.end())
+            lr_act_factors = params.vecd.at("b_lr_factor");
+        else
+            lr_act_factors = vecd((*env).n_players(), 1);
+
 
         // Continuous task conditions
         continuous_task = false;
@@ -102,6 +105,13 @@ void MA_AC::init(const param& params){
     else
         curr_policy = flat_policy();
 
+
+    // DEBUG
+    std::cout << " " << curr_policy[0][0].size() << std::endl;
+
+    // DEBUG
+    std::cout << "N_ACTIONS CAZZO " << (*env).n_actions(0, 0) << std::endl;
+
     // Policy parameters init
     curr_p_pars = vec3d(0);
     for (int p=0; p<(*env).n_players(); p++) {
@@ -113,6 +123,9 @@ void MA_AC::init(const param& params){
         }
         curr_p_pars.push_back(par_of_player);
     }
+
+    // DEBUG
+    std::cout << " " << curr_p_pars[0][0].size() << std::endl;
 
     curr_td_error = vecd((*env).n_players());
     curr_t_rew = vecd((*env).n_players());

@@ -137,6 +137,7 @@ class Ants_consume2 : public Ants_consume {
         std::uniform_int_distribution<int> unif_filling_dist;
         bool unif_filling;
         double p_filling;
+        bool split_food = false;
 
     public:
         Ants_consume2(const param& par, std::mt19937& generator);
@@ -158,11 +159,57 @@ class Ants_consume_death : public Ants_consume {
         std::geometric_distribution<int> gath_time_dist;
         std::geometric_distribution<int> cons_time_dist;
         std::geometric_distribution<int> disc_time_dist;
+
         void consume_food(int player, int amount, env_info& info, bool disc_stop);
 
     public:
         Ants_consume_death(const param& par, std::mt19937& generator);
+        const str descr() const ;
+        void step(const veci& action, env_info& info, int& lrn_steps_elapsed);
+};
+
+class Ants_consume_exchanges : public Ants_consume {
+
+    protected: 
+        double true_gamma;
+        /* Aux var to control the stop by discount*/
+        bool disc_stop;
+        /* Which macrostate are we in (0=colony or 1=trophallaxis event)*/ 
+        int macro_state; 
+        /* Which ant is giving in the trophallaxis event */
+        int giver;
+        double giver_reward;
+        // List of all ants indexes that are not death
+        veci ind_col_map;
+        std::geometric_distribution<int> gath_time_dist;
+        std::geometric_distribution<int> cons_time_dist;
+        std::geometric_distribution<int> disc_time_dist;
+        std::uniform_int_distribution<int> unif_filling_dist;
+        std::uniform_int_distribution<int> unif_col_dist;
+        std::binomial_distribution<int> gath_food_dist;
+        void consume_food(int player, int amount, env_info& info);
+        bool unif_filling;
+        double p_filling;
+
+
+    public:
+        Ants_consume_exchanges(const param& par, std::mt19937& generator);
         const str descr() const; 
+        const vecd& state();
+	    const vecs state_descr() const;
+        void aggr_state(veci& aggr_state);
+        void reset_state(veci& aggr_state);
+        void step(const veci& action, env_info& info, int& lrn_steps_elapsed);
+};
+
+class Ants_consume_exchanges_choice : public Ants_consume_exchanges {
+
+    protected: 
+
+    private:
+
+    public:
+        Ants_consume_exchanges_choice(const param& par, std::mt19937& generator);
         void step(const veci& action, env_info& info, int& lrn_steps_elapsed);
 };
 
