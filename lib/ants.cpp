@@ -889,7 +889,7 @@ Ants_consume_exchanges(par, generator) {
 	m_action_descr = vec3s( n_players(), vec2s( 4*(max_k+1), vecs(0) ) );
 	for(int k=0; k<max_k+1; k++) {
 		m_action_descr[0][k].push_back("gather");
-		for (int j=1; j<n_players()+1; j++)
+		for (int j=1; j<n_players(); j++)
             m_action_descr[0][k].push_back("share"+std::to_string(j));
 		m_action_descr[0][k+max_k+1].push_back("wait");
 		m_action_descr[0][k+2*max_k+2].push_back("wait");
@@ -897,7 +897,7 @@ Ants_consume_exchanges(par, generator) {
 	}
 	for (int p=1; p<n_players(); p++) {
 		for(int k=0; k<max_k+1; k++) {
-			for (int j=1; j<n_players()+1; j++)
+			for (int j=1; j<n_players(); j++)
                 {
                 if (j==k)
                     m_action_descr[p][k].push_back("pass");
@@ -923,6 +923,8 @@ void Ants_consume_exchanges_choice::step(const veci& action, env_info& info, int
 	
 	// Forager's decision
     // Colony Macrostate
+    std::cout << "HERE "<<std::endl;
+    std::cout << macro_state<<" "<< decider << " "<<giver<< " " << action[decider]<< std::endl;
     
 	if (macro_state == 0) {
 
@@ -1045,7 +1047,9 @@ void Ants_consume_exchanges_choice::step(const veci& action, env_info& info, int
         for (int p=1; p < n_recipients+1; p++)
             if (food[p] < max_k && food[p] >0) info.done = false;        
         }
-    
+        
+    std::cout << "THERE "<<std::endl;
+    std::cout << macro_state<<" "<< decider << " "<<giver <<  " "<<action[decider]<<std::endl;    
 }
 
 

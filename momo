@@ -1,0 +1,4951 @@
+Environment successfully built:
+Ant colony with single forager and multi-recipient interactions.
+ No consumption. 
+Internal exchanges allowed inside colony. Fast.
+
+Algorithm successfully initialized:
+Multi-agent natural actor critic with advantage parameters algorithm.
+
+Algorithm started
+Constant init val: 10
+Init policy from data: data/ant_cons_exchanges_choice/NOCONSUME_6p_gamma0.999_pFilling1.0_giverR-0.5_RAND/
+ INSIDE INIT 
+0 =p, s= 0 ap_par_size=6
+ INSIDE INIT 
+0 =p, s= 1 ap_par_size=6
+ INSIDE INIT 
+0 =p, s= 2 ap_par_size=6
+ INSIDE INIT 
+0 =p, s= 3 ap_par_size=6
+ INSIDE INIT 
+0 =p, s= 4 ap_par_size=6
+ INSIDE INIT 
+0 =p, s= 5 ap_par_size=6
+ INSIDE INIT 
+0 =p, s= 6 ap_par_size=6
+ INSIDE INIT 
+0 =p, s= 7 ap_par_size=6
+ INSIDE INIT 
+0 =p, s= 8 ap_par_size=6
+ INSIDE INIT 
+0 =p, s= 9 ap_par_size=6
+ INSIDE INIT 
+0 =p, s= 10 ap_par_size=6
+ INSIDE INIT 
+0 =p, s= 11 ap_par_size=6
+ INSIDE INIT 
+0 =p, s= 12 ap_par_size=6
+ INSIDE INIT 
+0 =p, s= 13 ap_par_size=6
+ INSIDE INIT 
+0 =p, s= 14 ap_par_size=6
+ INSIDE INIT 
+0 =p, s= 15 ap_par_size=6
+ INSIDE INIT 
+0 =p, s= 16 ap_par_size=6
+ INSIDE INIT 
+0 =p, s= 17 ap_par_size=6
+ INSIDE INIT 
+0 =p, s= 18 ap_par_size=6
+ INSIDE INIT 
+0 =p, s= 19 ap_par_size=6
+ INSIDE INIT 
+0 =p, s= 20 ap_par_size=1
+ INSIDE INIT 
+0 =p, s= 21 ap_par_size=1
+ INSIDE INIT 
+0 =p, s= 22 ap_par_size=1
+ INSIDE INIT 
+0 =p, s= 23 ap_par_size=1
+ INSIDE INIT 
+0 =p, s= 24 ap_par_size=1
+ INSIDE INIT 
+0 =p, s= 25 ap_par_size=1
+ INSIDE INIT 
+0 =p, s= 26 ap_par_size=1
+ INSIDE INIT 
+0 =p, s= 27 ap_par_size=1
+ INSIDE INIT 
+0 =p, s= 28 ap_par_size=1
+ INSIDE INIT 
+0 =p, s= 29 ap_par_size=1
+ INSIDE INIT 
+0 =p, s= 30 ap_par_size=1
+ INSIDE INIT 
+0 =p, s= 31 ap_par_size=1
+ INSIDE INIT 
+0 =p, s= 32 ap_par_size=1
+ INSIDE INIT 
+0 =p, s= 33 ap_par_size=1
+ INSIDE INIT 
+0 =p, s= 34 ap_par_size=1
+ INSIDE INIT 
+0 =p, s= 35 ap_par_size=1
+ INSIDE INIT 
+0 =p, s= 36 ap_par_size=1
+ INSIDE INIT 
+0 =p, s= 37 ap_par_size=1
+ INSIDE INIT 
+0 =p, s= 38 ap_par_size=1
+ INSIDE INIT 
+0 =p, s= 39 ap_par_size=1
+ INSIDE INIT 
+0 =p, s= 40 ap_par_size=1
+ INSIDE INIT 
+0 =p, s= 41 ap_par_size=1
+ INSIDE INIT 
+0 =p, s= 42 ap_par_size=1
+ INSIDE INIT 
+0 =p, s= 43 ap_par_size=1
+ INSIDE INIT 
+0 =p, s= 44 ap_par_size=1
+ INSIDE INIT 
+0 =p, s= 45 ap_par_size=1
+ INSIDE INIT 
+0 =p, s= 46 ap_par_size=1
+ INSIDE INIT 
+0 =p, s= 47 ap_par_size=1
+ INSIDE INIT 
+0 =p, s= 48 ap_par_size=1
+ INSIDE INIT 
+0 =p, s= 49 ap_par_size=1
+ INSIDE INIT 
+0 =p, s= 50 ap_par_size=1
+ INSIDE INIT 
+0 =p, s= 51 ap_par_size=1
+ INSIDE INIT 
+0 =p, s= 52 ap_par_size=1
+ INSIDE INIT 
+0 =p, s= 53 ap_par_size=1
+ INSIDE INIT 
+0 =p, s= 54 ap_par_size=1
+ INSIDE INIT 
+0 =p, s= 55 ap_par_size=1
+ INSIDE INIT 
+0 =p, s= 56 ap_par_size=1
+ INSIDE INIT 
+0 =p, s= 57 ap_par_size=1
+ INSIDE INIT 
+0 =p, s= 58 ap_par_size=1
+ INSIDE INIT 
+0 =p, s= 59 ap_par_size=1
+ INSIDE INIT 
+0 =p, s= 60 ap_par_size=1
+ INSIDE INIT 
+0 =p, s= 61 ap_par_size=1
+ INSIDE INIT 
+0 =p, s= 62 ap_par_size=1
+ INSIDE INIT 
+0 =p, s= 63 ap_par_size=1
+ INSIDE INIT 
+0 =p, s= 64 ap_par_size=1
+ INSIDE INIT 
+0 =p, s= 65 ap_par_size=1
+ INSIDE INIT 
+0 =p, s= 66 ap_par_size=1
+ INSIDE INIT 
+0 =p, s= 67 ap_par_size=1
+ INSIDE INIT 
+0 =p, s= 68 ap_par_size=1
+ INSIDE INIT 
+0 =p, s= 69 ap_par_size=1
+ INSIDE INIT 
+0 =p, s= 70 ap_par_size=1
+ INSIDE INIT 
+0 =p, s= 71 ap_par_size=1
+ INSIDE INIT 
+0 =p, s= 72 ap_par_size=1
+ INSIDE INIT 
+0 =p, s= 73 ap_par_size=1
+ INSIDE INIT 
+0 =p, s= 74 ap_par_size=1
+ INSIDE INIT 
+0 =p, s= 75 ap_par_size=1
+ INSIDE INIT 
+0 =p, s= 76 ap_par_size=1
+ INSIDE INIT 
+0 =p, s= 77 ap_par_size=1
+ INSIDE INIT 
+0 =p, s= 78 ap_par_size=1
+ INSIDE INIT 
+0 =p, s= 79 ap_par_size=1
+ INSIDE INIT 
+1 =p, s= 0 ap_par_size=5
+ INSIDE INIT 
+1 =p, s= 1 ap_par_size=5
+ INSIDE INIT 
+1 =p, s= 2 ap_par_size=5
+ INSIDE INIT 
+1 =p, s= 3 ap_par_size=5
+ INSIDE INIT 
+1 =p, s= 4 ap_par_size=5
+ INSIDE INIT 
+1 =p, s= 5 ap_par_size=5
+ INSIDE INIT 
+1 =p, s= 6 ap_par_size=5
+ INSIDE INIT 
+1 =p, s= 7 ap_par_size=5
+ INSIDE INIT 
+1 =p, s= 8 ap_par_size=5
+ INSIDE INIT 
+1 =p, s= 9 ap_par_size=5
+ INSIDE INIT 
+1 =p, s= 10 ap_par_size=5
+ INSIDE INIT 
+1 =p, s= 11 ap_par_size=5
+ INSIDE INIT 
+1 =p, s= 12 ap_par_size=5
+ INSIDE INIT 
+1 =p, s= 13 ap_par_size=5
+ INSIDE INIT 
+1 =p, s= 14 ap_par_size=5
+ INSIDE INIT 
+1 =p, s= 15 ap_par_size=5
+ INSIDE INIT 
+1 =p, s= 16 ap_par_size=5
+ INSIDE INIT 
+1 =p, s= 17 ap_par_size=5
+ INSIDE INIT 
+1 =p, s= 18 ap_par_size=5
+ INSIDE INIT 
+1 =p, s= 19 ap_par_size=5
+ INSIDE INIT 
+1 =p, s= 20 ap_par_size=2
+ INSIDE INIT 
+1 =p, s= 21 ap_par_size=2
+ INSIDE INIT 
+1 =p, s= 22 ap_par_size=2
+ INSIDE INIT 
+1 =p, s= 23 ap_par_size=2
+ INSIDE INIT 
+1 =p, s= 24 ap_par_size=2
+ INSIDE INIT 
+1 =p, s= 25 ap_par_size=2
+ INSIDE INIT 
+1 =p, s= 26 ap_par_size=2
+ INSIDE INIT 
+1 =p, s= 27 ap_par_size=2
+ INSIDE INIT 
+1 =p, s= 28 ap_par_size=2
+ INSIDE INIT 
+1 =p, s= 29 ap_par_size=2
+ INSIDE INIT 
+1 =p, s= 30 ap_par_size=2
+ INSIDE INIT 
+1 =p, s= 31 ap_par_size=2
+ INSIDE INIT 
+1 =p, s= 32 ap_par_size=2
+ INSIDE INIT 
+1 =p, s= 33 ap_par_size=2
+ INSIDE INIT 
+1 =p, s= 34 ap_par_size=2
+ INSIDE INIT 
+1 =p, s= 35 ap_par_size=2
+ INSIDE INIT 
+1 =p, s= 36 ap_par_size=2
+ INSIDE INIT 
+1 =p, s= 37 ap_par_size=2
+ INSIDE INIT 
+1 =p, s= 38 ap_par_size=2
+ INSIDE INIT 
+1 =p, s= 39 ap_par_size=2
+ INSIDE INIT 
+1 =p, s= 40 ap_par_size=1
+ INSIDE INIT 
+1 =p, s= 41 ap_par_size=1
+ INSIDE INIT 
+1 =p, s= 42 ap_par_size=1
+ INSIDE INIT 
+1 =p, s= 43 ap_par_size=1
+ INSIDE INIT 
+1 =p, s= 44 ap_par_size=1
+ INSIDE INIT 
+1 =p, s= 45 ap_par_size=1
+ INSIDE INIT 
+1 =p, s= 46 ap_par_size=1
+ INSIDE INIT 
+1 =p, s= 47 ap_par_size=1
+ INSIDE INIT 
+1 =p, s= 48 ap_par_size=1
+ INSIDE INIT 
+1 =p, s= 49 ap_par_size=1
+ INSIDE INIT 
+1 =p, s= 50 ap_par_size=1
+ INSIDE INIT 
+1 =p, s= 51 ap_par_size=1
+ INSIDE INIT 
+1 =p, s= 52 ap_par_size=1
+ INSIDE INIT 
+1 =p, s= 53 ap_par_size=1
+ INSIDE INIT 
+1 =p, s= 54 ap_par_size=1
+ INSIDE INIT 
+1 =p, s= 55 ap_par_size=1
+ INSIDE INIT 
+1 =p, s= 56 ap_par_size=1
+ INSIDE INIT 
+1 =p, s= 57 ap_par_size=1
+ INSIDE INIT 
+1 =p, s= 58 ap_par_size=1
+ INSIDE INIT 
+1 =p, s= 59 ap_par_size=1
+ INSIDE INIT 
+1 =p, s= 60 ap_par_size=1
+ INSIDE INIT 
+1 =p, s= 61 ap_par_size=1
+ INSIDE INIT 
+1 =p, s= 62 ap_par_size=1
+ INSIDE INIT 
+1 =p, s= 63 ap_par_size=1
+ INSIDE INIT 
+1 =p, s= 64 ap_par_size=1
+ INSIDE INIT 
+1 =p, s= 65 ap_par_size=1
+ INSIDE INIT 
+1 =p, s= 66 ap_par_size=1
+ INSIDE INIT 
+1 =p, s= 67 ap_par_size=1
+ INSIDE INIT 
+1 =p, s= 68 ap_par_size=1
+ INSIDE INIT 
+1 =p, s= 69 ap_par_size=1
+ INSIDE INIT 
+1 =p, s= 70 ap_par_size=1
+ INSIDE INIT 
+1 =p, s= 71 ap_par_size=1
+ INSIDE INIT 
+1 =p, s= 72 ap_par_size=1
+ INSIDE INIT 
+1 =p, s= 73 ap_par_size=1
+ INSIDE INIT 
+1 =p, s= 74 ap_par_size=1
+ INSIDE INIT 
+1 =p, s= 75 ap_par_size=1
+ INSIDE INIT 
+1 =p, s= 76 ap_par_size=1
+ INSIDE INIT 
+1 =p, s= 77 ap_par_size=1
+ INSIDE INIT 
+1 =p, s= 78 ap_par_size=1
+ INSIDE INIT 
+1 =p, s= 79 ap_par_size=1
+ INSIDE INIT 
+2 =p, s= 0 ap_par_size=5
+ INSIDE INIT 
+2 =p, s= 1 ap_par_size=5
+ INSIDE INIT 
+2 =p, s= 2 ap_par_size=5
+ INSIDE INIT 
+2 =p, s= 3 ap_par_size=5
+ INSIDE INIT 
+2 =p, s= 4 ap_par_size=5
+ INSIDE INIT 
+2 =p, s= 5 ap_par_size=5
+ INSIDE INIT 
+2 =p, s= 6 ap_par_size=5
+ INSIDE INIT 
+2 =p, s= 7 ap_par_size=5
+ INSIDE INIT 
+2 =p, s= 8 ap_par_size=5
+ INSIDE INIT 
+2 =p, s= 9 ap_par_size=5
+ INSIDE INIT 
+2 =p, s= 10 ap_par_size=5
+ INSIDE INIT 
+2 =p, s= 11 ap_par_size=5
+ INSIDE INIT 
+2 =p, s= 12 ap_par_size=5
+ INSIDE INIT 
+2 =p, s= 13 ap_par_size=5
+ INSIDE INIT 
+2 =p, s= 14 ap_par_size=5
+ INSIDE INIT 
+2 =p, s= 15 ap_par_size=5
+ INSIDE INIT 
+2 =p, s= 16 ap_par_size=5
+ INSIDE INIT 
+2 =p, s= 17 ap_par_size=5
+ INSIDE INIT 
+2 =p, s= 18 ap_par_size=5
+ INSIDE INIT 
+2 =p, s= 19 ap_par_size=5
+ INSIDE INIT 
+2 =p, s= 20 ap_par_size=2
+ INSIDE INIT 
+2 =p, s= 21 ap_par_size=2
+ INSIDE INIT 
+2 =p, s= 22 ap_par_size=2
+ INSIDE INIT 
+2 =p, s= 23 ap_par_size=2
+ INSIDE INIT 
+2 =p, s= 24 ap_par_size=2
+ INSIDE INIT 
+2 =p, s= 25 ap_par_size=2
+ INSIDE INIT 
+2 =p, s= 26 ap_par_size=2
+ INSIDE INIT 
+2 =p, s= 27 ap_par_size=2
+ INSIDE INIT 
+2 =p, s= 28 ap_par_size=2
+ INSIDE INIT 
+2 =p, s= 29 ap_par_size=2
+ INSIDE INIT 
+2 =p, s= 30 ap_par_size=2
+ INSIDE INIT 
+2 =p, s= 31 ap_par_size=2
+ INSIDE INIT 
+2 =p, s= 32 ap_par_size=2
+ INSIDE INIT 
+2 =p, s= 33 ap_par_size=2
+ INSIDE INIT 
+2 =p, s= 34 ap_par_size=2
+ INSIDE INIT 
+2 =p, s= 35 ap_par_size=2
+ INSIDE INIT 
+2 =p, s= 36 ap_par_size=2
+ INSIDE INIT 
+2 =p, s= 37 ap_par_size=2
+ INSIDE INIT 
+2 =p, s= 38 ap_par_size=2
+ INSIDE INIT 
+2 =p, s= 39 ap_par_size=2
+ INSIDE INIT 
+2 =p, s= 40 ap_par_size=1
+ INSIDE INIT 
+2 =p, s= 41 ap_par_size=1
+ INSIDE INIT 
+2 =p, s= 42 ap_par_size=1
+ INSIDE INIT 
+2 =p, s= 43 ap_par_size=1
+ INSIDE INIT 
+2 =p, s= 44 ap_par_size=1
+ INSIDE INIT 
+2 =p, s= 45 ap_par_size=1
+ INSIDE INIT 
+2 =p, s= 46 ap_par_size=1
+ INSIDE INIT 
+2 =p, s= 47 ap_par_size=1
+ INSIDE INIT 
+2 =p, s= 48 ap_par_size=1
+ INSIDE INIT 
+2 =p, s= 49 ap_par_size=1
+ INSIDE INIT 
+2 =p, s= 50 ap_par_size=1
+ INSIDE INIT 
+2 =p, s= 51 ap_par_size=1
+ INSIDE INIT 
+2 =p, s= 52 ap_par_size=1
+ INSIDE INIT 
+2 =p, s= 53 ap_par_size=1
+ INSIDE INIT 
+2 =p, s= 54 ap_par_size=1
+ INSIDE INIT 
+2 =p, s= 55 ap_par_size=1
+ INSIDE INIT 
+2 =p, s= 56 ap_par_size=1
+ INSIDE INIT 
+2 =p, s= 57 ap_par_size=1
+ INSIDE INIT 
+2 =p, s= 58 ap_par_size=1
+ INSIDE INIT 
+2 =p, s= 59 ap_par_size=1
+ INSIDE INIT 
+2 =p, s= 60 ap_par_size=1
+ INSIDE INIT 
+2 =p, s= 61 ap_par_size=1
+ INSIDE INIT 
+2 =p, s= 62 ap_par_size=1
+ INSIDE INIT 
+2 =p, s= 63 ap_par_size=1
+ INSIDE INIT 
+2 =p, s= 64 ap_par_size=1
+ INSIDE INIT 
+2 =p, s= 65 ap_par_size=1
+ INSIDE INIT 
+2 =p, s= 66 ap_par_size=1
+ INSIDE INIT 
+2 =p, s= 67 ap_par_size=1
+ INSIDE INIT 
+2 =p, s= 68 ap_par_size=1
+ INSIDE INIT 
+2 =p, s= 69 ap_par_size=1
+ INSIDE INIT 
+2 =p, s= 70 ap_par_size=1
+ INSIDE INIT 
+2 =p, s= 71 ap_par_size=1
+ INSIDE INIT 
+2 =p, s= 72 ap_par_size=1
+ INSIDE INIT 
+2 =p, s= 73 ap_par_size=1
+ INSIDE INIT 
+2 =p, s= 74 ap_par_size=1
+ INSIDE INIT 
+2 =p, s= 75 ap_par_size=1
+ INSIDE INIT 
+2 =p, s= 76 ap_par_size=1
+ INSIDE INIT 
+2 =p, s= 77 ap_par_size=1
+ INSIDE INIT 
+2 =p, s= 78 ap_par_size=1
+ INSIDE INIT 
+2 =p, s= 79 ap_par_size=1
+ INSIDE INIT 
+3 =p, s= 0 ap_par_size=5
+ INSIDE INIT 
+3 =p, s= 1 ap_par_size=5
+ INSIDE INIT 
+3 =p, s= 2 ap_par_size=5
+ INSIDE INIT 
+3 =p, s= 3 ap_par_size=5
+ INSIDE INIT 
+3 =p, s= 4 ap_par_size=5
+ INSIDE INIT 
+3 =p, s= 5 ap_par_size=5
+ INSIDE INIT 
+3 =p, s= 6 ap_par_size=5
+ INSIDE INIT 
+3 =p, s= 7 ap_par_size=5
+ INSIDE INIT 
+3 =p, s= 8 ap_par_size=5
+ INSIDE INIT 
+3 =p, s= 9 ap_par_size=5
+ INSIDE INIT 
+3 =p, s= 10 ap_par_size=5
+ INSIDE INIT 
+3 =p, s= 11 ap_par_size=5
+ INSIDE INIT 
+3 =p, s= 12 ap_par_size=5
+ INSIDE INIT 
+3 =p, s= 13 ap_par_size=5
+ INSIDE INIT 
+3 =p, s= 14 ap_par_size=5
+ INSIDE INIT 
+3 =p, s= 15 ap_par_size=5
+ INSIDE INIT 
+3 =p, s= 16 ap_par_size=5
+ INSIDE INIT 
+3 =p, s= 17 ap_par_size=5
+ INSIDE INIT 
+3 =p, s= 18 ap_par_size=5
+ INSIDE INIT 
+3 =p, s= 19 ap_par_size=5
+ INSIDE INIT 
+3 =p, s= 20 ap_par_size=2
+ INSIDE INIT 
+3 =p, s= 21 ap_par_size=2
+ INSIDE INIT 
+3 =p, s= 22 ap_par_size=2
+ INSIDE INIT 
+3 =p, s= 23 ap_par_size=2
+ INSIDE INIT 
+3 =p, s= 24 ap_par_size=2
+ INSIDE INIT 
+3 =p, s= 25 ap_par_size=2
+ INSIDE INIT 
+3 =p, s= 26 ap_par_size=2
+ INSIDE INIT 
+3 =p, s= 27 ap_par_size=2
+ INSIDE INIT 
+3 =p, s= 28 ap_par_size=2
+ INSIDE INIT 
+3 =p, s= 29 ap_par_size=2
+ INSIDE INIT 
+3 =p, s= 30 ap_par_size=2
+ INSIDE INIT 
+3 =p, s= 31 ap_par_size=2
+ INSIDE INIT 
+3 =p, s= 32 ap_par_size=2
+ INSIDE INIT 
+3 =p, s= 33 ap_par_size=2
+ INSIDE INIT 
+3 =p, s= 34 ap_par_size=2
+ INSIDE INIT 
+3 =p, s= 35 ap_par_size=2
+ INSIDE INIT 
+3 =p, s= 36 ap_par_size=2
+ INSIDE INIT 
+3 =p, s= 37 ap_par_size=2
+ INSIDE INIT 
+3 =p, s= 38 ap_par_size=2
+ INSIDE INIT 
+3 =p, s= 39 ap_par_size=2
+ INSIDE INIT 
+3 =p, s= 40 ap_par_size=1
+ INSIDE INIT 
+3 =p, s= 41 ap_par_size=1
+ INSIDE INIT 
+3 =p, s= 42 ap_par_size=1
+ INSIDE INIT 
+3 =p, s= 43 ap_par_size=1
+ INSIDE INIT 
+3 =p, s= 44 ap_par_size=1
+ INSIDE INIT 
+3 =p, s= 45 ap_par_size=1
+ INSIDE INIT 
+3 =p, s= 46 ap_par_size=1
+ INSIDE INIT 
+3 =p, s= 47 ap_par_size=1
+ INSIDE INIT 
+3 =p, s= 48 ap_par_size=1
+ INSIDE INIT 
+3 =p, s= 49 ap_par_size=1
+ INSIDE INIT 
+3 =p, s= 50 ap_par_size=1
+ INSIDE INIT 
+3 =p, s= 51 ap_par_size=1
+ INSIDE INIT 
+3 =p, s= 52 ap_par_size=1
+ INSIDE INIT 
+3 =p, s= 53 ap_par_size=1
+ INSIDE INIT 
+3 =p, s= 54 ap_par_size=1
+ INSIDE INIT 
+3 =p, s= 55 ap_par_size=1
+ INSIDE INIT 
+3 =p, s= 56 ap_par_size=1
+ INSIDE INIT 
+3 =p, s= 57 ap_par_size=1
+ INSIDE INIT 
+3 =p, s= 58 ap_par_size=1
+ INSIDE INIT 
+3 =p, s= 59 ap_par_size=1
+ INSIDE INIT 
+3 =p, s= 60 ap_par_size=1
+ INSIDE INIT 
+3 =p, s= 61 ap_par_size=1
+ INSIDE INIT 
+3 =p, s= 62 ap_par_size=1
+ INSIDE INIT 
+3 =p, s= 63 ap_par_size=1
+ INSIDE INIT 
+3 =p, s= 64 ap_par_size=1
+ INSIDE INIT 
+3 =p, s= 65 ap_par_size=1
+ INSIDE INIT 
+3 =p, s= 66 ap_par_size=1
+ INSIDE INIT 
+3 =p, s= 67 ap_par_size=1
+ INSIDE INIT 
+3 =p, s= 68 ap_par_size=1
+ INSIDE INIT 
+3 =p, s= 69 ap_par_size=1
+ INSIDE INIT 
+3 =p, s= 70 ap_par_size=1
+ INSIDE INIT 
+3 =p, s= 71 ap_par_size=1
+ INSIDE INIT 
+3 =p, s= 72 ap_par_size=1
+ INSIDE INIT 
+3 =p, s= 73 ap_par_size=1
+ INSIDE INIT 
+3 =p, s= 74 ap_par_size=1
+ INSIDE INIT 
+3 =p, s= 75 ap_par_size=1
+ INSIDE INIT 
+3 =p, s= 76 ap_par_size=1
+ INSIDE INIT 
+3 =p, s= 77 ap_par_size=1
+ INSIDE INIT 
+3 =p, s= 78 ap_par_size=1
+ INSIDE INIT 
+3 =p, s= 79 ap_par_size=1
+ INSIDE INIT 
+4 =p, s= 0 ap_par_size=5
+ INSIDE INIT 
+4 =p, s= 1 ap_par_size=5
+ INSIDE INIT 
+4 =p, s= 2 ap_par_size=5
+ INSIDE INIT 
+4 =p, s= 3 ap_par_size=5
+ INSIDE INIT 
+4 =p, s= 4 ap_par_size=5
+ INSIDE INIT 
+4 =p, s= 5 ap_par_size=5
+ INSIDE INIT 
+4 =p, s= 6 ap_par_size=5
+ INSIDE INIT 
+4 =p, s= 7 ap_par_size=5
+ INSIDE INIT 
+4 =p, s= 8 ap_par_size=5
+ INSIDE INIT 
+4 =p, s= 9 ap_par_size=5
+ INSIDE INIT 
+4 =p, s= 10 ap_par_size=5
+ INSIDE INIT 
+4 =p, s= 11 ap_par_size=5
+ INSIDE INIT 
+4 =p, s= 12 ap_par_size=5
+ INSIDE INIT 
+4 =p, s= 13 ap_par_size=5
+ INSIDE INIT 
+4 =p, s= 14 ap_par_size=5
+ INSIDE INIT 
+4 =p, s= 15 ap_par_size=5
+ INSIDE INIT 
+4 =p, s= 16 ap_par_size=5
+ INSIDE INIT 
+4 =p, s= 17 ap_par_size=5
+ INSIDE INIT 
+4 =p, s= 18 ap_par_size=5
+ INSIDE INIT 
+4 =p, s= 19 ap_par_size=5
+ INSIDE INIT 
+4 =p, s= 20 ap_par_size=2
+ INSIDE INIT 
+4 =p, s= 21 ap_par_size=2
+ INSIDE INIT 
+4 =p, s= 22 ap_par_size=2
+ INSIDE INIT 
+4 =p, s= 23 ap_par_size=2
+ INSIDE INIT 
+4 =p, s= 24 ap_par_size=2
+ INSIDE INIT 
+4 =p, s= 25 ap_par_size=2
+ INSIDE INIT 
+4 =p, s= 26 ap_par_size=2
+ INSIDE INIT 
+4 =p, s= 27 ap_par_size=2
+ INSIDE INIT 
+4 =p, s= 28 ap_par_size=2
+ INSIDE INIT 
+4 =p, s= 29 ap_par_size=2
+ INSIDE INIT 
+4 =p, s= 30 ap_par_size=2
+ INSIDE INIT 
+4 =p, s= 31 ap_par_size=2
+ INSIDE INIT 
+4 =p, s= 32 ap_par_size=2
+ INSIDE INIT 
+4 =p, s= 33 ap_par_size=2
+ INSIDE INIT 
+4 =p, s= 34 ap_par_size=2
+ INSIDE INIT 
+4 =p, s= 35 ap_par_size=2
+ INSIDE INIT 
+4 =p, s= 36 ap_par_size=2
+ INSIDE INIT 
+4 =p, s= 37 ap_par_size=2
+ INSIDE INIT 
+4 =p, s= 38 ap_par_size=2
+ INSIDE INIT 
+4 =p, s= 39 ap_par_size=2
+ INSIDE INIT 
+4 =p, s= 40 ap_par_size=1
+ INSIDE INIT 
+4 =p, s= 41 ap_par_size=1
+ INSIDE INIT 
+4 =p, s= 42 ap_par_size=1
+ INSIDE INIT 
+4 =p, s= 43 ap_par_size=1
+ INSIDE INIT 
+4 =p, s= 44 ap_par_size=1
+ INSIDE INIT 
+4 =p, s= 45 ap_par_size=1
+ INSIDE INIT 
+4 =p, s= 46 ap_par_size=1
+ INSIDE INIT 
+4 =p, s= 47 ap_par_size=1
+ INSIDE INIT 
+4 =p, s= 48 ap_par_size=1
+ INSIDE INIT 
+4 =p, s= 49 ap_par_size=1
+ INSIDE INIT 
+4 =p, s= 50 ap_par_size=1
+ INSIDE INIT 
+4 =p, s= 51 ap_par_size=1
+ INSIDE INIT 
+4 =p, s= 52 ap_par_size=1
+ INSIDE INIT 
+4 =p, s= 53 ap_par_size=1
+ INSIDE INIT 
+4 =p, s= 54 ap_par_size=1
+ INSIDE INIT 
+4 =p, s= 55 ap_par_size=1
+ INSIDE INIT 
+4 =p, s= 56 ap_par_size=1
+ INSIDE INIT 
+4 =p, s= 57 ap_par_size=1
+ INSIDE INIT 
+4 =p, s= 58 ap_par_size=1
+ INSIDE INIT 
+4 =p, s= 59 ap_par_size=1
+ INSIDE INIT 
+4 =p, s= 60 ap_par_size=1
+ INSIDE INIT 
+4 =p, s= 61 ap_par_size=1
+ INSIDE INIT 
+4 =p, s= 62 ap_par_size=1
+ INSIDE INIT 
+4 =p, s= 63 ap_par_size=1
+ INSIDE INIT 
+4 =p, s= 64 ap_par_size=1
+ INSIDE INIT 
+4 =p, s= 65 ap_par_size=1
+ INSIDE INIT 
+4 =p, s= 66 ap_par_size=1
+ INSIDE INIT 
+4 =p, s= 67 ap_par_size=1
+ INSIDE INIT 
+4 =p, s= 68 ap_par_size=1
+ INSIDE INIT 
+4 =p, s= 69 ap_par_size=1
+ INSIDE INIT 
+4 =p, s= 70 ap_par_size=1
+ INSIDE INIT 
+4 =p, s= 71 ap_par_size=1
+ INSIDE INIT 
+4 =p, s= 72 ap_par_size=1
+ INSIDE INIT 
+4 =p, s= 73 ap_par_size=1
+ INSIDE INIT 
+4 =p, s= 74 ap_par_size=1
+ INSIDE INIT 
+4 =p, s= 75 ap_par_size=1
+ INSIDE INIT 
+4 =p, s= 76 ap_par_size=1
+ INSIDE INIT 
+4 =p, s= 77 ap_par_size=1
+ INSIDE INIT 
+4 =p, s= 78 ap_par_size=1
+ INSIDE INIT 
+4 =p, s= 79 ap_par_size=1
+ INSIDE INIT 
+5 =p, s= 0 ap_par_size=5
+ INSIDE INIT 
+5 =p, s= 1 ap_par_size=5
+ INSIDE INIT 
+5 =p, s= 2 ap_par_size=5
+ INSIDE INIT 
+5 =p, s= 3 ap_par_size=5
+ INSIDE INIT 
+5 =p, s= 4 ap_par_size=5
+ INSIDE INIT 
+5 =p, s= 5 ap_par_size=5
+ INSIDE INIT 
+5 =p, s= 6 ap_par_size=5
+ INSIDE INIT 
+5 =p, s= 7 ap_par_size=5
+ INSIDE INIT 
+5 =p, s= 8 ap_par_size=5
+ INSIDE INIT 
+5 =p, s= 9 ap_par_size=5
+ INSIDE INIT 
+5 =p, s= 10 ap_par_size=5
+ INSIDE INIT 
+5 =p, s= 11 ap_par_size=5
+ INSIDE INIT 
+5 =p, s= 12 ap_par_size=5
+ INSIDE INIT 
+5 =p, s= 13 ap_par_size=5
+ INSIDE INIT 
+5 =p, s= 14 ap_par_size=5
+ INSIDE INIT 
+5 =p, s= 15 ap_par_size=5
+ INSIDE INIT 
+5 =p, s= 16 ap_par_size=5
+ INSIDE INIT 
+5 =p, s= 17 ap_par_size=5
+ INSIDE INIT 
+5 =p, s= 18 ap_par_size=5
+ INSIDE INIT 
+5 =p, s= 19 ap_par_size=5
+ INSIDE INIT 
+5 =p, s= 20 ap_par_size=2
+ INSIDE INIT 
+5 =p, s= 21 ap_par_size=2
+ INSIDE INIT 
+5 =p, s= 22 ap_par_size=2
+ INSIDE INIT 
+5 =p, s= 23 ap_par_size=2
+ INSIDE INIT 
+5 =p, s= 24 ap_par_size=2
+ INSIDE INIT 
+5 =p, s= 25 ap_par_size=2
+ INSIDE INIT 
+5 =p, s= 26 ap_par_size=2
+ INSIDE INIT 
+5 =p, s= 27 ap_par_size=2
+ INSIDE INIT 
+5 =p, s= 28 ap_par_size=2
+ INSIDE INIT 
+5 =p, s= 29 ap_par_size=2
+ INSIDE INIT 
+5 =p, s= 30 ap_par_size=2
+ INSIDE INIT 
+5 =p, s= 31 ap_par_size=2
+ INSIDE INIT 
+5 =p, s= 32 ap_par_size=2
+ INSIDE INIT 
+5 =p, s= 33 ap_par_size=2
+ INSIDE INIT 
+5 =p, s= 34 ap_par_size=2
+ INSIDE INIT 
+5 =p, s= 35 ap_par_size=2
+ INSIDE INIT 
+5 =p, s= 36 ap_par_size=2
+ INSIDE INIT 
+5 =p, s= 37 ap_par_size=2
+ INSIDE INIT 
+5 =p, s= 38 ap_par_size=2
+ INSIDE INIT 
+5 =p, s= 39 ap_par_size=2
+ INSIDE INIT 
+5 =p, s= 40 ap_par_size=1
+ INSIDE INIT 
+5 =p, s= 41 ap_par_size=1
+ INSIDE INIT 
+5 =p, s= 42 ap_par_size=1
+ INSIDE INIT 
+5 =p, s= 43 ap_par_size=1
+ INSIDE INIT 
+5 =p, s= 44 ap_par_size=1
+ INSIDE INIT 
+5 =p, s= 45 ap_par_size=1
+ INSIDE INIT 
+5 =p, s= 46 ap_par_size=1
+ INSIDE INIT 
+5 =p, s= 47 ap_par_size=1
+ INSIDE INIT 
+5 =p, s= 48 ap_par_size=1
+ INSIDE INIT 
+5 =p, s= 49 ap_par_size=1
+ INSIDE INIT 
+5 =p, s= 50 ap_par_size=1
+ INSIDE INIT 
+5 =p, s= 51 ap_par_size=1
+ INSIDE INIT 
+5 =p, s= 52 ap_par_size=1
+ INSIDE INIT 
+5 =p, s= 53 ap_par_size=1
+ INSIDE INIT 
+5 =p, s= 54 ap_par_size=1
+ INSIDE INIT 
+5 =p, s= 55 ap_par_size=1
+ INSIDE INIT 
+5 =p, s= 56 ap_par_size=1
+ INSIDE INIT 
+5 =p, s= 57 ap_par_size=1
+ INSIDE INIT 
+5 =p, s= 58 ap_par_size=1
+ INSIDE INIT 
+5 =p, s= 59 ap_par_size=1
+ INSIDE INIT 
+5 =p, s= 60 ap_par_size=1
+ INSIDE INIT 
+5 =p, s= 61 ap_par_size=1
+ INSIDE INIT 
+5 =p, s= 62 ap_par_size=1
+ INSIDE INIT 
+5 =p, s= 63 ap_par_size=1
+ INSIDE INIT 
+5 =p, s= 64 ap_par_size=1
+ INSIDE INIT 
+5 =p, s= 65 ap_par_size=1
+ INSIDE INIT 
+5 =p, s= 66 ap_par_size=1
+ INSIDE INIT 
+5 =p, s= 67 ap_par_size=1
+ INSIDE INIT 
+5 =p, s= 68 ap_par_size=1
+ INSIDE INIT 
+5 =p, s= 69 ap_par_size=1
+ INSIDE INIT 
+5 =p, s= 70 ap_par_size=1
+ INSIDE INIT 
+5 =p, s= 71 ap_par_size=1
+ INSIDE INIT 
+5 =p, s= 72 ap_par_size=1
+ INSIDE INIT 
+5 =p, s= 73 ap_par_size=1
+ INSIDE INIT 
+5 =p, s= 74 ap_par_size=1
+ INSIDE INIT 
+5 =p, s= 75 ap_par_size=1
+ INSIDE INIT 
+5 =p, s= 76 ap_par_size=1
+ INSIDE INIT 
+5 =p, s= 77 ap_par_size=1
+ INSIDE INIT 
+5 =p, s= 78 ap_par_size=1
+ INSIDE INIT 
+5 =p, s= 79 ap_par_size=1
+BEFORE ACT
+AFTER ACT
+HERE 
+0 0 0 2
+THERE 
+1 2 0 0
+AFTER AGGR
+BEFORE LEARN
+LEARN STEPS 1
+ ALREADY 
+ HERE 
+0 =p, s= 0 curr_state=14
+0 =p, s= 0 curr_p_pars_size=6
+0 =p, s= 0 grad_est_size=6
+0 =p, s= 0 ap_par_size=6
+0 =p, s= 0 curr_state=14
+0 =p, s= 0 curr_p_pars_size=6
+0 =p, s= 0 grad_est_size=6
+0 =p, s= 0 ap_par_size=6
+0 =p, s= 0 curr_state=14
+0 =p, s= 0 curr_p_pars_size=6
+0 =p, s= 0 grad_est_size=6
+0 =p, s= 0 ap_par_size=6
+0 =p, s= 0 curr_state=14
+0 =p, s= 0 curr_p_pars_size=6
+0 =p, s= 0 grad_est_size=6
+0 =p, s= 0 ap_par_size=6
+0 =p, s= 0 curr_state=14
+0 =p, s= 0 curr_p_pars_size=6
+0 =p, s= 0 grad_est_size=6
+0 =p, s= 0 ap_par_size=6
+0 =p, s= 0 curr_state=14
+0 =p, s= 0 curr_p_pars_size=6
+0 =p, s= 0 grad_est_size=6
+0 =p, s= 0 ap_par_size=6
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+IS
+HERE
+0 =p, s= 1 curr_state=14
+0 =p, s= 1 curr_p_pars_size=6
+0 =p, s= 1 grad_est_size=6
+0 =p, s= 1 ap_par_size=6
+0 =p, s= 1 curr_state=14
+0 =p, s= 1 curr_p_pars_size=6
+0 =p, s= 1 grad_est_size=6
+0 =p, s= 1 ap_par_size=6
+0 =p, s= 1 curr_state=14
+0 =p, s= 1 curr_p_pars_size=6
+0 =p, s= 1 grad_est_size=6
+0 =p, s= 1 ap_par_size=6
+0 =p, s= 1 curr_state=14
+0 =p, s= 1 curr_p_pars_size=6
+0 =p, s= 1 grad_est_size=6
+0 =p, s= 1 ap_par_size=6
+0 =p, s= 1 curr_state=14
+0 =p, s= 1 curr_p_pars_size=6
+0 =p, s= 1 grad_est_size=6
+0 =p, s= 1 ap_par_size=6
+0 =p, s= 1 curr_state=14
+0 =p, s= 1 curr_p_pars_size=6
+0 =p, s= 1 grad_est_size=6
+0 =p, s= 1 ap_par_size=6
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+IS
+HERE
+0 =p, s= 2 curr_state=14
+0 =p, s= 2 curr_p_pars_size=6
+0 =p, s= 2 grad_est_size=6
+0 =p, s= 2 ap_par_size=6
+0 =p, s= 2 curr_state=14
+0 =p, s= 2 curr_p_pars_size=6
+0 =p, s= 2 grad_est_size=6
+0 =p, s= 2 ap_par_size=6
+0 =p, s= 2 curr_state=14
+0 =p, s= 2 curr_p_pars_size=6
+0 =p, s= 2 grad_est_size=6
+0 =p, s= 2 ap_par_size=6
+0 =p, s= 2 curr_state=14
+0 =p, s= 2 curr_p_pars_size=6
+0 =p, s= 2 grad_est_size=6
+0 =p, s= 2 ap_par_size=6
+0 =p, s= 2 curr_state=14
+0 =p, s= 2 curr_p_pars_size=6
+0 =p, s= 2 grad_est_size=6
+0 =p, s= 2 ap_par_size=6
+0 =p, s= 2 curr_state=14
+0 =p, s= 2 curr_p_pars_size=6
+0 =p, s= 2 grad_est_size=6
+0 =p, s= 2 ap_par_size=6
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+IS
+HERE
+0 =p, s= 3 curr_state=14
+0 =p, s= 3 curr_p_pars_size=6
+0 =p, s= 3 grad_est_size=6
+0 =p, s= 3 ap_par_size=6
+0 =p, s= 3 curr_state=14
+0 =p, s= 3 curr_p_pars_size=6
+0 =p, s= 3 grad_est_size=6
+0 =p, s= 3 ap_par_size=6
+0 =p, s= 3 curr_state=14
+0 =p, s= 3 curr_p_pars_size=6
+0 =p, s= 3 grad_est_size=6
+0 =p, s= 3 ap_par_size=6
+0 =p, s= 3 curr_state=14
+0 =p, s= 3 curr_p_pars_size=6
+0 =p, s= 3 grad_est_size=6
+0 =p, s= 3 ap_par_size=6
+0 =p, s= 3 curr_state=14
+0 =p, s= 3 curr_p_pars_size=6
+0 =p, s= 3 grad_est_size=6
+0 =p, s= 3 ap_par_size=6
+0 =p, s= 3 curr_state=14
+0 =p, s= 3 curr_p_pars_size=6
+0 =p, s= 3 grad_est_size=6
+0 =p, s= 3 ap_par_size=6
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+IS
+HERE
+0 =p, s= 4 curr_state=14
+0 =p, s= 4 curr_p_pars_size=6
+0 =p, s= 4 grad_est_size=6
+0 =p, s= 4 ap_par_size=6
+0 =p, s= 4 curr_state=14
+0 =p, s= 4 curr_p_pars_size=6
+0 =p, s= 4 grad_est_size=6
+0 =p, s= 4 ap_par_size=6
+0 =p, s= 4 curr_state=14
+0 =p, s= 4 curr_p_pars_size=6
+0 =p, s= 4 grad_est_size=6
+0 =p, s= 4 ap_par_size=6
+0 =p, s= 4 curr_state=14
+0 =p, s= 4 curr_p_pars_size=6
+0 =p, s= 4 grad_est_size=6
+0 =p, s= 4 ap_par_size=6
+0 =p, s= 4 curr_state=14
+0 =p, s= 4 curr_p_pars_size=6
+0 =p, s= 4 grad_est_size=6
+0 =p, s= 4 ap_par_size=6
+0 =p, s= 4 curr_state=14
+0 =p, s= 4 curr_p_pars_size=6
+0 =p, s= 4 grad_est_size=6
+0 =p, s= 4 ap_par_size=6
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+IS
+HERE
+0 =p, s= 5 curr_state=14
+0 =p, s= 5 curr_p_pars_size=6
+0 =p, s= 5 grad_est_size=6
+0 =p, s= 5 ap_par_size=6
+0 =p, s= 5 curr_state=14
+0 =p, s= 5 curr_p_pars_size=6
+0 =p, s= 5 grad_est_size=6
+0 =p, s= 5 ap_par_size=6
+0 =p, s= 5 curr_state=14
+0 =p, s= 5 curr_p_pars_size=6
+0 =p, s= 5 grad_est_size=6
+0 =p, s= 5 ap_par_size=6
+0 =p, s= 5 curr_state=14
+0 =p, s= 5 curr_p_pars_size=6
+0 =p, s= 5 grad_est_size=6
+0 =p, s= 5 ap_par_size=6
+0 =p, s= 5 curr_state=14
+0 =p, s= 5 curr_p_pars_size=6
+0 =p, s= 5 grad_est_size=6
+0 =p, s= 5 ap_par_size=6
+0 =p, s= 5 curr_state=14
+0 =p, s= 5 curr_p_pars_size=6
+0 =p, s= 5 grad_est_size=6
+0 =p, s= 5 ap_par_size=6
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+IS
+HERE
+0 =p, s= 6 curr_state=14
+0 =p, s= 6 curr_p_pars_size=6
+0 =p, s= 6 grad_est_size=6
+0 =p, s= 6 ap_par_size=6
+0 =p, s= 6 curr_state=14
+0 =p, s= 6 curr_p_pars_size=6
+0 =p, s= 6 grad_est_size=6
+0 =p, s= 6 ap_par_size=6
+0 =p, s= 6 curr_state=14
+0 =p, s= 6 curr_p_pars_size=6
+0 =p, s= 6 grad_est_size=6
+0 =p, s= 6 ap_par_size=6
+0 =p, s= 6 curr_state=14
+0 =p, s= 6 curr_p_pars_size=6
+0 =p, s= 6 grad_est_size=6
+0 =p, s= 6 ap_par_size=6
+0 =p, s= 6 curr_state=14
+0 =p, s= 6 curr_p_pars_size=6
+0 =p, s= 6 grad_est_size=6
+0 =p, s= 6 ap_par_size=6
+0 =p, s= 6 curr_state=14
+0 =p, s= 6 curr_p_pars_size=6
+0 =p, s= 6 grad_est_size=6
+0 =p, s= 6 ap_par_size=6
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+IS
+HERE
+0 =p, s= 7 curr_state=14
+0 =p, s= 7 curr_p_pars_size=6
+0 =p, s= 7 grad_est_size=6
+0 =p, s= 7 ap_par_size=6
+0 =p, s= 7 curr_state=14
+0 =p, s= 7 curr_p_pars_size=6
+0 =p, s= 7 grad_est_size=6
+0 =p, s= 7 ap_par_size=6
+0 =p, s= 7 curr_state=14
+0 =p, s= 7 curr_p_pars_size=6
+0 =p, s= 7 grad_est_size=6
+0 =p, s= 7 ap_par_size=6
+0 =p, s= 7 curr_state=14
+0 =p, s= 7 curr_p_pars_size=6
+0 =p, s= 7 grad_est_size=6
+0 =p, s= 7 ap_par_size=6
+0 =p, s= 7 curr_state=14
+0 =p, s= 7 curr_p_pars_size=6
+0 =p, s= 7 grad_est_size=6
+0 =p, s= 7 ap_par_size=6
+0 =p, s= 7 curr_state=14
+0 =p, s= 7 curr_p_pars_size=6
+0 =p, s= 7 grad_est_size=6
+0 =p, s= 7 ap_par_size=6
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+IS
+HERE
+0 =p, s= 8 curr_state=14
+0 =p, s= 8 curr_p_pars_size=6
+0 =p, s= 8 grad_est_size=6
+0 =p, s= 8 ap_par_size=6
+0 =p, s= 8 curr_state=14
+0 =p, s= 8 curr_p_pars_size=6
+0 =p, s= 8 grad_est_size=6
+0 =p, s= 8 ap_par_size=6
+0 =p, s= 8 curr_state=14
+0 =p, s= 8 curr_p_pars_size=6
+0 =p, s= 8 grad_est_size=6
+0 =p, s= 8 ap_par_size=6
+0 =p, s= 8 curr_state=14
+0 =p, s= 8 curr_p_pars_size=6
+0 =p, s= 8 grad_est_size=6
+0 =p, s= 8 ap_par_size=6
+0 =p, s= 8 curr_state=14
+0 =p, s= 8 curr_p_pars_size=6
+0 =p, s= 8 grad_est_size=6
+0 =p, s= 8 ap_par_size=6
+0 =p, s= 8 curr_state=14
+0 =p, s= 8 curr_p_pars_size=6
+0 =p, s= 8 grad_est_size=6
+0 =p, s= 8 ap_par_size=6
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+IS
+HERE
+0 =p, s= 9 curr_state=14
+0 =p, s= 9 curr_p_pars_size=6
+0 =p, s= 9 grad_est_size=6
+0 =p, s= 9 ap_par_size=6
+0 =p, s= 9 curr_state=14
+0 =p, s= 9 curr_p_pars_size=6
+0 =p, s= 9 grad_est_size=6
+0 =p, s= 9 ap_par_size=6
+0 =p, s= 9 curr_state=14
+0 =p, s= 9 curr_p_pars_size=6
+0 =p, s= 9 grad_est_size=6
+0 =p, s= 9 ap_par_size=6
+0 =p, s= 9 curr_state=14
+0 =p, s= 9 curr_p_pars_size=6
+0 =p, s= 9 grad_est_size=6
+0 =p, s= 9 ap_par_size=6
+0 =p, s= 9 curr_state=14
+0 =p, s= 9 curr_p_pars_size=6
+0 =p, s= 9 grad_est_size=6
+0 =p, s= 9 ap_par_size=6
+0 =p, s= 9 curr_state=14
+0 =p, s= 9 curr_p_pars_size=6
+0 =p, s= 9 grad_est_size=6
+0 =p, s= 9 ap_par_size=6
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+IS
+HERE
+0 =p, s= 10 curr_state=14
+0 =p, s= 10 curr_p_pars_size=6
+0 =p, s= 10 grad_est_size=6
+0 =p, s= 10 ap_par_size=6
+0 =p, s= 10 curr_state=14
+0 =p, s= 10 curr_p_pars_size=6
+0 =p, s= 10 grad_est_size=6
+0 =p, s= 10 ap_par_size=6
+0 =p, s= 10 curr_state=14
+0 =p, s= 10 curr_p_pars_size=6
+0 =p, s= 10 grad_est_size=6
+0 =p, s= 10 ap_par_size=6
+0 =p, s= 10 curr_state=14
+0 =p, s= 10 curr_p_pars_size=6
+0 =p, s= 10 grad_est_size=6
+0 =p, s= 10 ap_par_size=6
+0 =p, s= 10 curr_state=14
+0 =p, s= 10 curr_p_pars_size=6
+0 =p, s= 10 grad_est_size=6
+0 =p, s= 10 ap_par_size=6
+0 =p, s= 10 curr_state=14
+0 =p, s= 10 curr_p_pars_size=6
+0 =p, s= 10 grad_est_size=6
+0 =p, s= 10 ap_par_size=6
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+IS
+HERE
+0 =p, s= 11 curr_state=14
+0 =p, s= 11 curr_p_pars_size=6
+0 =p, s= 11 grad_est_size=6
+0 =p, s= 11 ap_par_size=6
+0 =p, s= 11 curr_state=14
+0 =p, s= 11 curr_p_pars_size=6
+0 =p, s= 11 grad_est_size=6
+0 =p, s= 11 ap_par_size=6
+0 =p, s= 11 curr_state=14
+0 =p, s= 11 curr_p_pars_size=6
+0 =p, s= 11 grad_est_size=6
+0 =p, s= 11 ap_par_size=6
+0 =p, s= 11 curr_state=14
+0 =p, s= 11 curr_p_pars_size=6
+0 =p, s= 11 grad_est_size=6
+0 =p, s= 11 ap_par_size=6
+0 =p, s= 11 curr_state=14
+0 =p, s= 11 curr_p_pars_size=6
+0 =p, s= 11 grad_est_size=6
+0 =p, s= 11 ap_par_size=6
+0 =p, s= 11 curr_state=14
+0 =p, s= 11 curr_p_pars_size=6
+0 =p, s= 11 grad_est_size=6
+0 =p, s= 11 ap_par_size=6
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+IS
+HERE
+0 =p, s= 12 curr_state=14
+0 =p, s= 12 curr_p_pars_size=6
+0 =p, s= 12 grad_est_size=6
+0 =p, s= 12 ap_par_size=6
+0 =p, s= 12 curr_state=14
+0 =p, s= 12 curr_p_pars_size=6
+0 =p, s= 12 grad_est_size=6
+0 =p, s= 12 ap_par_size=6
+0 =p, s= 12 curr_state=14
+0 =p, s= 12 curr_p_pars_size=6
+0 =p, s= 12 grad_est_size=6
+0 =p, s= 12 ap_par_size=6
+0 =p, s= 12 curr_state=14
+0 =p, s= 12 curr_p_pars_size=6
+0 =p, s= 12 grad_est_size=6
+0 =p, s= 12 ap_par_size=6
+0 =p, s= 12 curr_state=14
+0 =p, s= 12 curr_p_pars_size=6
+0 =p, s= 12 grad_est_size=6
+0 =p, s= 12 ap_par_size=6
+0 =p, s= 12 curr_state=14
+0 =p, s= 12 curr_p_pars_size=6
+0 =p, s= 12 grad_est_size=6
+0 =p, s= 12 ap_par_size=6
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+IS
+HERE
+0 =p, s= 13 curr_state=14
+0 =p, s= 13 curr_p_pars_size=6
+0 =p, s= 13 grad_est_size=6
+0 =p, s= 13 ap_par_size=6
+0 =p, s= 13 curr_state=14
+0 =p, s= 13 curr_p_pars_size=6
+0 =p, s= 13 grad_est_size=6
+0 =p, s= 13 ap_par_size=6
+0 =p, s= 13 curr_state=14
+0 =p, s= 13 curr_p_pars_size=6
+0 =p, s= 13 grad_est_size=6
+0 =p, s= 13 ap_par_size=6
+0 =p, s= 13 curr_state=14
+0 =p, s= 13 curr_p_pars_size=6
+0 =p, s= 13 grad_est_size=6
+0 =p, s= 13 ap_par_size=6
+0 =p, s= 13 curr_state=14
+0 =p, s= 13 curr_p_pars_size=6
+0 =p, s= 13 grad_est_size=6
+0 =p, s= 13 ap_par_size=6
+0 =p, s= 13 curr_state=14
+0 =p, s= 13 curr_p_pars_size=6
+0 =p, s= 13 grad_est_size=6
+0 =p, s= 13 ap_par_size=6
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+IS
+HERE
+0 =p, s= 14 curr_state=14
+0 =p, s= 14 curr_p_pars_size=6
+0 =p, s= 14 grad_est_size=6
+0 =p, s= 14 ap_par_size=6
+0 =p, s= 14 curr_state=14
+0 =p, s= 14 curr_p_pars_size=6
+0 =p, s= 14 grad_est_size=6
+0 =p, s= 14 ap_par_size=6
+0 =p, s= 14 curr_state=14
+0 =p, s= 14 curr_p_pars_size=6
+0 =p, s= 14 grad_est_size=6
+0 =p, s= 14 ap_par_size=6
+0 =p, s= 14 curr_state=14
+0 =p, s= 14 curr_p_pars_size=6
+0 =p, s= 14 grad_est_size=6
+0 =p, s= 14 ap_par_size=6
+0 =p, s= 14 curr_state=14
+0 =p, s= 14 curr_p_pars_size=6
+0 =p, s= 14 grad_est_size=6
+0 =p, s= 14 ap_par_size=6
+0 =p, s= 14 curr_state=14
+0 =p, s= 14 curr_p_pars_size=6
+0 =p, s= 14 grad_est_size=6
+0 =p, s= 14 ap_par_size=6
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+IS
+HERE
+0 =p, s= 15 curr_state=14
+0 =p, s= 15 curr_p_pars_size=6
+0 =p, s= 15 grad_est_size=6
+0 =p, s= 15 ap_par_size=6
+0 =p, s= 15 curr_state=14
+0 =p, s= 15 curr_p_pars_size=6
+0 =p, s= 15 grad_est_size=6
+0 =p, s= 15 ap_par_size=6
+0 =p, s= 15 curr_state=14
+0 =p, s= 15 curr_p_pars_size=6
+0 =p, s= 15 grad_est_size=6
+0 =p, s= 15 ap_par_size=6
+0 =p, s= 15 curr_state=14
+0 =p, s= 15 curr_p_pars_size=6
+0 =p, s= 15 grad_est_size=6
+0 =p, s= 15 ap_par_size=6
+0 =p, s= 15 curr_state=14
+0 =p, s= 15 curr_p_pars_size=6
+0 =p, s= 15 grad_est_size=6
+0 =p, s= 15 ap_par_size=6
+0 =p, s= 15 curr_state=14
+0 =p, s= 15 curr_p_pars_size=6
+0 =p, s= 15 grad_est_size=6
+0 =p, s= 15 ap_par_size=6
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+IS
+HERE
+0 =p, s= 16 curr_state=14
+0 =p, s= 16 curr_p_pars_size=6
+0 =p, s= 16 grad_est_size=6
+0 =p, s= 16 ap_par_size=6
+0 =p, s= 16 curr_state=14
+0 =p, s= 16 curr_p_pars_size=6
+0 =p, s= 16 grad_est_size=6
+0 =p, s= 16 ap_par_size=6
+0 =p, s= 16 curr_state=14
+0 =p, s= 16 curr_p_pars_size=6
+0 =p, s= 16 grad_est_size=6
+0 =p, s= 16 ap_par_size=6
+0 =p, s= 16 curr_state=14
+0 =p, s= 16 curr_p_pars_size=6
+0 =p, s= 16 grad_est_size=6
+0 =p, s= 16 ap_par_size=6
+0 =p, s= 16 curr_state=14
+0 =p, s= 16 curr_p_pars_size=6
+0 =p, s= 16 grad_est_size=6
+0 =p, s= 16 ap_par_size=6
+0 =p, s= 16 curr_state=14
+0 =p, s= 16 curr_p_pars_size=6
+0 =p, s= 16 grad_est_size=6
+0 =p, s= 16 ap_par_size=6
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+IS
+HERE
+0 =p, s= 17 curr_state=14
+0 =p, s= 17 curr_p_pars_size=6
+0 =p, s= 17 grad_est_size=6
+0 =p, s= 17 ap_par_size=6
+0 =p, s= 17 curr_state=14
+0 =p, s= 17 curr_p_pars_size=6
+0 =p, s= 17 grad_est_size=6
+0 =p, s= 17 ap_par_size=6
+0 =p, s= 17 curr_state=14
+0 =p, s= 17 curr_p_pars_size=6
+0 =p, s= 17 grad_est_size=6
+0 =p, s= 17 ap_par_size=6
+0 =p, s= 17 curr_state=14
+0 =p, s= 17 curr_p_pars_size=6
+0 =p, s= 17 grad_est_size=6
+0 =p, s= 17 ap_par_size=6
+0 =p, s= 17 curr_state=14
+0 =p, s= 17 curr_p_pars_size=6
+0 =p, s= 17 grad_est_size=6
+0 =p, s= 17 ap_par_size=6
+0 =p, s= 17 curr_state=14
+0 =p, s= 17 curr_p_pars_size=6
+0 =p, s= 17 grad_est_size=6
+0 =p, s= 17 ap_par_size=6
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+IS
+HERE
+0 =p, s= 18 curr_state=14
+0 =p, s= 18 curr_p_pars_size=6
+0 =p, s= 18 grad_est_size=6
+0 =p, s= 18 ap_par_size=6
+0 =p, s= 18 curr_state=14
+0 =p, s= 18 curr_p_pars_size=6
+0 =p, s= 18 grad_est_size=6
+0 =p, s= 18 ap_par_size=6
+0 =p, s= 18 curr_state=14
+0 =p, s= 18 curr_p_pars_size=6
+0 =p, s= 18 grad_est_size=6
+0 =p, s= 18 ap_par_size=6
+0 =p, s= 18 curr_state=14
+0 =p, s= 18 curr_p_pars_size=6
+0 =p, s= 18 grad_est_size=6
+0 =p, s= 18 ap_par_size=6
+0 =p, s= 18 curr_state=14
+0 =p, s= 18 curr_p_pars_size=6
+0 =p, s= 18 grad_est_size=6
+0 =p, s= 18 ap_par_size=6
+0 =p, s= 18 curr_state=14
+0 =p, s= 18 curr_p_pars_size=6
+0 =p, s= 18 grad_est_size=6
+0 =p, s= 18 ap_par_size=6
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+IS
+HERE
+0 =p, s= 19 curr_state=14
+0 =p, s= 19 curr_p_pars_size=6
+0 =p, s= 19 grad_est_size=6
+0 =p, s= 19 ap_par_size=6
+0 =p, s= 19 curr_state=14
+0 =p, s= 19 curr_p_pars_size=6
+0 =p, s= 19 grad_est_size=6
+0 =p, s= 19 ap_par_size=6
+0 =p, s= 19 curr_state=14
+0 =p, s= 19 curr_p_pars_size=6
+0 =p, s= 19 grad_est_size=6
+0 =p, s= 19 ap_par_size=6
+0 =p, s= 19 curr_state=14
+0 =p, s= 19 curr_p_pars_size=6
+0 =p, s= 19 grad_est_size=6
+0 =p, s= 19 ap_par_size=6
+0 =p, s= 19 curr_state=14
+0 =p, s= 19 curr_p_pars_size=6
+0 =p, s= 19 grad_est_size=6
+0 =p, s= 19 ap_par_size=6
+0 =p, s= 19 curr_state=14
+0 =p, s= 19 curr_p_pars_size=6
+0 =p, s= 19 grad_est_size=6
+0 =p, s= 19 ap_par_size=6
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+curr_p_pars[p][s].size()6
+grad_est[p][s].size()6
+ap_par[p][s].size()6
+IS
+HERE
+0 =p, s= 20 curr_state=14
+0 =p, s= 20 curr_p_pars_size=1
+0 =p, s= 20 grad_est_size=1
+0 =p, s= 20 ap_par_size=1
+0 =p, s= 20 curr_state=14
+0 =p, s= 20 curr_p_pars_size=1
+0 =p, s= 20 grad_est_size=1
+0 =p, s= 20 ap_par_size=1
+0 =p, s= 20 curr_state=14
+0 =p, s= 20 curr_p_pars_size=1
+0 =p, s= 20 grad_est_size=1
+0 =p, s= 20 ap_par_size=1
+0 =p, s= 20 curr_state=14
+0 =p, s= 20 curr_p_pars_size=1
+0 =p, s= 20 grad_est_size=1
+0 =p, s= 20 ap_par_size=1
+0 =p, s= 20 curr_state=14
+0 =p, s= 20 curr_p_pars_size=1
+0 =p, s= 20 grad_est_size=1
+0 =p, s= 20 ap_par_size=1
+0 =p, s= 20 curr_state=14
+0 =p, s= 20 curr_p_pars_size=1
+0 =p, s= 20 grad_est_size=1
+0 =p, s= 20 ap_par_size=1
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()1
+grad_est[p][s].size()1
+ap_par[p][s].size()1
+IS
+HERE
+0 =p, s= 21 curr_state=14
+0 =p, s= 21 curr_p_pars_size=1
+0 =p, s= 21 grad_est_size=1
+0 =p, s= 21 ap_par_size=1
+0 =p, s= 21 curr_state=14
+0 =p, s= 21 curr_p_pars_size=1
+0 =p, s= 21 grad_est_size=1
+0 =p, s= 21 ap_par_size=1
+0 =p, s= 21 curr_state=14
+0 =p, s= 21 curr_p_pars_size=1
+0 =p, s= 21 grad_est_size=1
+0 =p, s= 21 ap_par_size=1
+0 =p, s= 21 curr_state=14
+0 =p, s= 21 curr_p_pars_size=1
+0 =p, s= 21 grad_est_size=1
+0 =p, s= 21 ap_par_size=1
+0 =p, s= 21 curr_state=14
+0 =p, s= 21 curr_p_pars_size=1
+0 =p, s= 21 grad_est_size=1
+0 =p, s= 21 ap_par_size=1
+0 =p, s= 21 curr_state=14
+0 =p, s= 21 curr_p_pars_size=1
+0 =p, s= 21 grad_est_size=1
+0 =p, s= 21 ap_par_size=1
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()1
+grad_est[p][s].size()1
+ap_par[p][s].size()1
+IS
+HERE
+0 =p, s= 22 curr_state=14
+0 =p, s= 22 curr_p_pars_size=1
+0 =p, s= 22 grad_est_size=1
+0 =p, s= 22 ap_par_size=1
+0 =p, s= 22 curr_state=14
+0 =p, s= 22 curr_p_pars_size=1
+0 =p, s= 22 grad_est_size=1
+0 =p, s= 22 ap_par_size=1
+0 =p, s= 22 curr_state=14
+0 =p, s= 22 curr_p_pars_size=1
+0 =p, s= 22 grad_est_size=1
+0 =p, s= 22 ap_par_size=1
+0 =p, s= 22 curr_state=14
+0 =p, s= 22 curr_p_pars_size=1
+0 =p, s= 22 grad_est_size=1
+0 =p, s= 22 ap_par_size=1
+0 =p, s= 22 curr_state=14
+0 =p, s= 22 curr_p_pars_size=1
+0 =p, s= 22 grad_est_size=1
+0 =p, s= 22 ap_par_size=1
+0 =p, s= 22 curr_state=14
+0 =p, s= 22 curr_p_pars_size=1
+0 =p, s= 22 grad_est_size=1
+0 =p, s= 22 ap_par_size=1
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()1
+grad_est[p][s].size()1
+ap_par[p][s].size()1
+IS
+HERE
+0 =p, s= 23 curr_state=14
+0 =p, s= 23 curr_p_pars_size=1
+0 =p, s= 23 grad_est_size=1
+0 =p, s= 23 ap_par_size=1
+0 =p, s= 23 curr_state=14
+0 =p, s= 23 curr_p_pars_size=1
+0 =p, s= 23 grad_est_size=1
+0 =p, s= 23 ap_par_size=1
+0 =p, s= 23 curr_state=14
+0 =p, s= 23 curr_p_pars_size=1
+0 =p, s= 23 grad_est_size=1
+0 =p, s= 23 ap_par_size=1
+0 =p, s= 23 curr_state=14
+0 =p, s= 23 curr_p_pars_size=1
+0 =p, s= 23 grad_est_size=1
+0 =p, s= 23 ap_par_size=1
+0 =p, s= 23 curr_state=14
+0 =p, s= 23 curr_p_pars_size=1
+0 =p, s= 23 grad_est_size=1
+0 =p, s= 23 ap_par_size=1
+0 =p, s= 23 curr_state=14
+0 =p, s= 23 curr_p_pars_size=1
+0 =p, s= 23 grad_est_size=1
+0 =p, s= 23 ap_par_size=1
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()1
+grad_est[p][s].size()1
+ap_par[p][s].size()1
+IS
+HERE
+0 =p, s= 24 curr_state=14
+0 =p, s= 24 curr_p_pars_size=1
+0 =p, s= 24 grad_est_size=1
+0 =p, s= 24 ap_par_size=1
+0 =p, s= 24 curr_state=14
+0 =p, s= 24 curr_p_pars_size=1
+0 =p, s= 24 grad_est_size=1
+0 =p, s= 24 ap_par_size=1
+0 =p, s= 24 curr_state=14
+0 =p, s= 24 curr_p_pars_size=1
+0 =p, s= 24 grad_est_size=1
+0 =p, s= 24 ap_par_size=1
+0 =p, s= 24 curr_state=14
+0 =p, s= 24 curr_p_pars_size=1
+0 =p, s= 24 grad_est_size=1
+0 =p, s= 24 ap_par_size=1
+0 =p, s= 24 curr_state=14
+0 =p, s= 24 curr_p_pars_size=1
+0 =p, s= 24 grad_est_size=1
+0 =p, s= 24 ap_par_size=1
+0 =p, s= 24 curr_state=14
+0 =p, s= 24 curr_p_pars_size=1
+0 =p, s= 24 grad_est_size=1
+0 =p, s= 24 ap_par_size=1
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()1
+grad_est[p][s].size()1
+ap_par[p][s].size()1
+IS
+HERE
+0 =p, s= 25 curr_state=14
+0 =p, s= 25 curr_p_pars_size=1
+0 =p, s= 25 grad_est_size=1
+0 =p, s= 25 ap_par_size=1
+0 =p, s= 25 curr_state=14
+0 =p, s= 25 curr_p_pars_size=1
+0 =p, s= 25 grad_est_size=1
+0 =p, s= 25 ap_par_size=1
+0 =p, s= 25 curr_state=14
+0 =p, s= 25 curr_p_pars_size=1
+0 =p, s= 25 grad_est_size=1
+0 =p, s= 25 ap_par_size=1
+0 =p, s= 25 curr_state=14
+0 =p, s= 25 curr_p_pars_size=1
+0 =p, s= 25 grad_est_size=1
+0 =p, s= 25 ap_par_size=1
+0 =p, s= 25 curr_state=14
+0 =p, s= 25 curr_p_pars_size=1
+0 =p, s= 25 grad_est_size=1
+0 =p, s= 25 ap_par_size=1
+0 =p, s= 25 curr_state=14
+0 =p, s= 25 curr_p_pars_size=1
+0 =p, s= 25 grad_est_size=1
+0 =p, s= 25 ap_par_size=1
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()1
+grad_est[p][s].size()1
+ap_par[p][s].size()1
+IS
+HERE
+0 =p, s= 26 curr_state=14
+0 =p, s= 26 curr_p_pars_size=1
+0 =p, s= 26 grad_est_size=1
+0 =p, s= 26 ap_par_size=1
+0 =p, s= 26 curr_state=14
+0 =p, s= 26 curr_p_pars_size=1
+0 =p, s= 26 grad_est_size=1
+0 =p, s= 26 ap_par_size=1
+0 =p, s= 26 curr_state=14
+0 =p, s= 26 curr_p_pars_size=1
+0 =p, s= 26 grad_est_size=1
+0 =p, s= 26 ap_par_size=1
+0 =p, s= 26 curr_state=14
+0 =p, s= 26 curr_p_pars_size=1
+0 =p, s= 26 grad_est_size=1
+0 =p, s= 26 ap_par_size=1
+0 =p, s= 26 curr_state=14
+0 =p, s= 26 curr_p_pars_size=1
+0 =p, s= 26 grad_est_size=1
+0 =p, s= 26 ap_par_size=1
+0 =p, s= 26 curr_state=14
+0 =p, s= 26 curr_p_pars_size=1
+0 =p, s= 26 grad_est_size=1
+0 =p, s= 26 ap_par_size=1
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()1
+grad_est[p][s].size()1
+ap_par[p][s].size()1
+IS
+HERE
+0 =p, s= 27 curr_state=14
+0 =p, s= 27 curr_p_pars_size=1
+0 =p, s= 27 grad_est_size=1
+0 =p, s= 27 ap_par_size=1
+0 =p, s= 27 curr_state=14
+0 =p, s= 27 curr_p_pars_size=1
+0 =p, s= 27 grad_est_size=1
+0 =p, s= 27 ap_par_size=1
+0 =p, s= 27 curr_state=14
+0 =p, s= 27 curr_p_pars_size=1
+0 =p, s= 27 grad_est_size=1
+0 =p, s= 27 ap_par_size=1
+0 =p, s= 27 curr_state=14
+0 =p, s= 27 curr_p_pars_size=1
+0 =p, s= 27 grad_est_size=1
+0 =p, s= 27 ap_par_size=1
+0 =p, s= 27 curr_state=14
+0 =p, s= 27 curr_p_pars_size=1
+0 =p, s= 27 grad_est_size=1
+0 =p, s= 27 ap_par_size=1
+0 =p, s= 27 curr_state=14
+0 =p, s= 27 curr_p_pars_size=1
+0 =p, s= 27 grad_est_size=1
+0 =p, s= 27 ap_par_size=1
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()1
+grad_est[p][s].size()1
+ap_par[p][s].size()1
+IS
+HERE
+0 =p, s= 28 curr_state=14
+0 =p, s= 28 curr_p_pars_size=1
+0 =p, s= 28 grad_est_size=1
+0 =p, s= 28 ap_par_size=1
+0 =p, s= 28 curr_state=14
+0 =p, s= 28 curr_p_pars_size=1
+0 =p, s= 28 grad_est_size=1
+0 =p, s= 28 ap_par_size=1
+0 =p, s= 28 curr_state=14
+0 =p, s= 28 curr_p_pars_size=1
+0 =p, s= 28 grad_est_size=1
+0 =p, s= 28 ap_par_size=1
+0 =p, s= 28 curr_state=14
+0 =p, s= 28 curr_p_pars_size=1
+0 =p, s= 28 grad_est_size=1
+0 =p, s= 28 ap_par_size=1
+0 =p, s= 28 curr_state=14
+0 =p, s= 28 curr_p_pars_size=1
+0 =p, s= 28 grad_est_size=1
+0 =p, s= 28 ap_par_size=1
+0 =p, s= 28 curr_state=14
+0 =p, s= 28 curr_p_pars_size=1
+0 =p, s= 28 grad_est_size=1
+0 =p, s= 28 ap_par_size=1
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()1
+grad_est[p][s].size()1
+ap_par[p][s].size()1
+IS
+HERE
+0 =p, s= 29 curr_state=14
+0 =p, s= 29 curr_p_pars_size=1
+0 =p, s= 29 grad_est_size=1
+0 =p, s= 29 ap_par_size=1
+0 =p, s= 29 curr_state=14
+0 =p, s= 29 curr_p_pars_size=1
+0 =p, s= 29 grad_est_size=1
+0 =p, s= 29 ap_par_size=1
+0 =p, s= 29 curr_state=14
+0 =p, s= 29 curr_p_pars_size=1
+0 =p, s= 29 grad_est_size=1
+0 =p, s= 29 ap_par_size=1
+0 =p, s= 29 curr_state=14
+0 =p, s= 29 curr_p_pars_size=1
+0 =p, s= 29 grad_est_size=1
+0 =p, s= 29 ap_par_size=1
+0 =p, s= 29 curr_state=14
+0 =p, s= 29 curr_p_pars_size=1
+0 =p, s= 29 grad_est_size=1
+0 =p, s= 29 ap_par_size=1
+0 =p, s= 29 curr_state=14
+0 =p, s= 29 curr_p_pars_size=1
+0 =p, s= 29 grad_est_size=1
+0 =p, s= 29 ap_par_size=1
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()1
+grad_est[p][s].size()1
+ap_par[p][s].size()1
+IS
+HERE
+0 =p, s= 30 curr_state=14
+0 =p, s= 30 curr_p_pars_size=1
+0 =p, s= 30 grad_est_size=1
+0 =p, s= 30 ap_par_size=1
+0 =p, s= 30 curr_state=14
+0 =p, s= 30 curr_p_pars_size=1
+0 =p, s= 30 grad_est_size=1
+0 =p, s= 30 ap_par_size=1
+0 =p, s= 30 curr_state=14
+0 =p, s= 30 curr_p_pars_size=1
+0 =p, s= 30 grad_est_size=1
+0 =p, s= 30 ap_par_size=1
+0 =p, s= 30 curr_state=14
+0 =p, s= 30 curr_p_pars_size=1
+0 =p, s= 30 grad_est_size=1
+0 =p, s= 30 ap_par_size=1
+0 =p, s= 30 curr_state=14
+0 =p, s= 30 curr_p_pars_size=1
+0 =p, s= 30 grad_est_size=1
+0 =p, s= 30 ap_par_size=1
+0 =p, s= 30 curr_state=14
+0 =p, s= 30 curr_p_pars_size=1
+0 =p, s= 30 grad_est_size=1
+0 =p, s= 30 ap_par_size=1
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()1
+grad_est[p][s].size()1
+ap_par[p][s].size()1
+IS
+HERE
+0 =p, s= 31 curr_state=14
+0 =p, s= 31 curr_p_pars_size=1
+0 =p, s= 31 grad_est_size=1
+0 =p, s= 31 ap_par_size=1
+0 =p, s= 31 curr_state=14
+0 =p, s= 31 curr_p_pars_size=1
+0 =p, s= 31 grad_est_size=1
+0 =p, s= 31 ap_par_size=1
+0 =p, s= 31 curr_state=14
+0 =p, s= 31 curr_p_pars_size=1
+0 =p, s= 31 grad_est_size=1
+0 =p, s= 31 ap_par_size=1
+0 =p, s= 31 curr_state=14
+0 =p, s= 31 curr_p_pars_size=1
+0 =p, s= 31 grad_est_size=1
+0 =p, s= 31 ap_par_size=1
+0 =p, s= 31 curr_state=14
+0 =p, s= 31 curr_p_pars_size=1
+0 =p, s= 31 grad_est_size=1
+0 =p, s= 31 ap_par_size=1
+0 =p, s= 31 curr_state=14
+0 =p, s= 31 curr_p_pars_size=1
+0 =p, s= 31 grad_est_size=1
+0 =p, s= 31 ap_par_size=1
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()1
+grad_est[p][s].size()1
+ap_par[p][s].size()1
+IS
+HERE
+0 =p, s= 32 curr_state=14
+0 =p, s= 32 curr_p_pars_size=1
+0 =p, s= 32 grad_est_size=1
+0 =p, s= 32 ap_par_size=1
+0 =p, s= 32 curr_state=14
+0 =p, s= 32 curr_p_pars_size=1
+0 =p, s= 32 grad_est_size=1
+0 =p, s= 32 ap_par_size=1
+0 =p, s= 32 curr_state=14
+0 =p, s= 32 curr_p_pars_size=1
+0 =p, s= 32 grad_est_size=1
+0 =p, s= 32 ap_par_size=1
+0 =p, s= 32 curr_state=14
+0 =p, s= 32 curr_p_pars_size=1
+0 =p, s= 32 grad_est_size=1
+0 =p, s= 32 ap_par_size=1
+0 =p, s= 32 curr_state=14
+0 =p, s= 32 curr_p_pars_size=1
+0 =p, s= 32 grad_est_size=1
+0 =p, s= 32 ap_par_size=1
+0 =p, s= 32 curr_state=14
+0 =p, s= 32 curr_p_pars_size=1
+0 =p, s= 32 grad_est_size=1
+0 =p, s= 32 ap_par_size=1
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()1
+grad_est[p][s].size()1
+ap_par[p][s].size()1
+IS
+HERE
+0 =p, s= 33 curr_state=14
+0 =p, s= 33 curr_p_pars_size=1
+0 =p, s= 33 grad_est_size=1
+0 =p, s= 33 ap_par_size=1
+0 =p, s= 33 curr_state=14
+0 =p, s= 33 curr_p_pars_size=1
+0 =p, s= 33 grad_est_size=1
+0 =p, s= 33 ap_par_size=1
+0 =p, s= 33 curr_state=14
+0 =p, s= 33 curr_p_pars_size=1
+0 =p, s= 33 grad_est_size=1
+0 =p, s= 33 ap_par_size=1
+0 =p, s= 33 curr_state=14
+0 =p, s= 33 curr_p_pars_size=1
+0 =p, s= 33 grad_est_size=1
+0 =p, s= 33 ap_par_size=1
+0 =p, s= 33 curr_state=14
+0 =p, s= 33 curr_p_pars_size=1
+0 =p, s= 33 grad_est_size=1
+0 =p, s= 33 ap_par_size=1
+0 =p, s= 33 curr_state=14
+0 =p, s= 33 curr_p_pars_size=1
+0 =p, s= 33 grad_est_size=1
+0 =p, s= 33 ap_par_size=1
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()1
+grad_est[p][s].size()1
+ap_par[p][s].size()1
+IS
+HERE
+0 =p, s= 34 curr_state=14
+0 =p, s= 34 curr_p_pars_size=1
+0 =p, s= 34 grad_est_size=1
+0 =p, s= 34 ap_par_size=1
+0 =p, s= 34 curr_state=14
+0 =p, s= 34 curr_p_pars_size=1
+0 =p, s= 34 grad_est_size=1
+0 =p, s= 34 ap_par_size=1
+0 =p, s= 34 curr_state=14
+0 =p, s= 34 curr_p_pars_size=1
+0 =p, s= 34 grad_est_size=1
+0 =p, s= 34 ap_par_size=1
+0 =p, s= 34 curr_state=14
+0 =p, s= 34 curr_p_pars_size=1
+0 =p, s= 34 grad_est_size=1
+0 =p, s= 34 ap_par_size=1
+0 =p, s= 34 curr_state=14
+0 =p, s= 34 curr_p_pars_size=1
+0 =p, s= 34 grad_est_size=1
+0 =p, s= 34 ap_par_size=1
+0 =p, s= 34 curr_state=14
+0 =p, s= 34 curr_p_pars_size=1
+0 =p, s= 34 grad_est_size=1
+0 =p, s= 34 ap_par_size=1
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()1
+grad_est[p][s].size()1
+ap_par[p][s].size()1
+IS
+HERE
+0 =p, s= 35 curr_state=14
+0 =p, s= 35 curr_p_pars_size=1
+0 =p, s= 35 grad_est_size=1
+0 =p, s= 35 ap_par_size=1
+0 =p, s= 35 curr_state=14
+0 =p, s= 35 curr_p_pars_size=1
+0 =p, s= 35 grad_est_size=1
+0 =p, s= 35 ap_par_size=1
+0 =p, s= 35 curr_state=14
+0 =p, s= 35 curr_p_pars_size=1
+0 =p, s= 35 grad_est_size=1
+0 =p, s= 35 ap_par_size=1
+0 =p, s= 35 curr_state=14
+0 =p, s= 35 curr_p_pars_size=1
+0 =p, s= 35 grad_est_size=1
+0 =p, s= 35 ap_par_size=1
+0 =p, s= 35 curr_state=14
+0 =p, s= 35 curr_p_pars_size=1
+0 =p, s= 35 grad_est_size=1
+0 =p, s= 35 ap_par_size=1
+0 =p, s= 35 curr_state=14
+0 =p, s= 35 curr_p_pars_size=1
+0 =p, s= 35 grad_est_size=1
+0 =p, s= 35 ap_par_size=1
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()1
+grad_est[p][s].size()1
+ap_par[p][s].size()1
+IS
+HERE
+0 =p, s= 36 curr_state=14
+0 =p, s= 36 curr_p_pars_size=1
+0 =p, s= 36 grad_est_size=1
+0 =p, s= 36 ap_par_size=1
+0 =p, s= 36 curr_state=14
+0 =p, s= 36 curr_p_pars_size=1
+0 =p, s= 36 grad_est_size=1
+0 =p, s= 36 ap_par_size=1
+0 =p, s= 36 curr_state=14
+0 =p, s= 36 curr_p_pars_size=1
+0 =p, s= 36 grad_est_size=1
+0 =p, s= 36 ap_par_size=1
+0 =p, s= 36 curr_state=14
+0 =p, s= 36 curr_p_pars_size=1
+0 =p, s= 36 grad_est_size=1
+0 =p, s= 36 ap_par_size=1
+0 =p, s= 36 curr_state=14
+0 =p, s= 36 curr_p_pars_size=1
+0 =p, s= 36 grad_est_size=1
+0 =p, s= 36 ap_par_size=1
+0 =p, s= 36 curr_state=14
+0 =p, s= 36 curr_p_pars_size=1
+0 =p, s= 36 grad_est_size=1
+0 =p, s= 36 ap_par_size=1
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()1
+grad_est[p][s].size()1
+ap_par[p][s].size()1
+IS
+HERE
+0 =p, s= 37 curr_state=14
+0 =p, s= 37 curr_p_pars_size=1
+0 =p, s= 37 grad_est_size=1
+0 =p, s= 37 ap_par_size=1
+0 =p, s= 37 curr_state=14
+0 =p, s= 37 curr_p_pars_size=1
+0 =p, s= 37 grad_est_size=1
+0 =p, s= 37 ap_par_size=1
+0 =p, s= 37 curr_state=14
+0 =p, s= 37 curr_p_pars_size=1
+0 =p, s= 37 grad_est_size=1
+0 =p, s= 37 ap_par_size=1
+0 =p, s= 37 curr_state=14
+0 =p, s= 37 curr_p_pars_size=1
+0 =p, s= 37 grad_est_size=1
+0 =p, s= 37 ap_par_size=1
+0 =p, s= 37 curr_state=14
+0 =p, s= 37 curr_p_pars_size=1
+0 =p, s= 37 grad_est_size=1
+0 =p, s= 37 ap_par_size=1
+0 =p, s= 37 curr_state=14
+0 =p, s= 37 curr_p_pars_size=1
+0 =p, s= 37 grad_est_size=1
+0 =p, s= 37 ap_par_size=1
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()1
+grad_est[p][s].size()1
+ap_par[p][s].size()1
+IS
+HERE
+0 =p, s= 38 curr_state=14
+0 =p, s= 38 curr_p_pars_size=1
+0 =p, s= 38 grad_est_size=1
+0 =p, s= 38 ap_par_size=1
+0 =p, s= 38 curr_state=14
+0 =p, s= 38 curr_p_pars_size=1
+0 =p, s= 38 grad_est_size=1
+0 =p, s= 38 ap_par_size=1
+0 =p, s= 38 curr_state=14
+0 =p, s= 38 curr_p_pars_size=1
+0 =p, s= 38 grad_est_size=1
+0 =p, s= 38 ap_par_size=1
+0 =p, s= 38 curr_state=14
+0 =p, s= 38 curr_p_pars_size=1
+0 =p, s= 38 grad_est_size=1
+0 =p, s= 38 ap_par_size=1
+0 =p, s= 38 curr_state=14
+0 =p, s= 38 curr_p_pars_size=1
+0 =p, s= 38 grad_est_size=1
+0 =p, s= 38 ap_par_size=1
+0 =p, s= 38 curr_state=14
+0 =p, s= 38 curr_p_pars_size=1
+0 =p, s= 38 grad_est_size=1
+0 =p, s= 38 ap_par_size=1
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()1
+grad_est[p][s].size()1
+ap_par[p][s].size()1
+IS
+HERE
+0 =p, s= 39 curr_state=14
+0 =p, s= 39 curr_p_pars_size=1
+0 =p, s= 39 grad_est_size=1
+0 =p, s= 39 ap_par_size=1
+0 =p, s= 39 curr_state=14
+0 =p, s= 39 curr_p_pars_size=1
+0 =p, s= 39 grad_est_size=1
+0 =p, s= 39 ap_par_size=1
+0 =p, s= 39 curr_state=14
+0 =p, s= 39 curr_p_pars_size=1
+0 =p, s= 39 grad_est_size=1
+0 =p, s= 39 ap_par_size=1
+0 =p, s= 39 curr_state=14
+0 =p, s= 39 curr_p_pars_size=1
+0 =p, s= 39 grad_est_size=1
+0 =p, s= 39 ap_par_size=1
+0 =p, s= 39 curr_state=14
+0 =p, s= 39 curr_p_pars_size=1
+0 =p, s= 39 grad_est_size=1
+0 =p, s= 39 ap_par_size=1
+0 =p, s= 39 curr_state=14
+0 =p, s= 39 curr_p_pars_size=1
+0 =p, s= 39 grad_est_size=1
+0 =p, s= 39 ap_par_size=1
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()1
+grad_est[p][s].size()1
+ap_par[p][s].size()1
+IS
+HERE
+0 =p, s= 40 curr_state=14
+0 =p, s= 40 curr_p_pars_size=1
+0 =p, s= 40 grad_est_size=1
+0 =p, s= 40 ap_par_size=1
+0 =p, s= 40 curr_state=14
+0 =p, s= 40 curr_p_pars_size=1
+0 =p, s= 40 grad_est_size=1
+0 =p, s= 40 ap_par_size=1
+0 =p, s= 40 curr_state=14
+0 =p, s= 40 curr_p_pars_size=1
+0 =p, s= 40 grad_est_size=1
+0 =p, s= 40 ap_par_size=1
+0 =p, s= 40 curr_state=14
+0 =p, s= 40 curr_p_pars_size=1
+0 =p, s= 40 grad_est_size=1
+0 =p, s= 40 ap_par_size=1
+0 =p, s= 40 curr_state=14
+0 =p, s= 40 curr_p_pars_size=1
+0 =p, s= 40 grad_est_size=1
+0 =p, s= 40 ap_par_size=1
+0 =p, s= 40 curr_state=14
+0 =p, s= 40 curr_p_pars_size=1
+0 =p, s= 40 grad_est_size=1
+0 =p, s= 40 ap_par_size=1
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()1
+grad_est[p][s].size()1
+ap_par[p][s].size()1
+IS
+HERE
+0 =p, s= 41 curr_state=14
+0 =p, s= 41 curr_p_pars_size=1
+0 =p, s= 41 grad_est_size=1
+0 =p, s= 41 ap_par_size=1
+0 =p, s= 41 curr_state=14
+0 =p, s= 41 curr_p_pars_size=1
+0 =p, s= 41 grad_est_size=1
+0 =p, s= 41 ap_par_size=1
+0 =p, s= 41 curr_state=14
+0 =p, s= 41 curr_p_pars_size=1
+0 =p, s= 41 grad_est_size=1
+0 =p, s= 41 ap_par_size=1
+0 =p, s= 41 curr_state=14
+0 =p, s= 41 curr_p_pars_size=1
+0 =p, s= 41 grad_est_size=1
+0 =p, s= 41 ap_par_size=1
+0 =p, s= 41 curr_state=14
+0 =p, s= 41 curr_p_pars_size=1
+0 =p, s= 41 grad_est_size=1
+0 =p, s= 41 ap_par_size=1
+0 =p, s= 41 curr_state=14
+0 =p, s= 41 curr_p_pars_size=1
+0 =p, s= 41 grad_est_size=1
+0 =p, s= 41 ap_par_size=1
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()1
+grad_est[p][s].size()1
+ap_par[p][s].size()1
+IS
+HERE
+0 =p, s= 42 curr_state=14
+0 =p, s= 42 curr_p_pars_size=1
+0 =p, s= 42 grad_est_size=1
+0 =p, s= 42 ap_par_size=1
+0 =p, s= 42 curr_state=14
+0 =p, s= 42 curr_p_pars_size=1
+0 =p, s= 42 grad_est_size=1
+0 =p, s= 42 ap_par_size=1
+0 =p, s= 42 curr_state=14
+0 =p, s= 42 curr_p_pars_size=1
+0 =p, s= 42 grad_est_size=1
+0 =p, s= 42 ap_par_size=1
+0 =p, s= 42 curr_state=14
+0 =p, s= 42 curr_p_pars_size=1
+0 =p, s= 42 grad_est_size=1
+0 =p, s= 42 ap_par_size=1
+0 =p, s= 42 curr_state=14
+0 =p, s= 42 curr_p_pars_size=1
+0 =p, s= 42 grad_est_size=1
+0 =p, s= 42 ap_par_size=1
+0 =p, s= 42 curr_state=14
+0 =p, s= 42 curr_p_pars_size=1
+0 =p, s= 42 grad_est_size=1
+0 =p, s= 42 ap_par_size=1
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()1
+grad_est[p][s].size()1
+ap_par[p][s].size()1
+IS
+HERE
+0 =p, s= 43 curr_state=14
+0 =p, s= 43 curr_p_pars_size=1
+0 =p, s= 43 grad_est_size=1
+0 =p, s= 43 ap_par_size=1
+0 =p, s= 43 curr_state=14
+0 =p, s= 43 curr_p_pars_size=1
+0 =p, s= 43 grad_est_size=1
+0 =p, s= 43 ap_par_size=1
+0 =p, s= 43 curr_state=14
+0 =p, s= 43 curr_p_pars_size=1
+0 =p, s= 43 grad_est_size=1
+0 =p, s= 43 ap_par_size=1
+0 =p, s= 43 curr_state=14
+0 =p, s= 43 curr_p_pars_size=1
+0 =p, s= 43 grad_est_size=1
+0 =p, s= 43 ap_par_size=1
+0 =p, s= 43 curr_state=14
+0 =p, s= 43 curr_p_pars_size=1
+0 =p, s= 43 grad_est_size=1
+0 =p, s= 43 ap_par_size=1
+0 =p, s= 43 curr_state=14
+0 =p, s= 43 curr_p_pars_size=1
+0 =p, s= 43 grad_est_size=1
+0 =p, s= 43 ap_par_size=1
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()1
+grad_est[p][s].size()1
+ap_par[p][s].size()1
+IS
+HERE
+0 =p, s= 44 curr_state=14
+0 =p, s= 44 curr_p_pars_size=1
+0 =p, s= 44 grad_est_size=1
+0 =p, s= 44 ap_par_size=1
+0 =p, s= 44 curr_state=14
+0 =p, s= 44 curr_p_pars_size=1
+0 =p, s= 44 grad_est_size=1
+0 =p, s= 44 ap_par_size=1
+0 =p, s= 44 curr_state=14
+0 =p, s= 44 curr_p_pars_size=1
+0 =p, s= 44 grad_est_size=1
+0 =p, s= 44 ap_par_size=1
+0 =p, s= 44 curr_state=14
+0 =p, s= 44 curr_p_pars_size=1
+0 =p, s= 44 grad_est_size=1
+0 =p, s= 44 ap_par_size=1
+0 =p, s= 44 curr_state=14
+0 =p, s= 44 curr_p_pars_size=1
+0 =p, s= 44 grad_est_size=1
+0 =p, s= 44 ap_par_size=1
+0 =p, s= 44 curr_state=14
+0 =p, s= 44 curr_p_pars_size=1
+0 =p, s= 44 grad_est_size=1
+0 =p, s= 44 ap_par_size=1
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()1
+grad_est[p][s].size()1
+ap_par[p][s].size()1
+IS
+HERE
+0 =p, s= 45 curr_state=14
+0 =p, s= 45 curr_p_pars_size=1
+0 =p, s= 45 grad_est_size=1
+0 =p, s= 45 ap_par_size=1
+0 =p, s= 45 curr_state=14
+0 =p, s= 45 curr_p_pars_size=1
+0 =p, s= 45 grad_est_size=1
+0 =p, s= 45 ap_par_size=1
+0 =p, s= 45 curr_state=14
+0 =p, s= 45 curr_p_pars_size=1
+0 =p, s= 45 grad_est_size=1
+0 =p, s= 45 ap_par_size=1
+0 =p, s= 45 curr_state=14
+0 =p, s= 45 curr_p_pars_size=1
+0 =p, s= 45 grad_est_size=1
+0 =p, s= 45 ap_par_size=1
+0 =p, s= 45 curr_state=14
+0 =p, s= 45 curr_p_pars_size=1
+0 =p, s= 45 grad_est_size=1
+0 =p, s= 45 ap_par_size=1
+0 =p, s= 45 curr_state=14
+0 =p, s= 45 curr_p_pars_size=1
+0 =p, s= 45 grad_est_size=1
+0 =p, s= 45 ap_par_size=1
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()1
+grad_est[p][s].size()1
+ap_par[p][s].size()1
+IS
+HERE
+0 =p, s= 46 curr_state=14
+0 =p, s= 46 curr_p_pars_size=1
+0 =p, s= 46 grad_est_size=1
+0 =p, s= 46 ap_par_size=1
+0 =p, s= 46 curr_state=14
+0 =p, s= 46 curr_p_pars_size=1
+0 =p, s= 46 grad_est_size=1
+0 =p, s= 46 ap_par_size=1
+0 =p, s= 46 curr_state=14
+0 =p, s= 46 curr_p_pars_size=1
+0 =p, s= 46 grad_est_size=1
+0 =p, s= 46 ap_par_size=1
+0 =p, s= 46 curr_state=14
+0 =p, s= 46 curr_p_pars_size=1
+0 =p, s= 46 grad_est_size=1
+0 =p, s= 46 ap_par_size=1
+0 =p, s= 46 curr_state=14
+0 =p, s= 46 curr_p_pars_size=1
+0 =p, s= 46 grad_est_size=1
+0 =p, s= 46 ap_par_size=1
+0 =p, s= 46 curr_state=14
+0 =p, s= 46 curr_p_pars_size=1
+0 =p, s= 46 grad_est_size=1
+0 =p, s= 46 ap_par_size=1
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()1
+grad_est[p][s].size()1
+ap_par[p][s].size()1
+IS
+HERE
+0 =p, s= 47 curr_state=14
+0 =p, s= 47 curr_p_pars_size=1
+0 =p, s= 47 grad_est_size=1
+0 =p, s= 47 ap_par_size=1
+0 =p, s= 47 curr_state=14
+0 =p, s= 47 curr_p_pars_size=1
+0 =p, s= 47 grad_est_size=1
+0 =p, s= 47 ap_par_size=1
+0 =p, s= 47 curr_state=14
+0 =p, s= 47 curr_p_pars_size=1
+0 =p, s= 47 grad_est_size=1
+0 =p, s= 47 ap_par_size=1
+0 =p, s= 47 curr_state=14
+0 =p, s= 47 curr_p_pars_size=1
+0 =p, s= 47 grad_est_size=1
+0 =p, s= 47 ap_par_size=1
+0 =p, s= 47 curr_state=14
+0 =p, s= 47 curr_p_pars_size=1
+0 =p, s= 47 grad_est_size=1
+0 =p, s= 47 ap_par_size=1
+0 =p, s= 47 curr_state=14
+0 =p, s= 47 curr_p_pars_size=1
+0 =p, s= 47 grad_est_size=1
+0 =p, s= 47 ap_par_size=1
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()1
+grad_est[p][s].size()1
+ap_par[p][s].size()1
+IS
+HERE
+0 =p, s= 48 curr_state=14
+0 =p, s= 48 curr_p_pars_size=1
+0 =p, s= 48 grad_est_size=1
+0 =p, s= 48 ap_par_size=1
+0 =p, s= 48 curr_state=14
+0 =p, s= 48 curr_p_pars_size=1
+0 =p, s= 48 grad_est_size=1
+0 =p, s= 48 ap_par_size=1
+0 =p, s= 48 curr_state=14
+0 =p, s= 48 curr_p_pars_size=1
+0 =p, s= 48 grad_est_size=1
+0 =p, s= 48 ap_par_size=1
+0 =p, s= 48 curr_state=14
+0 =p, s= 48 curr_p_pars_size=1
+0 =p, s= 48 grad_est_size=1
+0 =p, s= 48 ap_par_size=1
+0 =p, s= 48 curr_state=14
+0 =p, s= 48 curr_p_pars_size=1
+0 =p, s= 48 grad_est_size=1
+0 =p, s= 48 ap_par_size=1
+0 =p, s= 48 curr_state=14
+0 =p, s= 48 curr_p_pars_size=1
+0 =p, s= 48 grad_est_size=1
+0 =p, s= 48 ap_par_size=1
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()1
+grad_est[p][s].size()1
+ap_par[p][s].size()1
+IS
+HERE
+0 =p, s= 49 curr_state=14
+0 =p, s= 49 curr_p_pars_size=1
+0 =p, s= 49 grad_est_size=1
+0 =p, s= 49 ap_par_size=1
+0 =p, s= 49 curr_state=14
+0 =p, s= 49 curr_p_pars_size=1
+0 =p, s= 49 grad_est_size=1
+0 =p, s= 49 ap_par_size=1
+0 =p, s= 49 curr_state=14
+0 =p, s= 49 curr_p_pars_size=1
+0 =p, s= 49 grad_est_size=1
+0 =p, s= 49 ap_par_size=1
+0 =p, s= 49 curr_state=14
+0 =p, s= 49 curr_p_pars_size=1
+0 =p, s= 49 grad_est_size=1
+0 =p, s= 49 ap_par_size=1
+0 =p, s= 49 curr_state=14
+0 =p, s= 49 curr_p_pars_size=1
+0 =p, s= 49 grad_est_size=1
+0 =p, s= 49 ap_par_size=1
+0 =p, s= 49 curr_state=14
+0 =p, s= 49 curr_p_pars_size=1
+0 =p, s= 49 grad_est_size=1
+0 =p, s= 49 ap_par_size=1
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()1
+grad_est[p][s].size()1
+ap_par[p][s].size()1
+IS
+HERE
+0 =p, s= 50 curr_state=14
+0 =p, s= 50 curr_p_pars_size=1
+0 =p, s= 50 grad_est_size=1
+0 =p, s= 50 ap_par_size=1
+0 =p, s= 50 curr_state=14
+0 =p, s= 50 curr_p_pars_size=1
+0 =p, s= 50 grad_est_size=1
+0 =p, s= 50 ap_par_size=1
+0 =p, s= 50 curr_state=14
+0 =p, s= 50 curr_p_pars_size=1
+0 =p, s= 50 grad_est_size=1
+0 =p, s= 50 ap_par_size=1
+0 =p, s= 50 curr_state=14
+0 =p, s= 50 curr_p_pars_size=1
+0 =p, s= 50 grad_est_size=1
+0 =p, s= 50 ap_par_size=1
+0 =p, s= 50 curr_state=14
+0 =p, s= 50 curr_p_pars_size=1
+0 =p, s= 50 grad_est_size=1
+0 =p, s= 50 ap_par_size=1
+0 =p, s= 50 curr_state=14
+0 =p, s= 50 curr_p_pars_size=1
+0 =p, s= 50 grad_est_size=1
+0 =p, s= 50 ap_par_size=1
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()1
+grad_est[p][s].size()1
+ap_par[p][s].size()1
+IS
+HERE
+0 =p, s= 51 curr_state=14
+0 =p, s= 51 curr_p_pars_size=1
+0 =p, s= 51 grad_est_size=1
+0 =p, s= 51 ap_par_size=1
+0 =p, s= 51 curr_state=14
+0 =p, s= 51 curr_p_pars_size=1
+0 =p, s= 51 grad_est_size=1
+0 =p, s= 51 ap_par_size=1
+0 =p, s= 51 curr_state=14
+0 =p, s= 51 curr_p_pars_size=1
+0 =p, s= 51 grad_est_size=1
+0 =p, s= 51 ap_par_size=1
+0 =p, s= 51 curr_state=14
+0 =p, s= 51 curr_p_pars_size=1
+0 =p, s= 51 grad_est_size=1
+0 =p, s= 51 ap_par_size=1
+0 =p, s= 51 curr_state=14
+0 =p, s= 51 curr_p_pars_size=1
+0 =p, s= 51 grad_est_size=1
+0 =p, s= 51 ap_par_size=1
+0 =p, s= 51 curr_state=14
+0 =p, s= 51 curr_p_pars_size=1
+0 =p, s= 51 grad_est_size=1
+0 =p, s= 51 ap_par_size=1
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()1
+grad_est[p][s].size()1
+ap_par[p][s].size()1
+IS
+HERE
+0 =p, s= 52 curr_state=14
+0 =p, s= 52 curr_p_pars_size=1
+0 =p, s= 52 grad_est_size=1
+0 =p, s= 52 ap_par_size=1
+0 =p, s= 52 curr_state=14
+0 =p, s= 52 curr_p_pars_size=1
+0 =p, s= 52 grad_est_size=1
+0 =p, s= 52 ap_par_size=1
+0 =p, s= 52 curr_state=14
+0 =p, s= 52 curr_p_pars_size=1
+0 =p, s= 52 grad_est_size=1
+0 =p, s= 52 ap_par_size=1
+0 =p, s= 52 curr_state=14
+0 =p, s= 52 curr_p_pars_size=1
+0 =p, s= 52 grad_est_size=1
+0 =p, s= 52 ap_par_size=1
+0 =p, s= 52 curr_state=14
+0 =p, s= 52 curr_p_pars_size=1
+0 =p, s= 52 grad_est_size=1
+0 =p, s= 52 ap_par_size=1
+0 =p, s= 52 curr_state=14
+0 =p, s= 52 curr_p_pars_size=1
+0 =p, s= 52 grad_est_size=1
+0 =p, s= 52 ap_par_size=1
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()1
+grad_est[p][s].size()1
+ap_par[p][s].size()1
+IS
+HERE
+0 =p, s= 53 curr_state=14
+0 =p, s= 53 curr_p_pars_size=1
+0 =p, s= 53 grad_est_size=1
+0 =p, s= 53 ap_par_size=1
+0 =p, s= 53 curr_state=14
+0 =p, s= 53 curr_p_pars_size=1
+0 =p, s= 53 grad_est_size=1
+0 =p, s= 53 ap_par_size=1
+0 =p, s= 53 curr_state=14
+0 =p, s= 53 curr_p_pars_size=1
+0 =p, s= 53 grad_est_size=1
+0 =p, s= 53 ap_par_size=1
+0 =p, s= 53 curr_state=14
+0 =p, s= 53 curr_p_pars_size=1
+0 =p, s= 53 grad_est_size=1
+0 =p, s= 53 ap_par_size=1
+0 =p, s= 53 curr_state=14
+0 =p, s= 53 curr_p_pars_size=1
+0 =p, s= 53 grad_est_size=1
+0 =p, s= 53 ap_par_size=1
+0 =p, s= 53 curr_state=14
+0 =p, s= 53 curr_p_pars_size=1
+0 =p, s= 53 grad_est_size=1
+0 =p, s= 53 ap_par_size=1
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()1
+grad_est[p][s].size()1
+ap_par[p][s].size()1
+IS
+HERE
+0 =p, s= 54 curr_state=14
+0 =p, s= 54 curr_p_pars_size=1
+0 =p, s= 54 grad_est_size=1
+0 =p, s= 54 ap_par_size=1
+0 =p, s= 54 curr_state=14
+0 =p, s= 54 curr_p_pars_size=1
+0 =p, s= 54 grad_est_size=1
+0 =p, s= 54 ap_par_size=1
+0 =p, s= 54 curr_state=14
+0 =p, s= 54 curr_p_pars_size=1
+0 =p, s= 54 grad_est_size=1
+0 =p, s= 54 ap_par_size=1
+0 =p, s= 54 curr_state=14
+0 =p, s= 54 curr_p_pars_size=1
+0 =p, s= 54 grad_est_size=1
+0 =p, s= 54 ap_par_size=1
+0 =p, s= 54 curr_state=14
+0 =p, s= 54 curr_p_pars_size=1
+0 =p, s= 54 grad_est_size=1
+0 =p, s= 54 ap_par_size=1
+0 =p, s= 54 curr_state=14
+0 =p, s= 54 curr_p_pars_size=1
+0 =p, s= 54 grad_est_size=1
+0 =p, s= 54 ap_par_size=1
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()1
+grad_est[p][s].size()1
+ap_par[p][s].size()1
+IS
+HERE
+0 =p, s= 55 curr_state=14
+0 =p, s= 55 curr_p_pars_size=1
+0 =p, s= 55 grad_est_size=1
+0 =p, s= 55 ap_par_size=1
+0 =p, s= 55 curr_state=14
+0 =p, s= 55 curr_p_pars_size=1
+0 =p, s= 55 grad_est_size=1
+0 =p, s= 55 ap_par_size=1
+0 =p, s= 55 curr_state=14
+0 =p, s= 55 curr_p_pars_size=1
+0 =p, s= 55 grad_est_size=1
+0 =p, s= 55 ap_par_size=1
+0 =p, s= 55 curr_state=14
+0 =p, s= 55 curr_p_pars_size=1
+0 =p, s= 55 grad_est_size=1
+0 =p, s= 55 ap_par_size=1
+0 =p, s= 55 curr_state=14
+0 =p, s= 55 curr_p_pars_size=1
+0 =p, s= 55 grad_est_size=1
+0 =p, s= 55 ap_par_size=1
+0 =p, s= 55 curr_state=14
+0 =p, s= 55 curr_p_pars_size=1
+0 =p, s= 55 grad_est_size=1
+0 =p, s= 55 ap_par_size=1
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()1
+grad_est[p][s].size()1
+ap_par[p][s].size()1
+IS
+HERE
+0 =p, s= 56 curr_state=14
+0 =p, s= 56 curr_p_pars_size=1
+0 =p, s= 56 grad_est_size=1
+0 =p, s= 56 ap_par_size=1
+0 =p, s= 56 curr_state=14
+0 =p, s= 56 curr_p_pars_size=1
+0 =p, s= 56 grad_est_size=1
+0 =p, s= 56 ap_par_size=1
+0 =p, s= 56 curr_state=14
+0 =p, s= 56 curr_p_pars_size=1
+0 =p, s= 56 grad_est_size=1
+0 =p, s= 56 ap_par_size=1
+0 =p, s= 56 curr_state=14
+0 =p, s= 56 curr_p_pars_size=1
+0 =p, s= 56 grad_est_size=1
+0 =p, s= 56 ap_par_size=1
+0 =p, s= 56 curr_state=14
+0 =p, s= 56 curr_p_pars_size=1
+0 =p, s= 56 grad_est_size=1
+0 =p, s= 56 ap_par_size=1
+0 =p, s= 56 curr_state=14
+0 =p, s= 56 curr_p_pars_size=1
+0 =p, s= 56 grad_est_size=1
+0 =p, s= 56 ap_par_size=1
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()1
+grad_est[p][s].size()1
+ap_par[p][s].size()1
+IS
+HERE
+0 =p, s= 57 curr_state=14
+0 =p, s= 57 curr_p_pars_size=1
+0 =p, s= 57 grad_est_size=1
+0 =p, s= 57 ap_par_size=1
+0 =p, s= 57 curr_state=14
+0 =p, s= 57 curr_p_pars_size=1
+0 =p, s= 57 grad_est_size=1
+0 =p, s= 57 ap_par_size=1
+0 =p, s= 57 curr_state=14
+0 =p, s= 57 curr_p_pars_size=1
+0 =p, s= 57 grad_est_size=1
+0 =p, s= 57 ap_par_size=1
+0 =p, s= 57 curr_state=14
+0 =p, s= 57 curr_p_pars_size=1
+0 =p, s= 57 grad_est_size=1
+0 =p, s= 57 ap_par_size=1
+0 =p, s= 57 curr_state=14
+0 =p, s= 57 curr_p_pars_size=1
+0 =p, s= 57 grad_est_size=1
+0 =p, s= 57 ap_par_size=1
+0 =p, s= 57 curr_state=14
+0 =p, s= 57 curr_p_pars_size=1
+0 =p, s= 57 grad_est_size=1
+0 =p, s= 57 ap_par_size=1
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()1
+grad_est[p][s].size()1
+ap_par[p][s].size()1
+IS
+HERE
+0 =p, s= 58 curr_state=14
+0 =p, s= 58 curr_p_pars_size=1
+0 =p, s= 58 grad_est_size=1
+0 =p, s= 58 ap_par_size=1
+0 =p, s= 58 curr_state=14
+0 =p, s= 58 curr_p_pars_size=1
+0 =p, s= 58 grad_est_size=1
+0 =p, s= 58 ap_par_size=1
+0 =p, s= 58 curr_state=14
+0 =p, s= 58 curr_p_pars_size=1
+0 =p, s= 58 grad_est_size=1
+0 =p, s= 58 ap_par_size=1
+0 =p, s= 58 curr_state=14
+0 =p, s= 58 curr_p_pars_size=1
+0 =p, s= 58 grad_est_size=1
+0 =p, s= 58 ap_par_size=1
+0 =p, s= 58 curr_state=14
+0 =p, s= 58 curr_p_pars_size=1
+0 =p, s= 58 grad_est_size=1
+0 =p, s= 58 ap_par_size=1
+0 =p, s= 58 curr_state=14
+0 =p, s= 58 curr_p_pars_size=1
+0 =p, s= 58 grad_est_size=1
+0 =p, s= 58 ap_par_size=1
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()1
+grad_est[p][s].size()1
+ap_par[p][s].size()1
+IS
+HERE
+0 =p, s= 59 curr_state=14
+0 =p, s= 59 curr_p_pars_size=1
+0 =p, s= 59 grad_est_size=1
+0 =p, s= 59 ap_par_size=1
+0 =p, s= 59 curr_state=14
+0 =p, s= 59 curr_p_pars_size=1
+0 =p, s= 59 grad_est_size=1
+0 =p, s= 59 ap_par_size=1
+0 =p, s= 59 curr_state=14
+0 =p, s= 59 curr_p_pars_size=1
+0 =p, s= 59 grad_est_size=1
+0 =p, s= 59 ap_par_size=1
+0 =p, s= 59 curr_state=14
+0 =p, s= 59 curr_p_pars_size=1
+0 =p, s= 59 grad_est_size=1
+0 =p, s= 59 ap_par_size=1
+0 =p, s= 59 curr_state=14
+0 =p, s= 59 curr_p_pars_size=1
+0 =p, s= 59 grad_est_size=1
+0 =p, s= 59 ap_par_size=1
+0 =p, s= 59 curr_state=14
+0 =p, s= 59 curr_p_pars_size=1
+0 =p, s= 59 grad_est_size=1
+0 =p, s= 59 ap_par_size=1
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()1
+grad_est[p][s].size()1
+ap_par[p][s].size()1
+IS
+HERE
+0 =p, s= 60 curr_state=14
+0 =p, s= 60 curr_p_pars_size=1
+0 =p, s= 60 grad_est_size=1
+0 =p, s= 60 ap_par_size=1
+0 =p, s= 60 curr_state=14
+0 =p, s= 60 curr_p_pars_size=1
+0 =p, s= 60 grad_est_size=1
+0 =p, s= 60 ap_par_size=1
+0 =p, s= 60 curr_state=14
+0 =p, s= 60 curr_p_pars_size=1
+0 =p, s= 60 grad_est_size=1
+0 =p, s= 60 ap_par_size=1
+0 =p, s= 60 curr_state=14
+0 =p, s= 60 curr_p_pars_size=1
+0 =p, s= 60 grad_est_size=1
+0 =p, s= 60 ap_par_size=1
+0 =p, s= 60 curr_state=14
+0 =p, s= 60 curr_p_pars_size=1
+0 =p, s= 60 grad_est_size=1
+0 =p, s= 60 ap_par_size=1
+0 =p, s= 60 curr_state=14
+0 =p, s= 60 curr_p_pars_size=1
+0 =p, s= 60 grad_est_size=1
+0 =p, s= 60 ap_par_size=1
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()1
+grad_est[p][s].size()1
+ap_par[p][s].size()1
+IS
+HERE
+0 =p, s= 61 curr_state=14
+0 =p, s= 61 curr_p_pars_size=1
+0 =p, s= 61 grad_est_size=1
+0 =p, s= 61 ap_par_size=1
+0 =p, s= 61 curr_state=14
+0 =p, s= 61 curr_p_pars_size=1
+0 =p, s= 61 grad_est_size=1
+0 =p, s= 61 ap_par_size=1
+0 =p, s= 61 curr_state=14
+0 =p, s= 61 curr_p_pars_size=1
+0 =p, s= 61 grad_est_size=1
+0 =p, s= 61 ap_par_size=1
+0 =p, s= 61 curr_state=14
+0 =p, s= 61 curr_p_pars_size=1
+0 =p, s= 61 grad_est_size=1
+0 =p, s= 61 ap_par_size=1
+0 =p, s= 61 curr_state=14
+0 =p, s= 61 curr_p_pars_size=1
+0 =p, s= 61 grad_est_size=1
+0 =p, s= 61 ap_par_size=1
+0 =p, s= 61 curr_state=14
+0 =p, s= 61 curr_p_pars_size=1
+0 =p, s= 61 grad_est_size=1
+0 =p, s= 61 ap_par_size=1
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()1
+grad_est[p][s].size()1
+ap_par[p][s].size()1
+IS
+HERE
+0 =p, s= 62 curr_state=14
+0 =p, s= 62 curr_p_pars_size=1
+0 =p, s= 62 grad_est_size=1
+0 =p, s= 62 ap_par_size=1
+0 =p, s= 62 curr_state=14
+0 =p, s= 62 curr_p_pars_size=1
+0 =p, s= 62 grad_est_size=1
+0 =p, s= 62 ap_par_size=1
+0 =p, s= 62 curr_state=14
+0 =p, s= 62 curr_p_pars_size=1
+0 =p, s= 62 grad_est_size=1
+0 =p, s= 62 ap_par_size=1
+0 =p, s= 62 curr_state=14
+0 =p, s= 62 curr_p_pars_size=1
+0 =p, s= 62 grad_est_size=1
+0 =p, s= 62 ap_par_size=1
+0 =p, s= 62 curr_state=14
+0 =p, s= 62 curr_p_pars_size=1
+0 =p, s= 62 grad_est_size=1
+0 =p, s= 62 ap_par_size=1
+0 =p, s= 62 curr_state=14
+0 =p, s= 62 curr_p_pars_size=1
+0 =p, s= 62 grad_est_size=1
+0 =p, s= 62 ap_par_size=1
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()1
+grad_est[p][s].size()1
+ap_par[p][s].size()1
+IS
+HERE
+0 =p, s= 63 curr_state=14
+0 =p, s= 63 curr_p_pars_size=1
+0 =p, s= 63 grad_est_size=1
+0 =p, s= 63 ap_par_size=1
+0 =p, s= 63 curr_state=14
+0 =p, s= 63 curr_p_pars_size=1
+0 =p, s= 63 grad_est_size=1
+0 =p, s= 63 ap_par_size=1
+0 =p, s= 63 curr_state=14
+0 =p, s= 63 curr_p_pars_size=1
+0 =p, s= 63 grad_est_size=1
+0 =p, s= 63 ap_par_size=1
+0 =p, s= 63 curr_state=14
+0 =p, s= 63 curr_p_pars_size=1
+0 =p, s= 63 grad_est_size=1
+0 =p, s= 63 ap_par_size=1
+0 =p, s= 63 curr_state=14
+0 =p, s= 63 curr_p_pars_size=1
+0 =p, s= 63 grad_est_size=1
+0 =p, s= 63 ap_par_size=1
+0 =p, s= 63 curr_state=14
+0 =p, s= 63 curr_p_pars_size=1
+0 =p, s= 63 grad_est_size=1
+0 =p, s= 63 ap_par_size=1
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()1
+grad_est[p][s].size()1
+ap_par[p][s].size()1
+IS
+HERE
+0 =p, s= 64 curr_state=14
+0 =p, s= 64 curr_p_pars_size=1
+0 =p, s= 64 grad_est_size=1
+0 =p, s= 64 ap_par_size=1
+0 =p, s= 64 curr_state=14
+0 =p, s= 64 curr_p_pars_size=1
+0 =p, s= 64 grad_est_size=1
+0 =p, s= 64 ap_par_size=1
+0 =p, s= 64 curr_state=14
+0 =p, s= 64 curr_p_pars_size=1
+0 =p, s= 64 grad_est_size=1
+0 =p, s= 64 ap_par_size=1
+0 =p, s= 64 curr_state=14
+0 =p, s= 64 curr_p_pars_size=1
+0 =p, s= 64 grad_est_size=1
+0 =p, s= 64 ap_par_size=1
+0 =p, s= 64 curr_state=14
+0 =p, s= 64 curr_p_pars_size=1
+0 =p, s= 64 grad_est_size=1
+0 =p, s= 64 ap_par_size=1
+0 =p, s= 64 curr_state=14
+0 =p, s= 64 curr_p_pars_size=1
+0 =p, s= 64 grad_est_size=1
+0 =p, s= 64 ap_par_size=1
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()1
+grad_est[p][s].size()1
+ap_par[p][s].size()1
+IS
+HERE
+0 =p, s= 65 curr_state=14
+0 =p, s= 65 curr_p_pars_size=1
+0 =p, s= 65 grad_est_size=1
+0 =p, s= 65 ap_par_size=1
+0 =p, s= 65 curr_state=14
+0 =p, s= 65 curr_p_pars_size=1
+0 =p, s= 65 grad_est_size=1
+0 =p, s= 65 ap_par_size=1
+0 =p, s= 65 curr_state=14
+0 =p, s= 65 curr_p_pars_size=1
+0 =p, s= 65 grad_est_size=1
+0 =p, s= 65 ap_par_size=1
+0 =p, s= 65 curr_state=14
+0 =p, s= 65 curr_p_pars_size=1
+0 =p, s= 65 grad_est_size=1
+0 =p, s= 65 ap_par_size=1
+0 =p, s= 65 curr_state=14
+0 =p, s= 65 curr_p_pars_size=1
+0 =p, s= 65 grad_est_size=1
+0 =p, s= 65 ap_par_size=1
+0 =p, s= 65 curr_state=14
+0 =p, s= 65 curr_p_pars_size=1
+0 =p, s= 65 grad_est_size=1
+0 =p, s= 65 ap_par_size=1
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()1
+grad_est[p][s].size()1
+ap_par[p][s].size()1
+IS
+HERE
+0 =p, s= 66 curr_state=14
+0 =p, s= 66 curr_p_pars_size=1
+0 =p, s= 66 grad_est_size=1
+0 =p, s= 66 ap_par_size=1
+0 =p, s= 66 curr_state=14
+0 =p, s= 66 curr_p_pars_size=1
+0 =p, s= 66 grad_est_size=1
+0 =p, s= 66 ap_par_size=1
+0 =p, s= 66 curr_state=14
+0 =p, s= 66 curr_p_pars_size=1
+0 =p, s= 66 grad_est_size=1
+0 =p, s= 66 ap_par_size=1
+0 =p, s= 66 curr_state=14
+0 =p, s= 66 curr_p_pars_size=1
+0 =p, s= 66 grad_est_size=1
+0 =p, s= 66 ap_par_size=1
+0 =p, s= 66 curr_state=14
+0 =p, s= 66 curr_p_pars_size=1
+0 =p, s= 66 grad_est_size=1
+0 =p, s= 66 ap_par_size=1
+0 =p, s= 66 curr_state=14
+0 =p, s= 66 curr_p_pars_size=1
+0 =p, s= 66 grad_est_size=1
+0 =p, s= 66 ap_par_size=1
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()1
+grad_est[p][s].size()1
+ap_par[p][s].size()1
+IS
+HERE
+0 =p, s= 67 curr_state=14
+0 =p, s= 67 curr_p_pars_size=1
+0 =p, s= 67 grad_est_size=1
+0 =p, s= 67 ap_par_size=1
+0 =p, s= 67 curr_state=14
+0 =p, s= 67 curr_p_pars_size=1
+0 =p, s= 67 grad_est_size=1
+0 =p, s= 67 ap_par_size=1
+0 =p, s= 67 curr_state=14
+0 =p, s= 67 curr_p_pars_size=1
+0 =p, s= 67 grad_est_size=1
+0 =p, s= 67 ap_par_size=1
+0 =p, s= 67 curr_state=14
+0 =p, s= 67 curr_p_pars_size=1
+0 =p, s= 67 grad_est_size=1
+0 =p, s= 67 ap_par_size=1
+0 =p, s= 67 curr_state=14
+0 =p, s= 67 curr_p_pars_size=1
+0 =p, s= 67 grad_est_size=1
+0 =p, s= 67 ap_par_size=1
+0 =p, s= 67 curr_state=14
+0 =p, s= 67 curr_p_pars_size=1
+0 =p, s= 67 grad_est_size=1
+0 =p, s= 67 ap_par_size=1
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()1
+grad_est[p][s].size()1
+ap_par[p][s].size()1
+IS
+HERE
+0 =p, s= 68 curr_state=14
+0 =p, s= 68 curr_p_pars_size=1
+0 =p, s= 68 grad_est_size=1
+0 =p, s= 68 ap_par_size=1
+0 =p, s= 68 curr_state=14
+0 =p, s= 68 curr_p_pars_size=1
+0 =p, s= 68 grad_est_size=1
+0 =p, s= 68 ap_par_size=1
+0 =p, s= 68 curr_state=14
+0 =p, s= 68 curr_p_pars_size=1
+0 =p, s= 68 grad_est_size=1
+0 =p, s= 68 ap_par_size=1
+0 =p, s= 68 curr_state=14
+0 =p, s= 68 curr_p_pars_size=1
+0 =p, s= 68 grad_est_size=1
+0 =p, s= 68 ap_par_size=1
+0 =p, s= 68 curr_state=14
+0 =p, s= 68 curr_p_pars_size=1
+0 =p, s= 68 grad_est_size=1
+0 =p, s= 68 ap_par_size=1
+0 =p, s= 68 curr_state=14
+0 =p, s= 68 curr_p_pars_size=1
+0 =p, s= 68 grad_est_size=1
+0 =p, s= 68 ap_par_size=1
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()1
+grad_est[p][s].size()1
+ap_par[p][s].size()1
+IS
+HERE
+0 =p, s= 69 curr_state=14
+0 =p, s= 69 curr_p_pars_size=1
+0 =p, s= 69 grad_est_size=1
+0 =p, s= 69 ap_par_size=1
+0 =p, s= 69 curr_state=14
+0 =p, s= 69 curr_p_pars_size=1
+0 =p, s= 69 grad_est_size=1
+0 =p, s= 69 ap_par_size=1
+0 =p, s= 69 curr_state=14
+0 =p, s= 69 curr_p_pars_size=1
+0 =p, s= 69 grad_est_size=1
+0 =p, s= 69 ap_par_size=1
+0 =p, s= 69 curr_state=14
+0 =p, s= 69 curr_p_pars_size=1
+0 =p, s= 69 grad_est_size=1
+0 =p, s= 69 ap_par_size=1
+0 =p, s= 69 curr_state=14
+0 =p, s= 69 curr_p_pars_size=1
+0 =p, s= 69 grad_est_size=1
+0 =p, s= 69 ap_par_size=1
+0 =p, s= 69 curr_state=14
+0 =p, s= 69 curr_p_pars_size=1
+0 =p, s= 69 grad_est_size=1
+0 =p, s= 69 ap_par_size=1
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()1
+grad_est[p][s].size()1
+ap_par[p][s].size()1
+IS
+HERE
+0 =p, s= 70 curr_state=14
+0 =p, s= 70 curr_p_pars_size=1
+0 =p, s= 70 grad_est_size=1
+0 =p, s= 70 ap_par_size=1
+0 =p, s= 70 curr_state=14
+0 =p, s= 70 curr_p_pars_size=1
+0 =p, s= 70 grad_est_size=1
+0 =p, s= 70 ap_par_size=1
+0 =p, s= 70 curr_state=14
+0 =p, s= 70 curr_p_pars_size=1
+0 =p, s= 70 grad_est_size=1
+0 =p, s= 70 ap_par_size=1
+0 =p, s= 70 curr_state=14
+0 =p, s= 70 curr_p_pars_size=1
+0 =p, s= 70 grad_est_size=1
+0 =p, s= 70 ap_par_size=1
+0 =p, s= 70 curr_state=14
+0 =p, s= 70 curr_p_pars_size=1
+0 =p, s= 70 grad_est_size=1
+0 =p, s= 70 ap_par_size=1
+0 =p, s= 70 curr_state=14
+0 =p, s= 70 curr_p_pars_size=1
+0 =p, s= 70 grad_est_size=1
+0 =p, s= 70 ap_par_size=1
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()1
+grad_est[p][s].size()1
+ap_par[p][s].size()1
+IS
+HERE
+0 =p, s= 71 curr_state=14
+0 =p, s= 71 curr_p_pars_size=1
+0 =p, s= 71 grad_est_size=1
+0 =p, s= 71 ap_par_size=1
+0 =p, s= 71 curr_state=14
+0 =p, s= 71 curr_p_pars_size=1
+0 =p, s= 71 grad_est_size=1
+0 =p, s= 71 ap_par_size=1
+0 =p, s= 71 curr_state=14
+0 =p, s= 71 curr_p_pars_size=1
+0 =p, s= 71 grad_est_size=1
+0 =p, s= 71 ap_par_size=1
+0 =p, s= 71 curr_state=14
+0 =p, s= 71 curr_p_pars_size=1
+0 =p, s= 71 grad_est_size=1
+0 =p, s= 71 ap_par_size=1
+0 =p, s= 71 curr_state=14
+0 =p, s= 71 curr_p_pars_size=1
+0 =p, s= 71 grad_est_size=1
+0 =p, s= 71 ap_par_size=1
+0 =p, s= 71 curr_state=14
+0 =p, s= 71 curr_p_pars_size=1
+0 =p, s= 71 grad_est_size=1
+0 =p, s= 71 ap_par_size=1
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()1
+grad_est[p][s].size()1
+ap_par[p][s].size()1
+IS
+HERE
+0 =p, s= 72 curr_state=14
+0 =p, s= 72 curr_p_pars_size=1
+0 =p, s= 72 grad_est_size=1
+0 =p, s= 72 ap_par_size=1
+0 =p, s= 72 curr_state=14
+0 =p, s= 72 curr_p_pars_size=1
+0 =p, s= 72 grad_est_size=1
+0 =p, s= 72 ap_par_size=1
+0 =p, s= 72 curr_state=14
+0 =p, s= 72 curr_p_pars_size=1
+0 =p, s= 72 grad_est_size=1
+0 =p, s= 72 ap_par_size=1
+0 =p, s= 72 curr_state=14
+0 =p, s= 72 curr_p_pars_size=1
+0 =p, s= 72 grad_est_size=1
+0 =p, s= 72 ap_par_size=1
+0 =p, s= 72 curr_state=14
+0 =p, s= 72 curr_p_pars_size=1
+0 =p, s= 72 grad_est_size=1
+0 =p, s= 72 ap_par_size=1
+0 =p, s= 72 curr_state=14
+0 =p, s= 72 curr_p_pars_size=1
+0 =p, s= 72 grad_est_size=1
+0 =p, s= 72 ap_par_size=1
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()1
+grad_est[p][s].size()1
+ap_par[p][s].size()1
+IS
+HERE
+0 =p, s= 73 curr_state=14
+0 =p, s= 73 curr_p_pars_size=1
+0 =p, s= 73 grad_est_size=1
+0 =p, s= 73 ap_par_size=1
+0 =p, s= 73 curr_state=14
+0 =p, s= 73 curr_p_pars_size=1
+0 =p, s= 73 grad_est_size=1
+0 =p, s= 73 ap_par_size=1
+0 =p, s= 73 curr_state=14
+0 =p, s= 73 curr_p_pars_size=1
+0 =p, s= 73 grad_est_size=1
+0 =p, s= 73 ap_par_size=1
+0 =p, s= 73 curr_state=14
+0 =p, s= 73 curr_p_pars_size=1
+0 =p, s= 73 grad_est_size=1
+0 =p, s= 73 ap_par_size=1
+0 =p, s= 73 curr_state=14
+0 =p, s= 73 curr_p_pars_size=1
+0 =p, s= 73 grad_est_size=1
+0 =p, s= 73 ap_par_size=1
+0 =p, s= 73 curr_state=14
+0 =p, s= 73 curr_p_pars_size=1
+0 =p, s= 73 grad_est_size=1
+0 =p, s= 73 ap_par_size=1
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()1
+grad_est[p][s].size()1
+ap_par[p][s].size()1
+IS
+HERE
+0 =p, s= 74 curr_state=14
+0 =p, s= 74 curr_p_pars_size=1
+0 =p, s= 74 grad_est_size=1
+0 =p, s= 74 ap_par_size=1
+0 =p, s= 74 curr_state=14
+0 =p, s= 74 curr_p_pars_size=1
+0 =p, s= 74 grad_est_size=1
+0 =p, s= 74 ap_par_size=1
+0 =p, s= 74 curr_state=14
+0 =p, s= 74 curr_p_pars_size=1
+0 =p, s= 74 grad_est_size=1
+0 =p, s= 74 ap_par_size=1
+0 =p, s= 74 curr_state=14
+0 =p, s= 74 curr_p_pars_size=1
+0 =p, s= 74 grad_est_size=1
+0 =p, s= 74 ap_par_size=1
+0 =p, s= 74 curr_state=14
+0 =p, s= 74 curr_p_pars_size=1
+0 =p, s= 74 grad_est_size=1
+0 =p, s= 74 ap_par_size=1
+0 =p, s= 74 curr_state=14
+0 =p, s= 74 curr_p_pars_size=1
+0 =p, s= 74 grad_est_size=1
+0 =p, s= 74 ap_par_size=1
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()1
+grad_est[p][s].size()1
+ap_par[p][s].size()1
+IS
+HERE
+0 =p, s= 75 curr_state=14
+0 =p, s= 75 curr_p_pars_size=1
+0 =p, s= 75 grad_est_size=1
+0 =p, s= 75 ap_par_size=1
+0 =p, s= 75 curr_state=14
+0 =p, s= 75 curr_p_pars_size=1
+0 =p, s= 75 grad_est_size=1
+0 =p, s= 75 ap_par_size=1
+0 =p, s= 75 curr_state=14
+0 =p, s= 75 curr_p_pars_size=1
+0 =p, s= 75 grad_est_size=1
+0 =p, s= 75 ap_par_size=1
+0 =p, s= 75 curr_state=14
+0 =p, s= 75 curr_p_pars_size=1
+0 =p, s= 75 grad_est_size=1
+0 =p, s= 75 ap_par_size=1
+0 =p, s= 75 curr_state=14
+0 =p, s= 75 curr_p_pars_size=1
+0 =p, s= 75 grad_est_size=1
+0 =p, s= 75 ap_par_size=1
+0 =p, s= 75 curr_state=14
+0 =p, s= 75 curr_p_pars_size=1
+0 =p, s= 75 grad_est_size=1
+0 =p, s= 75 ap_par_size=1
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()1
+grad_est[p][s].size()1
+ap_par[p][s].size()1
+IS
+HERE
+0 =p, s= 76 curr_state=14
+0 =p, s= 76 curr_p_pars_size=1
+0 =p, s= 76 grad_est_size=1
+0 =p, s= 76 ap_par_size=1
+0 =p, s= 76 curr_state=14
+0 =p, s= 76 curr_p_pars_size=1
+0 =p, s= 76 grad_est_size=1
+0 =p, s= 76 ap_par_size=1
+0 =p, s= 76 curr_state=14
+0 =p, s= 76 curr_p_pars_size=1
+0 =p, s= 76 grad_est_size=1
+0 =p, s= 76 ap_par_size=1
+0 =p, s= 76 curr_state=14
+0 =p, s= 76 curr_p_pars_size=1
+0 =p, s= 76 grad_est_size=1
+0 =p, s= 76 ap_par_size=1
+0 =p, s= 76 curr_state=14
+0 =p, s= 76 curr_p_pars_size=1
+0 =p, s= 76 grad_est_size=1
+0 =p, s= 76 ap_par_size=1
+0 =p, s= 76 curr_state=14
+0 =p, s= 76 curr_p_pars_size=1
+0 =p, s= 76 grad_est_size=1
+0 =p, s= 76 ap_par_size=1
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()1
+grad_est[p][s].size()1
+ap_par[p][s].size()1
+IS
+HERE
+0 =p, s= 77 curr_state=14
+0 =p, s= 77 curr_p_pars_size=1
+0 =p, s= 77 grad_est_size=1
+0 =p, s= 77 ap_par_size=1
+0 =p, s= 77 curr_state=14
+0 =p, s= 77 curr_p_pars_size=1
+0 =p, s= 77 grad_est_size=1
+0 =p, s= 77 ap_par_size=1
+0 =p, s= 77 curr_state=14
+0 =p, s= 77 curr_p_pars_size=1
+0 =p, s= 77 grad_est_size=1
+0 =p, s= 77 ap_par_size=1
+0 =p, s= 77 curr_state=14
+0 =p, s= 77 curr_p_pars_size=1
+0 =p, s= 77 grad_est_size=1
+0 =p, s= 77 ap_par_size=1
+0 =p, s= 77 curr_state=14
+0 =p, s= 77 curr_p_pars_size=1
+0 =p, s= 77 grad_est_size=1
+0 =p, s= 77 ap_par_size=1
+0 =p, s= 77 curr_state=14
+0 =p, s= 77 curr_p_pars_size=1
+0 =p, s= 77 grad_est_size=1
+0 =p, s= 77 ap_par_size=1
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()1
+grad_est[p][s].size()1
+ap_par[p][s].size()1
+IS
+HERE
+0 =p, s= 78 curr_state=14
+0 =p, s= 78 curr_p_pars_size=1
+0 =p, s= 78 grad_est_size=1
+0 =p, s= 78 ap_par_size=1
+0 =p, s= 78 curr_state=14
+0 =p, s= 78 curr_p_pars_size=1
+0 =p, s= 78 grad_est_size=1
+0 =p, s= 78 ap_par_size=1
+0 =p, s= 78 curr_state=14
+0 =p, s= 78 curr_p_pars_size=1
+0 =p, s= 78 grad_est_size=1
+0 =p, s= 78 ap_par_size=1
+0 =p, s= 78 curr_state=14
+0 =p, s= 78 curr_p_pars_size=1
+0 =p, s= 78 grad_est_size=1
+0 =p, s= 78 ap_par_size=1
+0 =p, s= 78 curr_state=14
+0 =p, s= 78 curr_p_pars_size=1
+0 =p, s= 78 grad_est_size=1
+0 =p, s= 78 ap_par_size=1
+0 =p, s= 78 curr_state=14
+0 =p, s= 78 curr_p_pars_size=1
+0 =p, s= 78 grad_est_size=1
+0 =p, s= 78 ap_par_size=1
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()1
+grad_est[p][s].size()1
+ap_par[p][s].size()1
+IS
+HERE
+0 =p, s= 79 curr_state=14
+0 =p, s= 79 curr_p_pars_size=1
+0 =p, s= 79 grad_est_size=1
+0 =p, s= 79 ap_par_size=1
+0 =p, s= 79 curr_state=14
+0 =p, s= 79 curr_p_pars_size=1
+0 =p, s= 79 grad_est_size=1
+0 =p, s= 79 ap_par_size=1
+0 =p, s= 79 curr_state=14
+0 =p, s= 79 curr_p_pars_size=1
+0 =p, s= 79 grad_est_size=1
+0 =p, s= 79 ap_par_size=1
+0 =p, s= 79 curr_state=14
+0 =p, s= 79 curr_p_pars_size=1
+0 =p, s= 79 grad_est_size=1
+0 =p, s= 79 ap_par_size=1
+0 =p, s= 79 curr_state=14
+0 =p, s= 79 curr_p_pars_size=1
+0 =p, s= 79 grad_est_size=1
+0 =p, s= 79 ap_par_size=1
+0 =p, s= 79 curr_state=14
+0 =p, s= 79 curr_p_pars_size=1
+0 =p, s= 79 grad_est_size=1
+0 =p, s= 79 ap_par_size=1
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()1
+grad_est[p][s].size()1
+ap_par[p][s].size()1
+IS
+HERE
+1 =p, s= 0 curr_state=41
+1 =p, s= 0 curr_p_pars_size=5
+1 =p, s= 0 grad_est_size=5
+1 =p, s= 0 ap_par_size=5
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()5
+grad_est[p][s].size()5
+ap_par[p][s].size()5
+curr_p_pars[p][s].size()5
+grad_est[p][s].size()5
+ap_par[p][s].size()5
+curr_p_pars[p][s].size()5
+grad_est[p][s].size()5
+ap_par[p][s].size()5
+curr_p_pars[p][s].size()5
+grad_est[p][s].size()5
+ap_par[p][s].size()5
+curr_p_pars[p][s].size()5
+grad_est[p][s].size()5
+ap_par[p][s].size()5
+IS
+HERE
+1 =p, s= 1 curr_state=41
+1 =p, s= 1 curr_p_pars_size=5
+1 =p, s= 1 grad_est_size=5
+1 =p, s= 1 ap_par_size=5
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()5
+grad_est[p][s].size()5
+ap_par[p][s].size()5
+curr_p_pars[p][s].size()5
+grad_est[p][s].size()5
+ap_par[p][s].size()5
+curr_p_pars[p][s].size()5
+grad_est[p][s].size()5
+ap_par[p][s].size()5
+curr_p_pars[p][s].size()5
+grad_est[p][s].size()5
+ap_par[p][s].size()5
+curr_p_pars[p][s].size()5
+grad_est[p][s].size()5
+ap_par[p][s].size()5
+IS
+HERE
+1 =p, s= 2 curr_state=41
+1 =p, s= 2 curr_p_pars_size=5
+1 =p, s= 2 grad_est_size=5
+1 =p, s= 2 ap_par_size=5
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()5
+grad_est[p][s].size()5
+ap_par[p][s].size()5
+curr_p_pars[p][s].size()5
+grad_est[p][s].size()5
+ap_par[p][s].size()5
+curr_p_pars[p][s].size()5
+grad_est[p][s].size()5
+ap_par[p][s].size()5
+curr_p_pars[p][s].size()5
+grad_est[p][s].size()5
+ap_par[p][s].size()5
+curr_p_pars[p][s].size()5
+grad_est[p][s].size()5
+ap_par[p][s].size()5
+IS
+HERE
+1 =p, s= 3 curr_state=41
+1 =p, s= 3 curr_p_pars_size=5
+1 =p, s= 3 grad_est_size=5
+1 =p, s= 3 ap_par_size=5
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()5
+grad_est[p][s].size()5
+ap_par[p][s].size()5
+curr_p_pars[p][s].size()5
+grad_est[p][s].size()5
+ap_par[p][s].size()5
+curr_p_pars[p][s].size()5
+grad_est[p][s].size()5
+ap_par[p][s].size()5
+curr_p_pars[p][s].size()5
+grad_est[p][s].size()5
+ap_par[p][s].size()5
+curr_p_pars[p][s].size()5
+grad_est[p][s].size()5
+ap_par[p][s].size()5
+IS
+HERE
+1 =p, s= 4 curr_state=41
+1 =p, s= 4 curr_p_pars_size=5
+1 =p, s= 4 grad_est_size=5
+1 =p, s= 4 ap_par_size=5
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()5
+grad_est[p][s].size()5
+ap_par[p][s].size()5
+curr_p_pars[p][s].size()5
+grad_est[p][s].size()5
+ap_par[p][s].size()5
+curr_p_pars[p][s].size()5
+grad_est[p][s].size()5
+ap_par[p][s].size()5
+curr_p_pars[p][s].size()5
+grad_est[p][s].size()5
+ap_par[p][s].size()5
+curr_p_pars[p][s].size()5
+grad_est[p][s].size()5
+ap_par[p][s].size()5
+IS
+HERE
+1 =p, s= 5 curr_state=41
+1 =p, s= 5 curr_p_pars_size=5
+1 =p, s= 5 grad_est_size=5
+1 =p, s= 5 ap_par_size=5
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()5
+grad_est[p][s].size()5
+ap_par[p][s].size()5
+curr_p_pars[p][s].size()5
+grad_est[p][s].size()5
+ap_par[p][s].size()5
+curr_p_pars[p][s].size()5
+grad_est[p][s].size()5
+ap_par[p][s].size()5
+curr_p_pars[p][s].size()5
+grad_est[p][s].size()5
+ap_par[p][s].size()5
+curr_p_pars[p][s].size()5
+grad_est[p][s].size()5
+ap_par[p][s].size()5
+IS
+HERE
+1 =p, s= 6 curr_state=41
+1 =p, s= 6 curr_p_pars_size=5
+1 =p, s= 6 grad_est_size=5
+1 =p, s= 6 ap_par_size=5
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()5
+grad_est[p][s].size()5
+ap_par[p][s].size()5
+curr_p_pars[p][s].size()5
+grad_est[p][s].size()5
+ap_par[p][s].size()5
+curr_p_pars[p][s].size()5
+grad_est[p][s].size()5
+ap_par[p][s].size()5
+curr_p_pars[p][s].size()5
+grad_est[p][s].size()5
+ap_par[p][s].size()5
+curr_p_pars[p][s].size()5
+grad_est[p][s].size()5
+ap_par[p][s].size()5
+IS
+HERE
+1 =p, s= 7 curr_state=41
+1 =p, s= 7 curr_p_pars_size=5
+1 =p, s= 7 grad_est_size=5
+1 =p, s= 7 ap_par_size=5
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()5
+grad_est[p][s].size()5
+ap_par[p][s].size()5
+curr_p_pars[p][s].size()5
+grad_est[p][s].size()5
+ap_par[p][s].size()5
+curr_p_pars[p][s].size()5
+grad_est[p][s].size()5
+ap_par[p][s].size()5
+curr_p_pars[p][s].size()5
+grad_est[p][s].size()5
+ap_par[p][s].size()5
+curr_p_pars[p][s].size()5
+grad_est[p][s].size()5
+ap_par[p][s].size()5
+IS
+HERE
+1 =p, s= 8 curr_state=41
+1 =p, s= 8 curr_p_pars_size=5
+1 =p, s= 8 grad_est_size=5
+1 =p, s= 8 ap_par_size=5
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()5
+grad_est[p][s].size()5
+ap_par[p][s].size()5
+curr_p_pars[p][s].size()5
+grad_est[p][s].size()5
+ap_par[p][s].size()5
+curr_p_pars[p][s].size()5
+grad_est[p][s].size()5
+ap_par[p][s].size()5
+curr_p_pars[p][s].size()5
+grad_est[p][s].size()5
+ap_par[p][s].size()5
+curr_p_pars[p][s].size()5
+grad_est[p][s].size()5
+ap_par[p][s].size()5
+IS
+HERE
+1 =p, s= 9 curr_state=41
+1 =p, s= 9 curr_p_pars_size=5
+1 =p, s= 9 grad_est_size=5
+1 =p, s= 9 ap_par_size=5
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()5
+grad_est[p][s].size()5
+ap_par[p][s].size()5
+curr_p_pars[p][s].size()5
+grad_est[p][s].size()5
+ap_par[p][s].size()5
+curr_p_pars[p][s].size()5
+grad_est[p][s].size()5
+ap_par[p][s].size()5
+curr_p_pars[p][s].size()5
+grad_est[p][s].size()5
+ap_par[p][s].size()5
+curr_p_pars[p][s].size()5
+grad_est[p][s].size()5
+ap_par[p][s].size()5
+IS
+HERE
+1 =p, s= 10 curr_state=41
+1 =p, s= 10 curr_p_pars_size=5
+1 =p, s= 10 grad_est_size=5
+1 =p, s= 10 ap_par_size=5
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()5
+grad_est[p][s].size()5
+ap_par[p][s].size()5
+curr_p_pars[p][s].size()5
+grad_est[p][s].size()5
+ap_par[p][s].size()5
+curr_p_pars[p][s].size()5
+grad_est[p][s].size()5
+ap_par[p][s].size()5
+curr_p_pars[p][s].size()5
+grad_est[p][s].size()5
+ap_par[p][s].size()5
+curr_p_pars[p][s].size()5
+grad_est[p][s].size()5
+ap_par[p][s].size()5
+IS
+HERE
+1 =p, s= 11 curr_state=41
+1 =p, s= 11 curr_p_pars_size=5
+1 =p, s= 11 grad_est_size=5
+1 =p, s= 11 ap_par_size=5
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()5
+grad_est[p][s].size()5
+ap_par[p][s].size()5
+curr_p_pars[p][s].size()5
+grad_est[p][s].size()5
+ap_par[p][s].size()5
+curr_p_pars[p][s].size()5
+grad_est[p][s].size()5
+ap_par[p][s].size()5
+curr_p_pars[p][s].size()5
+grad_est[p][s].size()5
+ap_par[p][s].size()5
+curr_p_pars[p][s].size()5
+grad_est[p][s].size()5
+ap_par[p][s].size()5
+IS
+HERE
+1 =p, s= 12 curr_state=41
+1 =p, s= 12 curr_p_pars_size=5
+1 =p, s= 12 grad_est_size=5
+1 =p, s= 12 ap_par_size=5
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()5
+grad_est[p][s].size()5
+ap_par[p][s].size()5
+curr_p_pars[p][s].size()5
+grad_est[p][s].size()5
+ap_par[p][s].size()5
+curr_p_pars[p][s].size()5
+grad_est[p][s].size()5
+ap_par[p][s].size()5
+curr_p_pars[p][s].size()5
+grad_est[p][s].size()5
+ap_par[p][s].size()5
+curr_p_pars[p][s].size()5
+grad_est[p][s].size()5
+ap_par[p][s].size()5
+IS
+HERE
+1 =p, s= 13 curr_state=41
+1 =p, s= 13 curr_p_pars_size=5
+1 =p, s= 13 grad_est_size=5
+1 =p, s= 13 ap_par_size=5
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()5
+grad_est[p][s].size()5
+ap_par[p][s].size()5
+curr_p_pars[p][s].size()5
+grad_est[p][s].size()5
+ap_par[p][s].size()5
+curr_p_pars[p][s].size()5
+grad_est[p][s].size()5
+ap_par[p][s].size()5
+curr_p_pars[p][s].size()5
+grad_est[p][s].size()5
+ap_par[p][s].size()5
+curr_p_pars[p][s].size()5
+grad_est[p][s].size()5
+ap_par[p][s].size()5
+IS
+HERE
+1 =p, s= 14 curr_state=41
+1 =p, s= 14 curr_p_pars_size=5
+1 =p, s= 14 grad_est_size=5
+1 =p, s= 14 ap_par_size=5
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()5
+grad_est[p][s].size()5
+ap_par[p][s].size()5
+curr_p_pars[p][s].size()5
+grad_est[p][s].size()5
+ap_par[p][s].size()5
+curr_p_pars[p][s].size()5
+grad_est[p][s].size()5
+ap_par[p][s].size()5
+curr_p_pars[p][s].size()5
+grad_est[p][s].size()5
+ap_par[p][s].size()5
+curr_p_pars[p][s].size()5
+grad_est[p][s].size()5
+ap_par[p][s].size()5
+IS
+HERE
+1 =p, s= 15 curr_state=41
+1 =p, s= 15 curr_p_pars_size=5
+1 =p, s= 15 grad_est_size=5
+1 =p, s= 15 ap_par_size=5
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()5
+grad_est[p][s].size()5
+ap_par[p][s].size()5
+curr_p_pars[p][s].size()5
+grad_est[p][s].size()5
+ap_par[p][s].size()5
+curr_p_pars[p][s].size()5
+grad_est[p][s].size()5
+ap_par[p][s].size()5
+curr_p_pars[p][s].size()5
+grad_est[p][s].size()5
+ap_par[p][s].size()5
+curr_p_pars[p][s].size()5
+grad_est[p][s].size()5
+ap_par[p][s].size()5
+IS
+HERE
+1 =p, s= 16 curr_state=41
+1 =p, s= 16 curr_p_pars_size=5
+1 =p, s= 16 grad_est_size=5
+1 =p, s= 16 ap_par_size=5
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()5
+grad_est[p][s].size()5
+ap_par[p][s].size()5
+curr_p_pars[p][s].size()5
+grad_est[p][s].size()5
+ap_par[p][s].size()5
+curr_p_pars[p][s].size()5
+grad_est[p][s].size()5
+ap_par[p][s].size()5
+curr_p_pars[p][s].size()5
+grad_est[p][s].size()5
+ap_par[p][s].size()5
+curr_p_pars[p][s].size()5
+grad_est[p][s].size()5
+ap_par[p][s].size()5
+IS
+HERE
+1 =p, s= 17 curr_state=41
+1 =p, s= 17 curr_p_pars_size=5
+1 =p, s= 17 grad_est_size=5
+1 =p, s= 17 ap_par_size=5
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()5
+grad_est[p][s].size()5
+ap_par[p][s].size()5
+curr_p_pars[p][s].size()5
+grad_est[p][s].size()5
+ap_par[p][s].size()5
+curr_p_pars[p][s].size()5
+grad_est[p][s].size()5
+ap_par[p][s].size()5
+curr_p_pars[p][s].size()5
+grad_est[p][s].size()5
+ap_par[p][s].size()5
+curr_p_pars[p][s].size()5
+grad_est[p][s].size()5
+ap_par[p][s].size()5
+IS
+HERE
+1 =p, s= 18 curr_state=41
+1 =p, s= 18 curr_p_pars_size=5
+1 =p, s= 18 grad_est_size=5
+1 =p, s= 18 ap_par_size=5
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()5
+grad_est[p][s].size()5
+ap_par[p][s].size()5
+curr_p_pars[p][s].size()5
+grad_est[p][s].size()5
+ap_par[p][s].size()5
+curr_p_pars[p][s].size()5
+grad_est[p][s].size()5
+ap_par[p][s].size()5
+curr_p_pars[p][s].size()5
+grad_est[p][s].size()5
+ap_par[p][s].size()5
+curr_p_pars[p][s].size()5
+grad_est[p][s].size()5
+ap_par[p][s].size()5
+IS
+HERE
+1 =p, s= 19 curr_state=41
+1 =p, s= 19 curr_p_pars_size=5
+1 =p, s= 19 grad_est_size=5
+1 =p, s= 19 ap_par_size=5
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()5
+grad_est[p][s].size()5
+ap_par[p][s].size()5
+curr_p_pars[p][s].size()5
+grad_est[p][s].size()5
+ap_par[p][s].size()5
+curr_p_pars[p][s].size()5
+grad_est[p][s].size()5
+ap_par[p][s].size()5
+curr_p_pars[p][s].size()5
+grad_est[p][s].size()5
+ap_par[p][s].size()5
+curr_p_pars[p][s].size()5
+grad_est[p][s].size()5
+ap_par[p][s].size()5
+IS
+HERE
+1 =p, s= 20 curr_state=41
+1 =p, s= 20 curr_p_pars_size=2
+1 =p, s= 20 grad_est_size=2
+1 =p, s= 20 ap_par_size=2
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()2
+grad_est[p][s].size()2
+ap_par[p][s].size()2
+curr_p_pars[p][s].size()2
+grad_est[p][s].size()2
+ap_par[p][s].size()2
+IS
+HERE
+1 =p, s= 21 curr_state=41
+1 =p, s= 21 curr_p_pars_size=2
+1 =p, s= 21 grad_est_size=2
+1 =p, s= 21 ap_par_size=2
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()2
+grad_est[p][s].size()2
+ap_par[p][s].size()2
+curr_p_pars[p][s].size()2
+grad_est[p][s].size()2
+ap_par[p][s].size()2
+IS
+HERE
+1 =p, s= 22 curr_state=41
+1 =p, s= 22 curr_p_pars_size=2
+1 =p, s= 22 grad_est_size=2
+1 =p, s= 22 ap_par_size=2
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()2
+grad_est[p][s].size()2
+ap_par[p][s].size()2
+curr_p_pars[p][s].size()2
+grad_est[p][s].size()2
+ap_par[p][s].size()2
+IS
+HERE
+1 =p, s= 23 curr_state=41
+1 =p, s= 23 curr_p_pars_size=2
+1 =p, s= 23 grad_est_size=2
+1 =p, s= 23 ap_par_size=2
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()2
+grad_est[p][s].size()2
+ap_par[p][s].size()2
+curr_p_pars[p][s].size()2
+grad_est[p][s].size()2
+ap_par[p][s].size()2
+IS
+HERE
+1 =p, s= 24 curr_state=41
+1 =p, s= 24 curr_p_pars_size=2
+1 =p, s= 24 grad_est_size=2
+1 =p, s= 24 ap_par_size=2
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()2
+grad_est[p][s].size()2
+ap_par[p][s].size()2
+curr_p_pars[p][s].size()2
+grad_est[p][s].size()2
+ap_par[p][s].size()2
+IS
+HERE
+1 =p, s= 25 curr_state=41
+1 =p, s= 25 curr_p_pars_size=2
+1 =p, s= 25 grad_est_size=2
+1 =p, s= 25 ap_par_size=2
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()2
+grad_est[p][s].size()2
+ap_par[p][s].size()2
+curr_p_pars[p][s].size()2
+grad_est[p][s].size()2
+ap_par[p][s].size()2
+IS
+HERE
+1 =p, s= 26 curr_state=41
+1 =p, s= 26 curr_p_pars_size=2
+1 =p, s= 26 grad_est_size=2
+1 =p, s= 26 ap_par_size=2
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()2
+grad_est[p][s].size()2
+ap_par[p][s].size()2
+curr_p_pars[p][s].size()2
+grad_est[p][s].size()2
+ap_par[p][s].size()2
+IS
+HERE
+1 =p, s= 27 curr_state=41
+1 =p, s= 27 curr_p_pars_size=2
+1 =p, s= 27 grad_est_size=2
+1 =p, s= 27 ap_par_size=2
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()2
+grad_est[p][s].size()2
+ap_par[p][s].size()2
+curr_p_pars[p][s].size()2
+grad_est[p][s].size()2
+ap_par[p][s].size()2
+IS
+HERE
+1 =p, s= 28 curr_state=41
+1 =p, s= 28 curr_p_pars_size=2
+1 =p, s= 28 grad_est_size=2
+1 =p, s= 28 ap_par_size=2
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()2
+grad_est[p][s].size()2
+ap_par[p][s].size()2
+curr_p_pars[p][s].size()2
+grad_est[p][s].size()2
+ap_par[p][s].size()2
+IS
+HERE
+1 =p, s= 29 curr_state=41
+1 =p, s= 29 curr_p_pars_size=2
+1 =p, s= 29 grad_est_size=2
+1 =p, s= 29 ap_par_size=2
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()2
+grad_est[p][s].size()2
+ap_par[p][s].size()2
+curr_p_pars[p][s].size()2
+grad_est[p][s].size()2
+ap_par[p][s].size()2
+IS
+HERE
+1 =p, s= 30 curr_state=41
+1 =p, s= 30 curr_p_pars_size=2
+1 =p, s= 30 grad_est_size=2
+1 =p, s= 30 ap_par_size=2
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()2
+grad_est[p][s].size()2
+ap_par[p][s].size()2
+curr_p_pars[p][s].size()2
+grad_est[p][s].size()2
+ap_par[p][s].size()2
+IS
+HERE
+1 =p, s= 31 curr_state=41
+1 =p, s= 31 curr_p_pars_size=2
+1 =p, s= 31 grad_est_size=2
+1 =p, s= 31 ap_par_size=2
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()2
+grad_est[p][s].size()2
+ap_par[p][s].size()2
+curr_p_pars[p][s].size()2
+grad_est[p][s].size()2
+ap_par[p][s].size()2
+IS
+HERE
+1 =p, s= 32 curr_state=41
+1 =p, s= 32 curr_p_pars_size=2
+1 =p, s= 32 grad_est_size=2
+1 =p, s= 32 ap_par_size=2
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()2
+grad_est[p][s].size()2
+ap_par[p][s].size()2
+curr_p_pars[p][s].size()2
+grad_est[p][s].size()2
+ap_par[p][s].size()2
+IS
+HERE
+1 =p, s= 33 curr_state=41
+1 =p, s= 33 curr_p_pars_size=2
+1 =p, s= 33 grad_est_size=2
+1 =p, s= 33 ap_par_size=2
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()2
+grad_est[p][s].size()2
+ap_par[p][s].size()2
+curr_p_pars[p][s].size()2
+grad_est[p][s].size()2
+ap_par[p][s].size()2
+IS
+HERE
+1 =p, s= 34 curr_state=41
+1 =p, s= 34 curr_p_pars_size=2
+1 =p, s= 34 grad_est_size=2
+1 =p, s= 34 ap_par_size=2
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()2
+grad_est[p][s].size()2
+ap_par[p][s].size()2
+curr_p_pars[p][s].size()2
+grad_est[p][s].size()2
+ap_par[p][s].size()2
+IS
+HERE
+1 =p, s= 35 curr_state=41
+1 =p, s= 35 curr_p_pars_size=2
+1 =p, s= 35 grad_est_size=2
+1 =p, s= 35 ap_par_size=2
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()2
+grad_est[p][s].size()2
+ap_par[p][s].size()2
+curr_p_pars[p][s].size()2
+grad_est[p][s].size()2
+ap_par[p][s].size()2
+IS
+HERE
+1 =p, s= 36 curr_state=41
+1 =p, s= 36 curr_p_pars_size=2
+1 =p, s= 36 grad_est_size=2
+1 =p, s= 36 ap_par_size=2
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()2
+grad_est[p][s].size()2
+ap_par[p][s].size()2
+curr_p_pars[p][s].size()2
+grad_est[p][s].size()2
+ap_par[p][s].size()2
+IS
+HERE
+1 =p, s= 37 curr_state=41
+1 =p, s= 37 curr_p_pars_size=2
+1 =p, s= 37 grad_est_size=2
+1 =p, s= 37 ap_par_size=2
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()2
+grad_est[p][s].size()2
+ap_par[p][s].size()2
+curr_p_pars[p][s].size()2
+grad_est[p][s].size()2
+ap_par[p][s].size()2
+IS
+HERE
+1 =p, s= 38 curr_state=41
+1 =p, s= 38 curr_p_pars_size=2
+1 =p, s= 38 grad_est_size=2
+1 =p, s= 38 ap_par_size=2
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()2
+grad_est[p][s].size()2
+ap_par[p][s].size()2
+curr_p_pars[p][s].size()2
+grad_est[p][s].size()2
+ap_par[p][s].size()2
+IS
+HERE
+1 =p, s= 39 curr_state=41
+1 =p, s= 39 curr_p_pars_size=2
+1 =p, s= 39 grad_est_size=2
+1 =p, s= 39 ap_par_size=2
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()2
+grad_est[p][s].size()2
+ap_par[p][s].size()2
+curr_p_pars[p][s].size()2
+grad_est[p][s].size()2
+ap_par[p][s].size()2
+IS
+HERE
+1 =p, s= 40 curr_state=41
+1 =p, s= 40 curr_p_pars_size=1
+1 =p, s= 40 grad_est_size=1
+1 =p, s= 40 ap_par_size=1
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()1
+grad_est[p][s].size()1
+ap_par[p][s].size()1
+IS
+HERE
+1 =p, s= 41 curr_state=41
+1 =p, s= 41 curr_p_pars_size=1
+1 =p, s= 41 grad_est_size=1
+1 =p, s= 41 ap_par_size=1
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()1
+grad_est[p][s].size()1
+ap_par[p][s].size()1
+IS
+HERE
+1 =p, s= 42 curr_state=41
+1 =p, s= 42 curr_p_pars_size=1
+1 =p, s= 42 grad_est_size=1
+1 =p, s= 42 ap_par_size=1
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()1
+grad_est[p][s].size()1
+ap_par[p][s].size()1
+IS
+HERE
+1 =p, s= 43 curr_state=41
+1 =p, s= 43 curr_p_pars_size=1
+1 =p, s= 43 grad_est_size=1
+1 =p, s= 43 ap_par_size=1
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()1
+grad_est[p][s].size()1
+ap_par[p][s].size()1
+IS
+HERE
+1 =p, s= 44 curr_state=41
+1 =p, s= 44 curr_p_pars_size=1
+1 =p, s= 44 grad_est_size=1
+1 =p, s= 44 ap_par_size=1
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()1
+grad_est[p][s].size()1
+ap_par[p][s].size()1
+IS
+HERE
+1 =p, s= 45 curr_state=41
+1 =p, s= 45 curr_p_pars_size=1
+1 =p, s= 45 grad_est_size=1
+1 =p, s= 45 ap_par_size=1
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()1
+grad_est[p][s].size()1
+ap_par[p][s].size()1
+IS
+HERE
+1 =p, s= 46 curr_state=41
+1 =p, s= 46 curr_p_pars_size=1
+1 =p, s= 46 grad_est_size=1
+1 =p, s= 46 ap_par_size=1
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()1
+grad_est[p][s].size()1
+ap_par[p][s].size()1
+IS
+HERE
+1 =p, s= 47 curr_state=41
+1 =p, s= 47 curr_p_pars_size=1
+1 =p, s= 47 grad_est_size=1
+1 =p, s= 47 ap_par_size=1
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()1
+grad_est[p][s].size()1
+ap_par[p][s].size()1
+IS
+HERE
+1 =p, s= 48 curr_state=41
+1 =p, s= 48 curr_p_pars_size=1
+1 =p, s= 48 grad_est_size=1
+1 =p, s= 48 ap_par_size=1
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()1
+grad_est[p][s].size()1
+ap_par[p][s].size()1
+IS
+HERE
+1 =p, s= 49 curr_state=41
+1 =p, s= 49 curr_p_pars_size=1
+1 =p, s= 49 grad_est_size=1
+1 =p, s= 49 ap_par_size=1
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()1
+grad_est[p][s].size()1
+ap_par[p][s].size()1
+IS
+HERE
+1 =p, s= 50 curr_state=41
+1 =p, s= 50 curr_p_pars_size=1
+1 =p, s= 50 grad_est_size=1
+1 =p, s= 50 ap_par_size=1
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()1
+grad_est[p][s].size()1
+ap_par[p][s].size()1
+IS
+HERE
+1 =p, s= 51 curr_state=41
+1 =p, s= 51 curr_p_pars_size=1
+1 =p, s= 51 grad_est_size=1
+1 =p, s= 51 ap_par_size=1
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()1
+grad_est[p][s].size()1
+ap_par[p][s].size()1
+IS
+HERE
+1 =p, s= 52 curr_state=41
+1 =p, s= 52 curr_p_pars_size=1
+1 =p, s= 52 grad_est_size=1
+1 =p, s= 52 ap_par_size=1
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()1
+grad_est[p][s].size()1
+ap_par[p][s].size()1
+IS
+HERE
+1 =p, s= 53 curr_state=41
+1 =p, s= 53 curr_p_pars_size=1
+1 =p, s= 53 grad_est_size=1
+1 =p, s= 53 ap_par_size=1
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()1
+grad_est[p][s].size()1
+ap_par[p][s].size()1
+IS
+HERE
+1 =p, s= 54 curr_state=41
+1 =p, s= 54 curr_p_pars_size=1
+1 =p, s= 54 grad_est_size=1
+1 =p, s= 54 ap_par_size=1
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()1
+grad_est[p][s].size()1
+ap_par[p][s].size()1
+IS
+HERE
+1 =p, s= 55 curr_state=41
+1 =p, s= 55 curr_p_pars_size=1
+1 =p, s= 55 grad_est_size=1
+1 =p, s= 55 ap_par_size=1
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()1
+grad_est[p][s].size()1
+ap_par[p][s].size()1
+IS
+HERE
+1 =p, s= 56 curr_state=41
+1 =p, s= 56 curr_p_pars_size=1
+1 =p, s= 56 grad_est_size=1
+1 =p, s= 56 ap_par_size=1
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()1
+grad_est[p][s].size()1
+ap_par[p][s].size()1
+IS
+HERE
+1 =p, s= 57 curr_state=41
+1 =p, s= 57 curr_p_pars_size=1
+1 =p, s= 57 grad_est_size=1
+1 =p, s= 57 ap_par_size=1
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()1
+grad_est[p][s].size()1
+ap_par[p][s].size()1
+IS
+HERE
+1 =p, s= 58 curr_state=41
+1 =p, s= 58 curr_p_pars_size=1
+1 =p, s= 58 grad_est_size=1
+1 =p, s= 58 ap_par_size=1
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()1
+grad_est[p][s].size()1
+ap_par[p][s].size()1
+IS
+HERE
+1 =p, s= 59 curr_state=41
+1 =p, s= 59 curr_p_pars_size=1
+1 =p, s= 59 grad_est_size=1
+1 =p, s= 59 ap_par_size=1
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()1
+grad_est[p][s].size()1
+ap_par[p][s].size()1
+IS
+HERE
+1 =p, s= 60 curr_state=41
+1 =p, s= 60 curr_p_pars_size=1
+1 =p, s= 60 grad_est_size=1
+1 =p, s= 60 ap_par_size=1
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()1
+grad_est[p][s].size()1
+ap_par[p][s].size()1
+IS
+HERE
+1 =p, s= 61 curr_state=41
+1 =p, s= 61 curr_p_pars_size=1
+1 =p, s= 61 grad_est_size=1
+1 =p, s= 61 ap_par_size=1
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()1
+grad_est[p][s].size()1
+ap_par[p][s].size()1
+IS
+HERE
+1 =p, s= 62 curr_state=41
+1 =p, s= 62 curr_p_pars_size=1
+1 =p, s= 62 grad_est_size=1
+1 =p, s= 62 ap_par_size=1
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()1
+grad_est[p][s].size()1
+ap_par[p][s].size()1
+IS
+HERE
+1 =p, s= 63 curr_state=41
+1 =p, s= 63 curr_p_pars_size=1
+1 =p, s= 63 grad_est_size=1
+1 =p, s= 63 ap_par_size=1
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()1
+grad_est[p][s].size()1
+ap_par[p][s].size()1
+IS
+HERE
+1 =p, s= 64 curr_state=41
+1 =p, s= 64 curr_p_pars_size=1
+1 =p, s= 64 grad_est_size=1
+1 =p, s= 64 ap_par_size=1
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()1
+grad_est[p][s].size()1
+ap_par[p][s].size()1
+IS
+HERE
+1 =p, s= 65 curr_state=41
+1 =p, s= 65 curr_p_pars_size=1
+1 =p, s= 65 grad_est_size=1
+1 =p, s= 65 ap_par_size=1
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()1
+grad_est[p][s].size()1
+ap_par[p][s].size()1
+IS
+HERE
+1 =p, s= 66 curr_state=41
+1 =p, s= 66 curr_p_pars_size=1
+1 =p, s= 66 grad_est_size=1
+1 =p, s= 66 ap_par_size=1
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()1
+grad_est[p][s].size()1
+ap_par[p][s].size()1
+IS
+HERE
+1 =p, s= 67 curr_state=41
+1 =p, s= 67 curr_p_pars_size=1
+1 =p, s= 67 grad_est_size=1
+1 =p, s= 67 ap_par_size=1
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()1
+grad_est[p][s].size()1
+ap_par[p][s].size()1
+IS
+HERE
+1 =p, s= 68 curr_state=41
+1 =p, s= 68 curr_p_pars_size=1
+1 =p, s= 68 grad_est_size=1
+1 =p, s= 68 ap_par_size=1
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()1
+grad_est[p][s].size()1
+ap_par[p][s].size()1
+IS
+HERE
+1 =p, s= 69 curr_state=41
+1 =p, s= 69 curr_p_pars_size=1
+1 =p, s= 69 grad_est_size=1
+1 =p, s= 69 ap_par_size=1
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()1
+grad_est[p][s].size()1
+ap_par[p][s].size()1
+IS
+HERE
+1 =p, s= 70 curr_state=41
+1 =p, s= 70 curr_p_pars_size=1
+1 =p, s= 70 grad_est_size=1
+1 =p, s= 70 ap_par_size=1
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()1
+grad_est[p][s].size()1
+ap_par[p][s].size()1
+IS
+HERE
+1 =p, s= 71 curr_state=41
+1 =p, s= 71 curr_p_pars_size=1
+1 =p, s= 71 grad_est_size=1
+1 =p, s= 71 ap_par_size=1
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()1
+grad_est[p][s].size()1
+ap_par[p][s].size()1
+IS
+HERE
+1 =p, s= 72 curr_state=41
+1 =p, s= 72 curr_p_pars_size=1
+1 =p, s= 72 grad_est_size=1
+1 =p, s= 72 ap_par_size=1
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()1
+grad_est[p][s].size()1
+ap_par[p][s].size()1
+IS
+HERE
+1 =p, s= 73 curr_state=41
+1 =p, s= 73 curr_p_pars_size=1
+1 =p, s= 73 grad_est_size=1
+1 =p, s= 73 ap_par_size=1
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()1
+grad_est[p][s].size()1
+ap_par[p][s].size()1
+IS
+HERE
+1 =p, s= 74 curr_state=41
+1 =p, s= 74 curr_p_pars_size=1
+1 =p, s= 74 grad_est_size=1
+1 =p, s= 74 ap_par_size=1
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()1
+grad_est[p][s].size()1
+ap_par[p][s].size()1
+IS
+HERE
+1 =p, s= 75 curr_state=41
+1 =p, s= 75 curr_p_pars_size=1
+1 =p, s= 75 grad_est_size=1
+1 =p, s= 75 ap_par_size=1
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()1
+grad_est[p][s].size()1
+ap_par[p][s].size()1
+IS
+HERE
+1 =p, s= 76 curr_state=41
+1 =p, s= 76 curr_p_pars_size=1
+1 =p, s= 76 grad_est_size=1
+1 =p, s= 76 ap_par_size=1
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()1
+grad_est[p][s].size()1
+ap_par[p][s].size()1
+IS
+HERE
+1 =p, s= 77 curr_state=41
+1 =p, s= 77 curr_p_pars_size=1
+1 =p, s= 77 grad_est_size=1
+1 =p, s= 77 ap_par_size=1
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()1
+grad_est[p][s].size()1
+ap_par[p][s].size()1
+IS
+HERE
+1 =p, s= 78 curr_state=41
+1 =p, s= 78 curr_p_pars_size=1
+1 =p, s= 78 grad_est_size=1
+1 =p, s= 78 ap_par_size=1
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()1
+grad_est[p][s].size()1
+ap_par[p][s].size()1
+IS
+HERE
+1 =p, s= 79 curr_state=41
+1 =p, s= 79 curr_p_pars_size=1
+1 =p, s= 79 grad_est_size=1
+1 =p, s= 79 ap_par_size=1
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()1
+grad_est[p][s].size()1
+ap_par[p][s].size()1
+IS
+HERE
+2 =p, s= 0 curr_state=41
+2 =p, s= 0 curr_p_pars_size=5
+2 =p, s= 0 grad_est_size=5
+2 =p, s= 0 ap_par_size=0
+THE ISSUE
+curr_td_error-10
+curr_p_pars[p][s].size()5
+grad_est[p][s].size()5
+ap_par[p][s].size()0

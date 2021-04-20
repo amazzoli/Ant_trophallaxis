@@ -72,8 +72,9 @@ void MARLAlgorithm::run(const param& params) {
     for (curr_step=0; curr_step<n_steps; ++curr_step){        
 
         // Algorithm-specific action at the current step
+        std::cout << "BEFORE ACT"<<std::endl;
         get_action(curr_action);
-
+        std::cout << "AFTER ACT"<<std::endl;
         // std::cout << "s: ";
         // for(int p=0; p<(*env).n_players(); p++) {
         //     std::cout << (*env).aggr_state_descr()[p][curr_aggr_state[p]] << " ";
@@ -88,6 +89,9 @@ void MARLAlgorithm::run(const param& params) {
         for(int p=0; p<(*env).n_players(); p++)
             ret[p] += curr_info.reward[p] * curr_gamma_fact;
         (*env).aggr_state(curr_new_aggr_state);
+
+        std::cout << "AFTER AGGR"<<std::endl;
+
 
         if (!stop_by_discount) curr_gamma_fact *= std::pow(m_gamma, lrn_steps_elapsed);
 
@@ -114,18 +118,23 @@ void MARLAlgorithm::run(const param& params) {
         // std::cout << "\n";
 
         // Algorithm-specific update
+        std::cout << "BEFORE LEARN"<<std::endl;
+        std::cout << "LEARN STEPS "<< lrn_steps_elapsed<<std::endl;
         learning_update(lrn_steps_elapsed);
-        
+        std::cout << "AFTER LEARN"<<std::endl;
         // Building the trajectory
         if (traj_step > 0 && curr_step%traj_step == 0) {
+            std::cout << "WRITE TRAJ"<<std::endl;
             build_traj();
             env_info_traj[t_time] = (*env).env_data();
             t_time++;
+            std::cout << "END WRITE TRAJ"<<std::endl;
         }
 
         // At terminal state
         if (curr_info.done){ 
 
+            std::cout << "PROBLEMS, BOY?"<<std::endl;
             // std::cout << "s': ";
             // for(int p=0; p<(*env).n_players(); p++) {
             //     std::cout << (*env).aggr_state_descr()[p][curr_new_aggr_state[p]] << " ";
@@ -177,7 +186,11 @@ void MARLAlgorithm::run(const param& params) {
             ep_for_av_ret = 0;
             for(double& r : av_ret) r = 0;
         }
+        
+        
+        std::cout << "CYCLED"<<std::endl;
     }
+    std::cout << "BOH"<<std::endl;
     build_traj();
     env_info_traj[t_time] = (*env).env_data();
 }

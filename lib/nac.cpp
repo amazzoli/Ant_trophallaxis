@@ -105,13 +105,6 @@ void MA_AC::init(const param& params){
     else
         curr_policy = flat_policy();
 
-
-    // DEBUG
-    std::cout << " " << curr_policy[0][0].size() << std::endl;
-
-    // DEBUG
-    std::cout << "N_ACTIONS CAZZO " << (*env).n_actions(0, 0) << std::endl;
-
     // Policy parameters init
     curr_p_pars = vec3d(0);
     for (int p=0; p<(*env).n_players(); p++) {
@@ -123,10 +116,6 @@ void MA_AC::init(const param& params){
         }
         curr_p_pars.push_back(par_of_player);
     }
-
-    // DEBUG
-    std::cout << " " << curr_p_pars[0][0].size() << std::endl;
-
     curr_td_error = vecd((*env).n_players());
     curr_t_rew = vecd((*env).n_players());
     curr_av_rew =  vecd((*env).n_players());
@@ -228,8 +217,11 @@ void MA_AC::learning_update(int lrn_steps_elapsed) {
             }
         }
 
+        std::cout<< " ALREADY "<<std::endl;
         critic_update();
+        std::cout<< " HERE "<<std::endl;
         actor_update();
+        std::cout<< " PROBLEMS "<<std::endl;
     }
 }
 
@@ -247,6 +239,7 @@ void MA_AC::actor_update() {
         }
     }
 }
+
 
 
 void MA_AC::critic_update() {
@@ -321,6 +314,14 @@ void MA_NAC_AP::child_init(){
         ap_par.push_back(ap_par_of_player);
         grad_est.push_back(grad_est_of_player);
     }
+    
+    for (int p=0; p<(*env).n_players(); p++) {
+        for (int s=0; s<(*env).n_aggr_state(p); ++s) {
+            std::cout<< " INSIDE INIT "<<std::endl;
+            std::cout<< p <<" =p, s= "<< s <<" ap_par_size="<< ap_par[p][s].size()<<std::endl;
+        }
+    }
+    
 }
 
 void MA_NAC_AP::actor_update(){ 
@@ -332,6 +333,12 @@ void MA_NAC_AP::actor_update(){
         double lr_act = aux_act_lr * lr_act_factors[p];
         for (int s=0; s<ap_par[p].size(); s++) {
             for (int a=0; a<curr_p_pars[p][curr_aggr_state[p]].size(); a++) {
+                std::cout<< p <<" =p, s= "<< s <<" curr_state="<< curr_aggr_state[p]<<std::endl;
+                std::cout<< p <<" =p, s= "<< s <<" curr_p_pars_size="<< curr_p_pars[p][s].size()<<std::endl;
+                std::cout<< p <<" =p, s= "<< s <<" grad_est_size="<< grad_est[p][s].size()<<std::endl;
+                std::cout<< p <<" =p, s= "<< s <<" ap_par_size="<< ap_par[p][s].size()<<std::endl;
+                
+                
                 if (s == curr_aggr_state[p]){
                     if (a == curr_action[p])
                         grad_est[p][s][a] = 1 - curr_policy[p][s][a];
@@ -341,17 +348,47 @@ void MA_NAC_AP::actor_update(){
                 else
                     grad_est[p][s][a] = 0;
             }
-
+            
+            
+            std::cout<< "THE ISSUE" <<std::endl;
             double aux_t = curr_td_error[p];
-            for (int a=0; a<curr_p_pars[p][s].size(); a++)
+            
+            std::cout<< "curr_td_error" << curr_td_error[p]<<std::endl;
+            
+            
+            for (int a=0; a<curr_p_pars[p][s].size(); a++){
+                std::cout<< "curr_p_pars[p][s].size()" << curr_p_pars[p][s].size()<<std::endl;
+                std::cout<< "grad_est[p][s].size()" << grad_est[p][s].size()<<std::endl;
+                std::cout<< "ap_par[p][s].size()" << ap_par[p][s].size()<<std::endl;
                 aux_t -= grad_est[p][s][a] * ap_par[p][s][a];
-
+            }
+            
+            std::cout<< "IS" <<std::endl;            
             for (int a=0; a<curr_p_pars[p][s].size(); a++){
                 ap_par[p][s][a] += lr_crit * grad_est[p][s][a] * aux_t;
                 curr_p_pars[p][s][a] += lr_act * ap_par[p][s][a];
             }
+
+            std::cout<< "HERE" <<std::endl;
+
+/*void MA_AC::actor_update() { 
+    // Actor update (curr_gamma_fact is 1 if stop_by_discount)
+    double aux_lr = lr_act(curr_step) * curr_gamma_fact;
+    for (int p=0; p<(*env).n_players(); p++){
+        double lr = aux_lr * lr_act_factors[p];
+        for (int a=0; a<curr_p_pars[p][curr_aggr_state[p]].size(); a++){
+            if (a == curr_action[p]) 
+                curr_p_pars[p][curr_aggr_state[p]][a] += lr * curr_td_error[p] * (1 - curr_policy[p][curr_aggr_state[p]][a]); 
+            else 
+                curr_p_pars[p][curr_aggr_state[p]][a] -= lr * curr_td_error[p] * curr_policy[p][curr_aggr_state[p]][a];
+        }
+    }
+}*/
+
+
             
             // Simplex Clipping
+            /*
             int n_act = curr_p_pars[p][s].size();
             if (simpl_clip && (n_act > 1) ){
                 vecd temp_policy = vecd(n_act);
@@ -361,10 +398,13 @@ void MA_NAC_AP::actor_update(){
                     curr_policy[p][s][a] = std::max( std::min(temp_policy[a], (1-simpl_clip_eps*(n_act-1))), simpl_clip_eps);
                 }
                 pol2par_boltzmann(curr_policy[p][s], curr_p_pars[p][s]);
-            }
+            }*/
         }
     }
 }
+
+
+
 
 
 
@@ -381,75 +421,20 @@ MA_AC(env, params, generator, verbose) {
     et_vec_actor = vec3d((*env).n_players());
     for (int p=0; p<(*env).n_players(); p++){
         vec2d vec_of_player = vec2d((*env).n_aggr_state(p));
-        for (int s=0; s<vec_of_player.size(); ++s) 
+        for (int s=0; s<vec_of_player.size(); ++s){ 
             vec_of_player[s] = vecd((*env).n_actions(p,s));
+            std::cout << "(p,s, n_action[p,s]) = ("<<p <<"," <<s <<"," <<(*env).n_actions(p,s) <<")"<<std::endl;
+        }
         et_vec_actor[p] = vec_of_player;
     }
+    
+    
+    
     et_vec_critic = vec2d((*env).n_players(), vecd());
     for (int p=0; p<(*env).n_players(); p++){
         et_vec_critic[p] = vecd((*env).n_aggr_state(p), 0);
     }
 }
-
-
-// void MA_AC_ET::learning_update(int lrn_steps_elapsed) {
-
-//     // WARNING: !stop_by_discount NEVER CHECKED!!
-
-//     double eff_gamma = 1;
-//     if (!stop_by_discount) eff_gamma = m_gamma; 
-
-//     if (continuous_task){
-//         if (lrn_steps_elapsed > 1)
-//             std::cout << "Warning: learning step > 1 in continuous task\n";
-//         if (curr_info.done)
-//             std::cout << "Warning: episode done at step " << curr_step << " in continuous task\n";
-//     }
-
-//     for (int t = 0; t<lrn_steps_elapsed; t++) {
-
-//         // TD is given by a self loop with zero reward
-//         if (t < lrn_steps_elapsed-1) 
-//             for (int p=0; p<(*env).n_players(); p++) 
-//                 curr_td_error[p] = eff_gamma * curr_v_pars[p][curr_aggr_state[p]] - curr_v_pars[p][curr_aggr_state[p]];
-//         // normal TD for the last step
-//         else {
-//             if (curr_info.done) {
-//                 //(*env).terminal_reward(eff_gamma, curr_t_rew);
-//                 for (int p=0; p<(*env).n_players(); p++)
-//                     //curr_td_error[p] = curr_t_rew[p] - curr_v_pars[p][curr_aggr_state[p]];
-//                     curr_td_error[p] = curr_info.reward[p] - curr_v_pars[p][curr_aggr_state[p]];
-//             }
-//             else {
-//                 for (int p=0; p<(*env).n_players(); p++){
-//                     if (continuous_task) {
-//                         double lrr = lr_crit(curr_step) * lr_rew_factor;
-//                         curr_av_rew[p] = (1 - lrr) * curr_av_rew[p] + lrr * curr_info.reward[p];
-//                         curr_td_error[p] = curr_info.reward[p] - curr_av_rew[p] + curr_v_pars[p][curr_new_aggr_state[p]] - curr_v_pars[p][curr_aggr_state[p]];
-//                     }
-//                     else
-//                         curr_td_error[p] = curr_info.reward[p] + eff_gamma * curr_v_pars[p][curr_new_aggr_state[p]] - curr_v_pars[p][curr_aggr_state[p]];
-//                 }
-//             }
-//         }
-
-//         critic_update();
-//         // Actor update (curr_gamma_fact is 1 if stop_by_discount)
-//         actor_update();
-//     }
-
-//     // If terminal state, the eligibity vectors are re-init to zero
-//     if (curr_info.done) {
-//         for (int p=0; p<(*env).n_players(); p++) {
-//             for (int s=0; s<(*env).n_aggr_state(p); ++s) {
-//                 et_vec_critic[p][s] = 0;
-//                 for (int a=0; a<(*env).n_actions(p,s); ++a)
-//                     et_vec_actor[p][s][a] = 0;
-//             }
-//         }
-//     }
-// }
-
 
 
 void MA_AC_ET::critic_update() {
@@ -511,22 +496,49 @@ void MA_NAC_AP_ET::child_init(){
 
 void MA_NAC_AP_ET::actor_update(){
 
+    std::cout << "WHAT IS THIS MESS "<<std::endl;
+
+    for (int p=0; p<(*env).n_players(); p++) 
+        std::cout<< et_vec_actor[p][0].size() <<" is size. momo. should be "<< curr_policy[p][0].size() <<std::endl;
+
+
     double aux_act_lr = lr_act(curr_step) * curr_gamma_fact;
     double aux_crit_lr = lr_crit(curr_step) * curr_gamma_fact;
     for (int p=0; p<(*env).n_players(); p++) {
+
+        for (int p=0; p<(*env).n_players(); p++){
+            std::cout << "cycle p "<< p <<std::endl;
+            std::cout<< et_vec_actor[p][0].size() <<" is size. momo. should be "<< curr_policy[p][0].size() <<std::endl;
+        }
+
         double lr_crit = aux_crit_lr * lr_crit_factors[p];
         double lr_act = aux_act_lr * lr_act_factors[p];
         for (int s=0; s<ap_par[p].size(); s++) {
+                
+            std::cout<< " passing through s="<< s<<" p="<< p<<std::endl;
+            //std::cout<< s<< "=s p="<< p<< " curr_aggr_state="<< curr_aggr_state[p]<< " n_actions there is "<< (*env).n_actions(p, curr_aggr_state[p]) << std::endl;
+
+
             for (int a=0; a<curr_p_pars[p][curr_aggr_state[p]].size(); a++) {
+                
+                
+                std::cout<< a <<" of "<< curr_p_pars[p][curr_aggr_state[p]].size()<<std::endl;
+                //std::cout<< curr_policy[p][s][a] <<" is policy and curr action is "<< curr_action[p]<<std::endl;
+                
                 et_vec_actor[p][s][a] *= lambda_actor;
                 if (s == curr_aggr_state[p]){
-                    if (a == curr_action[p])
+                    if (a == curr_action[p]){
                         et_vec_actor[p][s][a] = 1 - curr_policy[p][s][a];
-                    else
+                    }
+                    else{
                         et_vec_actor[p][s][a] = - curr_policy[p][s][a];
+                    }
                 }
+                //std::cout<< p <<" is in "<< curr_aggr_state[p]<<std::endl;
+
             }
-            
+            //std::cout<< " SAY WHAT "<<std::endl;
+
             double aux_t = curr_td_error[p];
             for (int a=0; a<curr_p_pars[p][s].size(); a++)
                 aux_t -= et_vec_actor[p][s][a] * ap_par[p][s][a];
@@ -535,9 +547,8 @@ void MA_NAC_AP_ET::actor_update(){
                 ap_par[p][s][a] += lr_crit * et_vec_actor[p][s][a] * aux_t;
                 curr_p_pars[p][s][a] += lr_act * ap_par[p][s][a] * (1-lambda_actor) ;
             }
-            
             // Simplex Clipping
-            int n_act = curr_p_pars[p][s].size();
+            /*int n_act = curr_p_pars[p][s].size();
             if (simpl_clip && (n_act > 1) ){
                 vecd temp_policy = vecd(n_act);
                 par2pol_boltzmann(curr_p_pars[p][s], temp_policy);
@@ -546,7 +557,8 @@ void MA_NAC_AP_ET::actor_update(){
                     curr_policy[p][s][a] = std::max( std::min(temp_policy[a], (1-simpl_clip_eps*(n_act-1))), simpl_clip_eps);
                 }
                 pol2par_boltzmann(curr_policy[p][s], curr_p_pars[p][s]);
-            }
+            }*/
+            //std::cout<< " BUT "<<std::endl;
         }
     }
 
