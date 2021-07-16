@@ -190,6 +190,8 @@ class Ants_consume_exchanges : public Ants_consume {
         void consume_food(int player, int amount, env_info& info);
         bool unif_filling;
         double p_filling;
+        bool one_reward;
+        bool only_forager;
 
 
     public:

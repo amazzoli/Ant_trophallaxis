@@ -286,6 +286,8 @@ vecd Ants_consume::env_data() {
 		(double)forag_deaths_out/elapsed_steps,  
 		(double)forag_deaths_cons/elapsed_steps,  
 	};
+
+    
 	for (const int& d : rec_deaths) v.push_back((double)d/elapsed_steps);
 	v.push_back((double)forced_stops/elapsed_steps);
 
@@ -310,6 +312,7 @@ vecd Ants_consume::env_data() {
 	forag_deaths_cons = 0;
 	rec_deaths = veci(n_recipients);
 	forced_stops = 0;
+
 
 	return v;
 }
@@ -544,6 +547,7 @@ Ants_consume(par, generator) {
         unif_filling = false;
 		stop_at_first_death = false;
         giver_reward = 1;
+        one_reward = false;
 		if (par.s.find("stop_at_first_death") != par.s.end())
 			if (par.s.at("stop_at_first_death") == "true" || par.s.at("stop_at_first_death") == "True")
 				stop_at_first_death = true;
@@ -554,6 +558,12 @@ Ants_consume(par, generator) {
 		if (par.s.find("unif_filling") != par.s.end())
 			if (par.s.at("unif_filling") == "true" || par.s.at("unif_filling") == "True")
 				unif_filling = true;
+		if (par.s.find("one_reward") != par.s.end())
+			if (par.s.at("one_reward") == "true" || par.s.at("one_reward") == "True")
+				one_reward = true;
+		if (par.s.find("only_forager") != par.s.end())
+			if (par.s.at("only_forager") == "true" || par.s.at("only_forager") == "True")
+				only_forager = true;
         true_gamma = par.d.at("true_gamma");
 	} catch (std::exception) {
 	    throw std::invalid_argument( "Invalid ant-environment parameters (Ants_consume_exchanges model)" );
@@ -704,7 +714,6 @@ void Ants_consume_exchanges::step(const veci& action, env_info& info, int& lrn_s
 	
 	// Forager's decision
     // Colony Macrostate
-    
 	if (macro_state == 0) {
 
 		// Forager Gathering
@@ -749,6 +758,8 @@ void Ants_consume_exchanges::step(const veci& action, env_info& info, int& lrn_s
             //std::cout <<"Is the problem here?" << std::endl;
             double u = unif_col_dist(generator);
             decider = ind_col_map[u];
+            
+
             //std::cout <<"Was the problem here? No." << std::endl;
 
             
@@ -800,9 +811,15 @@ void Ants_consume_exchanges::step(const veci& action, env_info& info, int& lrn_s
             // The new decider is any recipient with food>0 or the forager, found in ind_col_map
             double u = unif_col_dist(generator);
             decider = ind_col_map[u];
+            
+            if (only_forager){
+                decider = 0;
+            }
+            
         }
 
         // Accept
+        
         else {
             
             food[decider] += 1;
@@ -811,16 +828,26 @@ void Ants_consume_exchanges::step(const veci& action, env_info& info, int& lrn_s
                 // morte per trophallassi
                 if (food[giver] == 0) forag_deaths_in++; 
 
-            info.reward[decider] = 1;
-            av_return[decider] += 1;
-            if (giver==0){
-                info.reward[giver] = 1;
-                av_return[giver] += 1;
+            if (one_reward) {
+                if (giver == 0){
+                    for (int p=0; p<n_recipients+1; p++){
+                        if (food[p] > 0){
+                            info.reward[p] = 1;
+                            av_return[p] += 1;
+                        }
+                    }                        
+                }
             } else {
-                info.reward[giver] = giver_reward;
-                av_return[giver] += giver_reward;
+                info.reward[decider] = 1;
+                av_return[decider] += 1;
+                if (giver==0){
+                    info.reward[giver] = 1;
+                    av_return[giver] += 1;
+                } else {
+                    info.reward[giver] = giver_reward;
+                    av_return[giver] += giver_reward;
+                }
             }
-
         }
 	}
 
@@ -899,7 +926,7 @@ Ants_consume_exchanges(par, generator) {
 		for(int k=0; k<max_k+1; k++) {
 			for (int j=1; j<n_players(); j++)
                 {
-                if (j==k)
+                if (j==p)
                     m_action_descr[p][k].push_back("pass");
                 else
                     m_action_descr[p][k].push_back("share"+std::to_string(j));
@@ -923,9 +950,7 @@ void Ants_consume_exchanges_choice::step(const veci& action, env_info& info, int
 	
 	// Forager's decision
     // Colony Macrostate
-    std::cout << "HERE "<<std::endl;
-    std::cout << macro_state<<" "<< decider << " "<<giver<< " " << action[decider]<< std::endl;
-    
+
 	if (macro_state == 0) {
 
 		// Forager Gathering
@@ -1026,16 +1051,26 @@ void Ants_consume_exchanges_choice::step(const veci& action, env_info& info, int
                 // morte per trophallassi
                 if (food[giver] == 0) forag_deaths_in++; 
 
-            info.reward[decider] = 1;
-            av_return[decider] += 1;
-            if (giver==0){
-                info.reward[giver] = 1;
-                av_return[giver] += 1;
+            if (one_reward) {
+                if (giver == 0){
+                    for (int p=0; p<n_recipients+1; p++){
+                        if (food[p] > 0){
+                            info.reward[p] = 1;
+                            av_return[p] += 1;
+                        }
+                    }                        
+                }
             } else {
-                info.reward[giver] = giver_reward;
-                av_return[giver] += giver_reward;
+                info.reward[decider] = 1;
+                av_return[decider] += 1;
+                if (giver==0){
+                    info.reward[giver] = 1;
+                    av_return[giver] += 1;
+                } else {
+                    info.reward[giver] = giver_reward;
+                    av_return[giver] += giver_reward;
+                }
             }
-
         }
 	}
 
@@ -1047,9 +1082,6 @@ void Ants_consume_exchanges_choice::step(const veci& action, env_info& info, int
         for (int p=1; p < n_recipients+1; p++)
             if (food[p] < max_k && food[p] >0) info.done = false;        
         }
-        
-    std::cout << "THERE "<<std::endl;
-    std::cout << macro_state<<" "<< decider << " "<<giver <<  " "<<action[decider]<<std::endl;    
 }
 
 

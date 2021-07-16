@@ -16,9 +16,9 @@ dir = './'
 Ndata = 1000000
 data = np.loadtxt(dir + '/ev_info.txt', skiprows=1, max_rows=Ndata)
 N = (data.shape[1]-2) // 4
-print(N)
+
 Nrecipients = N - 1
-Mmax = 20
+Mmax = 19
 forager_gathering_food = np.array([])
 agents = np.array([])
 food_exch = np.array([])
