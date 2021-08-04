@@ -420,8 +420,8 @@ void MA_AC_ET::critic_update() {
         for (int s=0; s<(*env).n_aggr_state(p); ++s) {
             et_vec_critic[p][s] *= lambda_critic;
             if (s == curr_aggr_state[p])
-                et_vec_critic[p][s] += 1;
-            curr_v_pars[p][s] += lr * curr_td_error[p] * et_vec_critic[p][s] * (1-lambda_critic);
+                et_vec_critic[p][s] = 1;
+            curr_v_pars[p][s] += lr * curr_td_error[p] * et_vec_critic[p][s];
         }      
     }  
 }
@@ -436,11 +436,11 @@ void MA_AC_ET::actor_update() {
                 et_vec_actor[p][s][a] *= lambda_actor;
                 if (s == curr_aggr_state[p]){
                     if (a == curr_action[p]) 
-                        et_vec_actor[p][s][a] += 1 - curr_policy[p][s][a];
+                        et_vec_actor[p][s][a] = 1 - curr_policy[p][s][a];
                     else
-                        et_vec_actor[p][s][a] -= curr_policy[p][s][a];
+                        et_vec_actor[p][s][a] = 0;
                 }
-                curr_p_pars[p][s][a] += lr * curr_td_error[p] * et_vec_actor[p][s][a] * (1-lambda_actor) ;
+                curr_p_pars[p][s][a] += lr * curr_td_error[p] * et_vec_actor[p][s][a] ;
             }  
         }
     }
@@ -492,7 +492,7 @@ void MA_NAC_AP_ET::actor_update(){
                         et_vec_actor[p][s][a] = 1 - curr_policy[p][s][a];
                     }
                     else{
-                        et_vec_actor[p][s][a] = - curr_policy[p][s][a];
+                        et_vec_actor[p][s][a] = 0;
                     }
                 }
                 //std::cout<< p <<" is in "<< curr_aggr_state[p]<<std::endl;
